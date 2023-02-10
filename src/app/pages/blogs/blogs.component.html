@@ -1,0 +1,14 @@
+<!-- <app-wip></app-wip> -->
+<div class="container sm:w-1/2 w-10/12 mx-auto">
+    <p class="text-center font-extrabold text-3xl">Blogs I have posted📝!</p>
+    <p class="font-bold text-3xl pt-4">
+        Dev.to
+    </p>
+    <div class="pt-4">
+        <ul class="list-disc" *ngFor="let item of blogs">
+            <li class="text-lg">
+                <a href="{{item.url}}" class="font-bold">{{item.title}}</a>
+            </li>
+        </ul>
+    </div>
+</div>
