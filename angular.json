@@ -99,6 +99,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "manthanank:build:production",
+            "firebaseProject": "manthanank",
+            "firebaseHostingSite": "manthanank"
+          }
         }
       }
     }
