@@ -13,11 +13,10 @@ const routes: Routes = [
   // { path: '', redirectTo: '', pathMatch: "full" },
   { path: '', component: HomeComponent },
   {
-    path: 'projects', component: ProjectsComponent, children: [
-      {
-        path: 'project-details/:id', component: ProjectDetailsComponent
-      }
-    ]
+    path: 'projects', component: ProjectsComponent
+  },
+  {
+    path: 'project-details/:id', component: ProjectDetailsComponent
   },
   { path: 'blogs', component: BlogsComponent },
   { path: 'uses', component: UsesComponent },

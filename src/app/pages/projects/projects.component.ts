@@ -13,7 +13,7 @@ export class ProjectsComponent implements OnInit{
   data: any;
   projects: any;
   
-  constructor(private http: HttpClient, private dataService: DataService, private router: Router){}
+  constructor(private http: HttpClient, private dataService: DataService, private route: Router){}
 
   ngOnInit(){
     this.http.get('/assets/data.json').subscribe(data => {
@@ -25,6 +25,6 @@ export class ProjectsComponent implements OnInit{
     })
   }
   showDetails(item: any) {
-    this.router.navigate(['projects', item._id]);
+    this.route.navigate(['project-details', item._id]);
   }
 }
