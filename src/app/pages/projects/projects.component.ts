@@ -12,15 +12,14 @@ export class ProjectsComponent implements OnInit{
 
   data: any;
   projects: any;
+  isLoading = false;
   
   constructor(private http: HttpClient, private dataService: DataService, private route: Router){}
 
   ngOnInit(){
-    this.http.get('/assets/data.json').subscribe(data => {
-      this.data = data;
-    });
-
+    this.isLoading = true;
     this.dataService.getProjects().subscribe(data => {
+      this.isLoading = false;
       this.projects = data;
     })
   }

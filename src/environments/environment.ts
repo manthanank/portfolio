@@ -9,4 +9,5 @@ export const environment = {
     messagingSenderId: '155323854842',
   },
   production: false,
+  apiUrl: "https://manthanank.onrender.com/api"
 };
