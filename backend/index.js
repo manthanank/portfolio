@@ -4,12 +4,13 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
-// const mysql = require('mysql2')
 const cloudinary = require('cloudinary').v2;
-const { graphqlHTTP } = require('express-graphql');
-const { buildSchema } = require('graphql');
+const multer = require('multer');
 
-// const connection = mysql.createConnection(process.env.DATABASE_URL);
+module.exports = multer({
+  storage: multer.diskStorage({}),
+  limits: { fileSize: 500000 }
+});
 
 cloudinary.config({
   cloud_name: process.env.cloud_name,
@@ -17,14 +18,7 @@ cloudinary.config({
   api_secret: process.env.api_secret
 });
 
-// const serviceAccount = require("./serviceAccountKey.json");
-// const admin = require('firebase-admin');
-
 require("dotenv").config();
-
-// admin.initializeApp({
-//   credential: admin.credential.cert(serviceAccount)
-// });
 
 app.use(
   cors({
@@ -43,27 +37,6 @@ app.get("/", async (req, res) => {
   res.sendFile(path.join(__dirname, "public/index.html"));
 });
 
-const schema = buildSchema(`
-  type Query {
-    hello: String
-  }
-`);
-
-const root = {
-  hello: () => {
-    return 'Hello world!';
-  },
-};
-
-app.use('/graphql', graphqlHTTP({
-  schema: schema,
-  rootValue: root,
-  graphiql: true,
-}));
-
-// console.log('Connected to PlanetScale!')
-// connection.end()
-
 app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT} and GraphQL server listening on port ${PORT}/graphql`);
+  console.log(`Server started on port ${PORT}`);
 });
