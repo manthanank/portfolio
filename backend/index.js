@@ -3,26 +3,23 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const { MongoClient } = require('mongodb');
+const mongoose = require('mongoose');
 
 require("dotenv").config();
 
 const dbUser = process.env.MONGODB_USER;
 const dbPassword = process.env.MONGODB_PASSWORD;
 
-//method (secured)
-const uri = `mongodb+srv://${dbUser}:${dbPassword}@cluster0.re3ha3x.mongodb.net/backend`;
-
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-const connect = async () => {
-  try {
-    await client.connect();
-    console.log('Connected successfully to MongoDB');
-  } catch (err) {
-    console.error(err);
-  }
-}
-connect();
+mongoose
+  .connect(
+    `mongodb+srv://${dbUser}:${dbPassword}@cluster0.re3ha3x.mongodb.net/full-stack-portfolio`
+  )
+  .then(() => {
+    console.log("Connected to MongoDB database!");
+  })
+  .catch(() => {
+    console.log("Connection failed!");
+  });
 
 app.use(
   cors({
