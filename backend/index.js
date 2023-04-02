@@ -3,21 +3,26 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const cloudinary = require('cloudinary').v2;
-const multer = require('multer');
-
-module.exports = multer({
-  storage: multer.diskStorage({}),
-  limits: { fileSize: 500000 }
-});
-
-cloudinary.config({
-  cloud_name: process.env.cloud_name,
-  api_key: process.env.api_key,
-  api_secret: process.env.api_secret
-});
+const { MongoClient } = require('mongodb');
 
 require("dotenv").config();
+
+const dbUser = process.env.MONGODB_USER;
+const dbPassword = process.env.MONGODB_PASSWORD;
+
+//method (secured)
+const uri = `mongodb+srv://${dbUser}:${dbPassword}@cluster0.re3ha3x.mongodb.net/backend`;
+
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const connect = async () => {
+  try {
+    await client.connect();
+    console.log('Connected successfully to MongoDB');
+  } catch (err) {
+    console.error(err);
+  }
+}
+connect();
 
 app.use(
   cors({
@@ -28,9 +33,9 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 app.use(express.json());
 
-app.use("/api", require("./routes/image"));
 app.use("/api", require("./routes/blogs"));
 app.use("/api", require("./routes/projects"));
+app.use("/api", require("./routes/uses.js"));
 
 app.get("/", async (req, res) => {
   res.sendFile(path.join(__dirname, "public/index.html"));
