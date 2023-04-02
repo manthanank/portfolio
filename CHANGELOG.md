@@ -1,3 +1,13 @@
+# [1.5.0](https://github.com/manthanank/portfolio/compare/v1.4.3...v1.5.0) (2023-04-02)
+
+
+### Features
+
+* on serve open added ([990a4a7](https://github.com/manthanank/portfolio/commit/990a4a7b704062b5857d05092a838fc36f543ba9))
+* updated, changes made ([a27a8a5](https://github.com/manthanank/portfolio/commit/a27a8a5582660a17a79dac7c188a5c459ad1c98b))
+
+
+
 ## [1.4.3](https://github.com/manthanank/portfolio/compare/v1.4.2...v1.4.3) (2023-04-02)
 
 
@@ -32,15 +42,6 @@
 ### Features
 
 * addes desc in projects ([158fdf2](https://github.com/manthanank/portfolio/commit/158fdf237d9e1ed8e8ecaeac59bae3fb5095ba6c))
-
-
-
-# [1.3.0](https://github.com/manthanank/portfolio/compare/v1.2.0...v1.3.0) (2023-04-02)
-
-
-### Features
-
-* updated ([0606806](https://github.com/manthanank/portfolio/commit/0606806216a5a3672def0c6f63e7dc7ab89c7468))
 
 
 
