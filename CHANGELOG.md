@@ -1,3 +1,13 @@
+## [1.4.1](https://github.com/manthanank/portfolio/compare/v1.4.0...v1.4.1) (2023-04-02)
+
+
+### Bug Fixes
+
+* Updated docker.yml with branch name ([2e8e338](https://github.com/manthanank/portfolio/commit/2e8e338743d55e08776268b11bf28d16ed8df29a))
+* Updated releases.yml with branch name ([79a1009](https://github.com/manthanank/portfolio/commit/79a1009eea0496d6ac983ce1358eb29d280dec52))
+
+
+
 # [1.4.0](https://github.com/manthanank/portfolio/compare/v1.3.0...v1.4.0) (2023-04-02)
 
 
