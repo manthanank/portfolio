@@ -1,3 +1,12 @@
+# [1.3.0](https://github.com/manthanank/portfolio/compare/v1.2.0...v1.3.0) (2023-04-02)
+
+
+### Features
+
+* updated ([0606806](https://github.com/manthanank/portfolio/commit/0606806216a5a3672def0c6f63e7dc7ab89c7468))
+
+
+
 # [1.2.0](https://github.com/manthanank/portfolio/compare/v1.1.0...v1.2.0) (2023-04-02)
 
 
