@@ -1,4 +1,19 @@
-# 1.1.0 (2023-03-26)
+# [1.2.0](https://github.com/manthanank/portfolio/compare/v1.1.0...v1.2.0) (2023-04-02)
+
+
+### Bug Fixes
+
+* removed angular material module ([2a68454](https://github.com/manthanank/portfolio/commit/2a68454b386b729e53411b4f3df20829ef3cc956))
+
+
+### Features
+
+* added sidebar ([00f1aab](https://github.com/manthanank/portfolio/commit/00f1aab59b6e8141a983a322e3635457c49de0c1))
+* updated components ([6acd3a6](https://github.com/manthanank/portfolio/commit/6acd3a6e4dec46a83b8f220a446a64c387210016))
+
+
+
+# [1.1.0](https://github.com/manthanank/portfolio/compare/09a5312ddf5706b9d9a076d7be3763c5301ebb14...v1.1.0) (2023-03-26)
 
 
 ### Bug Fixes
