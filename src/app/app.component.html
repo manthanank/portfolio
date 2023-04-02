@@ -1,7 +1,13 @@
-<!-- <ngx-loading-bar [includeSpinner]="false"></ngx-loading-bar> -->
-<div class="container mx-auto p-2 flex justify-end">
-    <ui-switch [(ngModel)]="isDark" (change)="toggle()"></ui-switch>
-</div>
-<app-header></app-header>
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav>
+        <app-sidebar (closeSideNav)="sidenav.close()"></app-sidebar>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <app-header (SideNavToggle)="sidenav.toggle()"></app-header>
+        <main>
+            <router-outlet></router-outlet>
+            <app-wip></app-wip>
+            <app-footer></app-footer>
+        </main>
+    </mat-sidenav-content>
+</mat-sidenav-container>

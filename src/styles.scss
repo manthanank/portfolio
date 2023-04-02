@@ -6,11 +6,11 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    background-color: #f9f3f3;
+html {
+    height: 100%;
+}
 
-    &.dark {
-        color: #f9f3f3;
-        background-color: #393e46;
-    }
+body {
+    height: 100%;
+    margin: 0;
 }

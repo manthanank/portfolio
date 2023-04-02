@@ -8,13 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  data: any;
-  
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.http.get('/assets/data.json').subscribe(data => {
-      this.data = data;
-    })
   }
 }
