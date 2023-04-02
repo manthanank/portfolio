@@ -1,3 +1,12 @@
+# [1.4.0](https://github.com/manthanank/portfolio/compare/v1.3.0...v1.4.0) (2023-04-02)
+
+
+### Features
+
+* addes desc in projects ([158fdf2](https://github.com/manthanank/portfolio/commit/158fdf237d9e1ed8e8ecaeac59bae3fb5095ba6c))
+
+
+
 # [1.3.0](https://github.com/manthanank/portfolio/compare/v1.2.0...v1.3.0) (2023-04-02)
 
 
