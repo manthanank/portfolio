@@ -1,3 +1,12 @@
+# [1.9.0](https://github.com/manthanank/portfolio/compare/v1.8.0...v1.9.0) (2023-04-09)
+
+
+### Features
+
+* updated ([1c4be6c](https://github.com/manthanank/portfolio/commit/1c4be6c776faa9480623f37427f65c8eed28787b))
+
+
+
 # [1.8.0](https://github.com/manthanank/portfolio/compare/v1.7.0...v1.8.0) (2023-04-09)
 
 
@@ -33,15 +42,6 @@
 ### Bug Fixes
 
 * deleted backend ([7b2faf5](https://github.com/manthanank/portfolio/commit/7b2faf5116b045ddc3aad7c8256ed24d10ea7091))
-
-
-
-## [1.5.2](https://github.com/manthanank/portfolio/compare/v1.5.1...v1.5.2) (2023-04-02)
-
-
-### Bug Fixes
-
-* updated ([889805f](https://github.com/manthanank/portfolio/commit/889805fcf4050f4f1a03d212e8a4f7ba0ce72a8d))
 
 
 
