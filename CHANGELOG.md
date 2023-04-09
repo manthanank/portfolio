@@ -1,3 +1,12 @@
+# [1.8.0](https://github.com/manthanank/portfolio/compare/v1.7.0...v1.8.0) (2023-04-09)
+
+
+### Features
+
+* firebase deployment changes ([b15e9c4](https://github.com/manthanank/portfolio/commit/b15e9c44d115a2e42de65555efb80f0af5663957))
+
+
+
 # [1.7.0](https://github.com/manthanank/portfolio/compare/v1.6.0...v1.7.0) (2023-04-09)
 
 
@@ -33,15 +42,6 @@
 ### Bug Fixes
 
 * updated ([889805f](https://github.com/manthanank/portfolio/commit/889805fcf4050f4f1a03d212e8a4f7ba0ce72a8d))
-
-
-
-## [1.5.1](https://github.com/manthanank/portfolio/compare/v1.5.0...v1.5.1) (2023-04-02)
-
-
-### Bug Fixes
-
-* added in frontend app in folder ([1b4334a](https://github.com/manthanank/portfolio/commit/1b4334a25cae26277a5e4690ca79f1d231587077))
 
 
 
