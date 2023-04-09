@@ -1,7 +1,14 @@
 # Portfolio
 
-✅yarn
+## Run project
 
-✅pnpm
+```jsx
+npm start
+```
 
-✅Docker
+## Build command
+
+```jsx
+// build command
+ng build --output-path docs --base-href /portfolio/
+```
