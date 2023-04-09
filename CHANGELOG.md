@@ -1,3 +1,13 @@
+# [1.6.0](https://github.com/manthanank/portfolio/compare/v1.5.3...v1.6.0) (2023-04-09)
+
+
+### Features
+
+* deploy to gh-pages ([1df1654](https://github.com/manthanank/portfolio/commit/1df16545f1fe47dd494a555969f415486b5cfe35))
+* updated project name ([da6be89](https://github.com/manthanank/portfolio/commit/da6be89c2991e41441ebb01b1837d8d3e3144d83))
+
+
+
 ## [1.5.3](https://github.com/manthanank/portfolio/compare/v1.5.2...v1.5.3) (2023-04-09)
 
 
@@ -32,15 +42,6 @@
 
 * on serve open added ([990a4a7](https://github.com/manthanank/portfolio/commit/990a4a7b704062b5857d05092a838fc36f543ba9))
 * updated, changes made ([a27a8a5](https://github.com/manthanank/portfolio/commit/a27a8a5582660a17a79dac7c188a5c459ad1c98b))
-
-
-
-## [1.4.3](https://github.com/manthanank/portfolio/compare/v1.4.2...v1.4.3) (2023-04-02)
-
-
-### Bug Fixes
-
-* mongodb connection ([c910a17](https://github.com/manthanank/portfolio/commit/c910a17659fa27c0f344b3e5f89269ce63b09e8a))
 
 
 
