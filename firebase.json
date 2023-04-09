@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/manthanank",
+    "public": "dist/portfolio",
     "ignore": [
       "firebase.json",
       "**/.*",
