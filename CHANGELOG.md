@@ -1,3 +1,12 @@
+## [1.5.3](https://github.com/manthanank/portfolio/compare/v1.5.2...v1.5.3) (2023-04-09)
+
+
+### Bug Fixes
+
+* deleted backend ([7b2faf5](https://github.com/manthanank/portfolio/commit/7b2faf5116b045ddc3aad7c8256ed24d10ea7091))
+
+
+
 ## [1.5.2](https://github.com/manthanank/portfolio/compare/v1.5.1...v1.5.2) (2023-04-02)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * mongodb connection ([c910a17](https://github.com/manthanank/portfolio/commit/c910a17659fa27c0f344b3e5f89269ce63b09e8a))
-
-
-
-## [1.4.2](https://github.com/manthanank/portfolio/compare/v1.4.1...v1.4.2) (2023-04-02)
-
-
-### Bug Fixes
-
-* firebase deployment ([052ee12](https://github.com/manthanank/portfolio/commit/052ee121bb212fc5357a1261fe7a295a50d88fa3))
 
 
 
