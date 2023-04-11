@@ -1,3 +1,13 @@
+# [1.10.0](https://github.com/manthanank/portfolio/compare/v1.9.0...v1.10.0) (2023-04-09)
+
+
+### Features
+
+* updated footer ([7f56a25](https://github.com/manthanank/portfolio/commit/7f56a259e729f722e79e7feca740fe689c711020))
+* updated gh-pages build ([6f5aad0](https://github.com/manthanank/portfolio/commit/6f5aad04074ef575a157766816466e998dd71fe5))
+
+
+
 # [1.9.0](https://github.com/manthanank/portfolio/compare/v1.8.0...v1.9.0) (2023-04-09)
 
 
@@ -33,15 +43,6 @@
 
 * deploy to gh-pages ([1df1654](https://github.com/manthanank/portfolio/commit/1df16545f1fe47dd494a555969f415486b5cfe35))
 * updated project name ([da6be89](https://github.com/manthanank/portfolio/commit/da6be89c2991e41441ebb01b1837d8d3e3144d83))
-
-
-
-## [1.5.3](https://github.com/manthanank/portfolio/compare/v1.5.2...v1.5.3) (2023-04-09)
-
-
-### Bug Fixes
-
-* deleted backend ([7b2faf5](https://github.com/manthanank/portfolio/commit/7b2faf5116b045ddc3aad7c8256ed24d10ea7091))
 
 
 
