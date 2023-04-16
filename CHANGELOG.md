@@ -1,3 +1,21 @@
+# [1.14.0](https://github.com/manthanank/portfolio/compare/v1.13.0...v1.14.0) (2023-04-16)
+
+
+### Features
+
+* updated ([8b35578](https://github.com/manthanank/portfolio/commit/8b3557897d613be8256f83053388bb96f0913512))
+
+
+
+# [1.13.0](https://github.com/manthanank/portfolio/compare/v1.12.0...v1.13.0) (2023-04-16)
+
+
+### Features
+
+* updated ([42b617c](https://github.com/manthanank/portfolio/commit/42b617ceee583c8804ab6e4f923fc0b5abe0d798))
+
+
+
 # [1.12.0](https://github.com/manthanank/portfolio/compare/v1.11.0...v1.12.0) (2023-04-16)
 
 
@@ -23,24 +41,6 @@
 
 * updated footer ([7f56a25](https://github.com/manthanank/portfolio/commit/7f56a259e729f722e79e7feca740fe689c711020))
 * updated gh-pages build ([6f5aad0](https://github.com/manthanank/portfolio/commit/6f5aad04074ef575a157766816466e998dd71fe5))
-
-
-
-# [1.9.0](https://github.com/manthanank/portfolio/compare/v1.8.0...v1.9.0) (2023-04-09)
-
-
-### Features
-
-* updated ([1c4be6c](https://github.com/manthanank/portfolio/commit/1c4be6c776faa9480623f37427f65c8eed28787b))
-
-
-
-# [1.8.0](https://github.com/manthanank/portfolio/compare/v1.7.0...v1.8.0) (2023-04-09)
-
-
-### Features
-
-* firebase deployment changes ([b15e9c4](https://github.com/manthanank/portfolio/commit/b15e9c44d115a2e42de65555efb80f0af5663957))
 
 
 
