@@ -1,3 +1,12 @@
+# [1.12.0](https://github.com/manthanank/portfolio/compare/v1.11.0...v1.12.0) (2023-04-16)
+
+
+### Features
+
+* updated build ([905279f](https://github.com/manthanank/portfolio/commit/905279f4015968800295c2f5246ff565c256e3fe))
+
+
+
 # [1.11.0](https://github.com/manthanank/portfolio/compare/v1.10.0...v1.11.0) (2023-04-14)
 
 
@@ -32,16 +41,6 @@
 ### Features
 
 * firebase deployment changes ([b15e9c4](https://github.com/manthanank/portfolio/commit/b15e9c44d115a2e42de65555efb80f0af5663957))
-
-
-
-# [1.7.0](https://github.com/manthanank/portfolio/compare/v1.6.0...v1.7.0) (2023-04-09)
-
-
-### Features
-
-* added 404 page ([bd64256](https://github.com/manthanank/portfolio/commit/bd64256ec5f5cafbf202f2b87c2c3528e702d247))
-* updated readme ([c9aafee](https://github.com/manthanank/portfolio/commit/c9aafee38ac4ea47acd73e24505db79259ce5fde))
 
 
 
