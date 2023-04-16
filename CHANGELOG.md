@@ -1,3 +1,12 @@
+# [1.11.0](https://github.com/manthanank/portfolio/compare/v1.10.0...v1.11.0) (2023-04-14)
+
+
+### Features
+
+* added pinterest activity ([6f8747a](https://github.com/manthanank/portfolio/commit/6f8747a7519dc5a1695912b38fb9da68cf6467d6))
+
+
+
 # [1.10.0](https://github.com/manthanank/portfolio/compare/v1.9.0...v1.10.0) (2023-04-09)
 
 
@@ -33,16 +42,6 @@
 
 * added 404 page ([bd64256](https://github.com/manthanank/portfolio/commit/bd64256ec5f5cafbf202f2b87c2c3528e702d247))
 * updated readme ([c9aafee](https://github.com/manthanank/portfolio/commit/c9aafee38ac4ea47acd73e24505db79259ce5fde))
-
-
-
-# [1.6.0](https://github.com/manthanank/portfolio/compare/v1.5.3...v1.6.0) (2023-04-09)
-
-
-### Features
-
-* deploy to gh-pages ([1df1654](https://github.com/manthanank/portfolio/commit/1df16545f1fe47dd494a555969f415486b5cfe35))
-* updated project name ([da6be89](https://github.com/manthanank/portfolio/commit/da6be89c2991e41441ebb01b1837d8d3e3144d83))
 
 
 
