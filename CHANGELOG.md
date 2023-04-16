@@ -1,3 +1,12 @@
+# [1.15.0](https://github.com/manthanank/portfolio/compare/v1.14.0...v1.15.0) (2023-04-16)
+
+
+### Features
+
+* updated header & footer ([1db2d4f](https://github.com/manthanank/portfolio/commit/1db2d4f84297323ace20f448ea3191a48c7cc133))
+
+
+
 # [1.14.0](https://github.com/manthanank/portfolio/compare/v1.13.0...v1.14.0) (2023-04-16)
 
 
@@ -31,16 +40,6 @@
 ### Features
 
 * added pinterest activity ([6f8747a](https://github.com/manthanank/portfolio/commit/6f8747a7519dc5a1695912b38fb9da68cf6467d6))
-
-
-
-# [1.10.0](https://github.com/manthanank/portfolio/compare/v1.9.0...v1.10.0) (2023-04-09)
-
-
-### Features
-
-* updated footer ([7f56a25](https://github.com/manthanank/portfolio/commit/7f56a259e729f722e79e7feca740fe689c711020))
-* updated gh-pages build ([6f5aad0](https://github.com/manthanank/portfolio/commit/6f5aad04074ef575a157766816466e998dd71fe5))
 
 
 
