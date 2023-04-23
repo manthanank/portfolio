@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DataService } from 'src/app/shared/data.service';
+import { DataService } from 'src/app/shared/services/data.service';
 
 @Component({
   selector: 'app-project-details',
