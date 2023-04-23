@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Meta } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -70,7 +70,7 @@ import { MatListModule } from '@angular/material/list';
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
   ],
-  providers: [],
+  providers: [Meta],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
