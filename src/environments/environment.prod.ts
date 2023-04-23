@@ -9,4 +9,5 @@ export const environment = {
       authDomain: 'manthanank.firebaseapp.com',
       messagingSenderId: '155323854842',
     },
+    apiUrl: "https://backend.onrender.com/api"
   };
