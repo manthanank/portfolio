@@ -7,7 +7,7 @@
 /bazel-out
 
 # Node
-node_modules
+/node_modules
 npm-debug.log
 yarn-error.log
 
@@ -45,5 +45,3 @@ Thumbs.db
 .firebase
 *-debug.log
 .runtimeconfig.json
-
-.env

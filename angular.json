@@ -15,11 +15,11 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/portfolio",
             "index": "src/index.html",
-            "main": "src/main.ts",
+            "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
@@ -52,12 +52,15 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -66,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "portfolio:build:production"
+              "buildTarget": "portfolio:build:production"
             },
             "development": {
-              "browserTarget": "portfolio:build:development"
+              "buildTarget": "portfolio:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -77,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "portfolio:build"
+            "buildTarget": "portfolio:build"
           }
         },
         "test": {
@@ -103,17 +106,24 @@
         "deploy": {
           "builder": "@angular/fire:deploy",
           "options": {
-            "prerender": false,
-            "ssr": false,
-            "browserTarget": "manthanank:build:production",
-            "firebaseProject": "manthanank",
-            "firebaseHostingSite": "manthanank"
-          }
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "portfolio:build:production",
+              "serveTarget": "portfolio:serve:production"
+            },
+            "development": {
+              "buildTarget": "portfolio:build:development",
+              "serveTarget": "portfolio:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
   },
   "cli": {
-    "analytics": "b31e2de4-ca03-47d8-85a5-a5cdcb254ef3"
+    "analytics": "24e775d3-48a2-4cc5-bc3e-1de6aad65ade"
   }
 }

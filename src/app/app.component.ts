@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { Meta, MetaDefinition } from '@angular/platform-browser';
+import { Component, OnInit, inject } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { Meta } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit{
 
-  isDark = false;
-
-  constructor(private metaService: Meta) {
-  }
+  metaService = inject(Meta);
 
   ngOnInit() {
     this.metaService.addTag({ name: 'description', content: "This is my personal portfolio" });
