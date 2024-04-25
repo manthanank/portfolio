@@ -8,10 +8,10 @@ describe('WipComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WipComponent ]
+      imports: [WipComponent]
     })
     .compileComponents();
-
+    
     fixture = TestBed.createComponent(WipComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

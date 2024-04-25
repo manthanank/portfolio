@@ -1,0 +1,12 @@
+{
+  "routes": [
+    "/",
+    "/about",
+    "/blogs",
+    "/education",
+    "/experience",
+    "/projects",
+    "/uses",
+    "/wip"
+  ]
+}

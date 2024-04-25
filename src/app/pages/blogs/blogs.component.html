@@ -5,7 +5,7 @@
     <div class="pt-4" *ngIf="!isLoading">
         <ul class="list-disc" *ngFor="let item of blogs">
             <li class="text-lg">
-                <a href="{{item.url}}" class="font-bold">{{item.title}}</a>
+                <a href="{{item.link}}" class="font-bold" target="_blank">{{item.title}}</a>
             </li>
         </ul>
     </div>

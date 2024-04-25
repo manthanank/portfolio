@@ -5,7 +5,7 @@
     <div class="pt-4" *ngIf="!isLoading">
         <ul class="list-disc" *ngFor="let item of projects">
             <li class="text-lg">
-                {{item.title}} <p><a [routerLink]="['project-details', item._id]" (click)="showDetails(item)">Details</a></p>
+                {{item.name}} <p><a [routerLink]="['/projects', item.id]" (click)="showDetails(item)">View Details</a></p>
             </li>
         </ul>
     </div>

@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-wip',
+  standalone: true,
+  imports: [],
   templateUrl: './wip.component.html',
-  styleUrls: ['./wip.component.scss']
+  styleUrl: './wip.component.scss'
 })
 export class WipComponent {
 

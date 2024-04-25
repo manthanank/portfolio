@@ -1,15 +1,13 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { WipComponent } from '../wip/wip.component';
 
 @Component({
   selector: 'app-home',
+  standalone: true,
+  imports: [WipComponent],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrl: './home.component.scss'
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
-  constructor(private http: HttpClient) { }
-
-  ngOnInit(): void {
-  }
 }
