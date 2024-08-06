@@ -9,5 +9,5 @@ export const environment = {
     messagingSenderId: '155323854842',
   },
   production: false,
-  apiUrl: "https://backend.onrender.com/api"
+  apiUrl: 'https://backend-app-manthanank.vercel.app/api',
 };

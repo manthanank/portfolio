@@ -1,29 +1,12 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { DataService } from 'src/app/shared/services/data.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-projects',
+  standalone: true,
+  imports: [],
   templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.scss']
+  styleUrl: './projects.component.scss'
 })
-export class ProjectsComponent implements OnInit{
+export class ProjectsComponent {
 
-  data: any;
-  projects: any;
-  isLoading = false;
-  
-  constructor(private http: HttpClient, private dataService: DataService, private route: Router){}
-
-  ngOnInit(){
-    this.isLoading = true;
-    this.dataService.getProjects().subscribe(data => {
-      this.isLoading = false;
-      this.projects = data;
-    })
-  }
-  showDetails(item: any) {
-    this.route.navigate(['project-details', item._id]);
-  }
 }
