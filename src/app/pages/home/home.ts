@@ -1,0 +1,110 @@
+import { Component, OnDestroy, OnInit, signal, inject, ChangeDetectionStrategy } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
+import { Data } from '../../services/data';
+import { PortfolioData } from '../../services/data';
+import { SocialLink } from '../../models';
+
+@Component({
+  selector: 'app-home',
+  imports: [RouterLink, AsyncPipe],
+  templateUrl: './home.html',
+  styleUrls: ['./home.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class Home implements OnInit, OnDestroy {
+  // Use signals for reactive state management
+  currentRole = signal('');
+  personalData = signal<{ name: string; title: string; bio: string } | null>(null);
+  contactData = signal<PortfolioData['contact'] | null>(null);
+  private roleIndex = signal(0);
+  private charIndex = signal(0);
+  private isDeleting = signal(false);
+
+  private roles: string[] = [];
+  private typeSpeed = 100;
+  private deleteSpeed = 50;
+  private pauseTime = 1500;
+  private typingInterval: number | undefined;
+
+  // Observables for dynamic data
+  socialLinks$: Observable<SocialLink[]> = new Observable();
+
+  private dataService = inject(Data);
+
+  ngOnInit() {
+    this.dataService.getPersonalInfo().subscribe((personal: PortfolioData['personal'] | null) => {
+      if (personal) {
+        this.roles = personal.roles || [];
+        this.personalData.set({
+          name: personal.name,
+          title: personal.title,
+          bio: personal.bio
+        });
+        this.startTypingAnimation();
+      }
+    });
+
+    this.dataService.getContact().subscribe((contact: PortfolioData['contact'] | null) => {
+      if (contact) {
+        this.contactData.set(contact);
+        // Set up social links observable
+        this.socialLinks$ = new Observable(observer => {
+          observer.next(contact.socialLinks);
+          observer.complete();
+        });
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.typingInterval) {
+      clearTimeout(this.typingInterval);
+    }
+  }
+
+  private startTypingAnimation() {
+    const currentText = this.roles[this.roleIndex()];
+
+    if (!this.isDeleting()) {
+      // Typing
+      this.currentRole.set(currentText.substring(0, this.charIndex() + 1));
+      this.charIndex.update(index => index + 1);
+
+      if (this.charIndex() === currentText.length) {
+        // Finished typing, pause then start deleting
+        this.typingInterval = setTimeout(() => {
+          this.isDeleting.set(true);
+          this.startTypingAnimation();
+        }, this.pauseTime);
+        return;
+      }
+
+      this.typingInterval = setTimeout(() => {
+        this.startTypingAnimation();
+      }, this.typeSpeed);
+    } else {
+      // Deleting
+      this.currentRole.set(currentText.substring(0, this.charIndex()));
+      this.charIndex.update(index => index - 1);
+
+      if (this.charIndex() < 0) {
+        // Finished deleting, move to next role
+        this.isDeleting.set(false);
+        this.roleIndex.update(index => (index + 1) % this.roles.length);
+        this.charIndex.set(0);
+
+        this.typingInterval = setTimeout(() => {
+          this.startTypingAnimation();
+        }, this.typeSpeed);
+        return;
+      }
+
+      this.typingInterval = setTimeout(() => {
+        this.startTypingAnimation();
+      }, this.deleteSpeed);
+    }
+  }
+}
+

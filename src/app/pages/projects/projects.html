@@ -1,0 +1,142 @@
+<!-- Hero Section with Gradient Background -->
+<section
+  class="min-h-screen relative overflow-hidden bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+  <!-- Gradient Overlay -->
+  <div
+    class="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-purple-50/60 to-pink-50/80 dark:from-gray-900/80 dark:via-gray-800/60 dark:to-gray-900/80 z-10">
+  </div>
+
+  <!-- Main Content -->
+  <div class="relative z-20 container mx-auto px-6 py-20 max-w-7xl">
+    <!-- Header Section -->
+    <div class="text-center mb-16">
+      <h1
+        class="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
+        My Projects
+      </h1>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+        Explore my portfolio of innovative web applications and enterprise solutions built with modern technologies.
+        Each project represents a unique challenge solved through careful planning, clean architecture, and attention to
+        detail.
+        From full-stack applications to specialized tools, these projects showcase my journey as a developer.
+      </p>
+
+      <!-- Category Filter -->
+      <div class="flex flex-wrap justify-center gap-3 mt-10">
+        @for (category of categories(); track category.id) {
+        <button (click)="selectCategory(category.id)"
+          [class]="selectedCategory() === category.id ?
+              'bg-blue-600 text-white shadow-lg scale-105' :
+              'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400'"
+          class="px-6 py-3 rounded-full font-medium transition-all duration-300 border border-gray-200 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-400 hover:shadow-md">
+          {{ category.name }}
+        </button>
+        }
+      </div>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      @for (project of filteredProjects; track project.id; let i = $index) {
+      <div
+        class="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 dark:border-gray-700 hover:-translate-y-2"
+        [class.border-2]="project.featured" [class.border-blue-500]="project.featured"
+        [style.animation-delay]="i * 100 + 'ms'">
+
+        <!-- Project Image -->
+        <div
+          class="relative overflow-hidden h-48 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-gray-700 dark:to-gray-600">
+          <img [src]="project.image" [alt]="project.title"
+            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy">
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          </div>
+        </div>
+
+        <!-- Project Content -->
+        <div class="p-6">
+          <!-- Project Title -->
+          <h3
+            class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+            {{ project.title }}
+          </h3>
+
+          <!-- Project Description -->
+          <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+            {{ project.description }}
+          </p>
+
+          <!-- Technology Tags -->
+          <div class="flex flex-wrap gap-2 mb-6">
+            @for (tech of project.technologies.slice(0, 4); track tech) {
+            <span
+              class="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium border border-blue-100 dark:border-blue-800 hover:scale-105 hover:bg-blue-600 hover:text-white transition-all duration-300">
+              {{ tech }}
+            </span>
+            }
+            @if (project.technologies.length > 4) {
+            <span
+              class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full text-sm font-medium">
+              +{{ project.technologies.length - 4 }} more
+            </span>
+            }
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex gap-3">
+            <a [href]="project.liveUrl" target="_blank" rel="noopener noreferrer"
+              class="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-4 rounded-xl font-semibold text-center hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+              <span class="flex items-center justify-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                </svg>
+                Live Demo
+              </span>
+            </a>
+
+            <a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer"
+              class="flex-1 bg-gray-900 dark:bg-gray-700 text-white py-3 px-4 rounded-xl font-semibold text-center hover:bg-gray-800 dark:hover:bg-gray-600 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+              <span class="flex items-center justify-center gap-2">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+                </svg>
+                Code
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+
+    <!-- Empty State -->
+    @if (filteredProjects.length === 0) {
+    <div class="text-center py-16">
+      <div class="text-6xl mb-4">🔍</div>
+      <h3 class="text-2xl font-bold text-gray-600 dark:text-gray-300 mb-2">No projects found</h3>
+      <p class="text-gray-500 dark:text-gray-400">Try selecting a different category</p>
+    </div>
+    }
+
+    <!-- Call to Action -->
+    <div
+      class="text-center mt-16 p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
+      <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">Interested in Working Together?</h3>
+      <p class="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
+        I'm always excited to take on new challenges and create innovative solutions.
+        Let's discuss how we can bring your ideas to life!
+      </p>
+      <a routerLink="contact"
+        class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 px-8 rounded-xl font-semibold hover:from-purple-700 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
+          </path>
+        </svg>
+        Get In Touch
+      </a>
+    </div>
+  </div>
+</section>

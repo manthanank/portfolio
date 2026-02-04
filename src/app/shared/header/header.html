@@ -1,0 +1,273 @@
+<!-- Modern Portfolio Navbar -->
+<nav
+  class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl border-b border-white/20 dark:border-gray-700/30 shadow-xl">
+  <!-- Floating Shapes Background (matching pages) -->
+  <div class="absolute inset-0 overflow-hidden">
+    <div class="absolute w-full h-full opacity-30">
+      <div
+        class="shape shape-1 absolute w-[60px] h-[60px] top-[10%] left-[20%] rounded-full bg-gradient-to-br from-blue-500/15 via-purple-500/10 to-pink-500/15">
+      </div>
+      <div
+        class="shape shape-2 absolute w-[40px] h-[40px] top-[60%] right-[20%] rounded-full bg-gradient-to-br from-blue-500/15 via-purple-500/10 to-pink-500/15">
+      </div>
+      <div
+        class="shape shape-3 absolute w-[30px] h-[30px] bottom-[20%] left-[60%] rounded-full bg-gradient-to-br from-blue-500/15 via-purple-500/10 to-pink-500/15">
+      </div>
+    </div>
+  </div>
+
+  <!-- Gradient Overlay (matching page design) -->
+  <div
+    class="absolute inset-0 bg-gradient-to-br from-blue-50/90 via-purple-50/85 to-pink-50/90 dark:from-gray-900/90 dark:via-gray-800/85 dark:to-gray-900/90">
+  </div>
+
+  <!-- Glass morphism overlay -->
+  <div class="absolute inset-0 bg-white/40 dark:bg-gray-900/40 backdrop-blur-sm"></div>
+
+  <!-- Navigation Content -->
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex justify-between items-center h-20">
+
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <a routerLink="/"
+          class="group flex items-center space-x-3 hover:scale-105 transition-all duration-500 hover:drop-shadow-lg hover:drop-shadow-blue-500/30">
+          <div class="relative">
+            <!-- Main logo circle -->
+            <div
+              class="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 shadow-lg group-hover:shadow-xl transition-all duration-500 flex items-center justify-center relative overflow-hidden">
+              <span class="text-white font-bold text-lg tracking-wider relative z-10">MA</span>
+              <!-- Animated shine effect -->
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000">
+              </div>
+            </div>
+            <!-- Floating glow -->
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-blue-600/30 via-purple-600/30 to-pink-600/30 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 scale-150">
+            </div>
+          </div>
+          <div class="hidden sm:block">
+            <div class="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              {{ (personalData()?.name?.split(' ') || ['Manthan'])[0] }}
+            </div>
+            <div class="text-xs text-gray-500 dark:text-gray-400 font-medium tracking-wide">
+              {{ personalData()?.title || 'Full Stack Developer' }}
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation Links -->
+      <div class="hidden lg:flex items-center space-x-2">
+        @for (item of (navigation$ | async)?.menuItems; track item.path) {
+        @if (item.path !== '/') {
+        <a [routerLink]="item.path"
+          routerLinkActive="!text-blue-600 !bg-gradient-to-br !from-blue-50/90 !to-blue-100/80 !shadow-lg dark:!text-blue-300 dark:!bg-gradient-to-br dark:!from-gray-800/90 dark:!to-gray-700/80 after:content-[''] after:absolute after:bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-8 after:h-0.5 after:bg-gradient-to-r after:from-blue-600 after:to-purple-600 after:rounded-full"
+          class="group px-6 py-3 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white rounded-2xl hover:bg-white/60 dark:hover:bg-gray-800/60 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-400 relative overflow-hidden backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:rounded-xl">
+          <span class="relative z-10">{{ item.label }}</span>
+          <div
+            class="absolute bottom-0 left-1/2 w-0 h-1 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-12 group-hover:left-1/2 group-hover:-translate-x-1/2 transition-all duration-400 rounded-full">
+          </div>
+          <!-- Shine effect -->
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 dark:via-gray-400/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-700">
+          </div>
+        </a>
+        }
+        }
+
+        <!-- Dark Mode Toggle -->
+        <div class="ml-2">
+          <button (click)="toggleTheme()"
+            class="group relative p-3 rounded-2xl text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-white/60 dark:hover:bg-gray-800/60 transition-all duration-300 shadow-lg hover:shadow-xl"
+            [attr.aria-label]="isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'" title="Toggle theme">
+            <div class="relative w-5 h-5 transform transition-transform duration-500 group-hover:scale-110">
+              <!-- Sun icon -->
+              @if (!isDarkMode()) {
+              <svg class="absolute inset-0 w-5 h-5 transform transition-all duration-500 rotate-0 scale-100"
+                fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z">
+                </path>
+              </svg>
+              }
+              <!-- Moon icon -->
+              @if (isDarkMode()) {
+              <svg class="absolute inset-0 w-5 h-5 transform transition-all duration-500 rotate-0 scale-100"
+                fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd"
+                  d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z"
+                  clip-rule="evenodd"></path>
+              </svg>
+              }
+            </div>
+            <!-- Button glow effect -->
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm">
+            </div>
+          </button>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="ml-4">
+          @for (item of (navigation$ | async)?.menuItems; track item.path) {
+          @if (item.path === '/contact') {
+          <a [routerLink]="item.path"
+            routerLinkActive="!text-blue-600 !bg-gradient-to-br !from-blue-50/90 !to-blue-100/80 !shadow-lg dark:!text-blue-300 dark:!bg-gradient-to-br dark:!from-gray-800/90 dark:!to-gray-700/80 after:content-[''] after:absolute after:bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-8 after:h-0.5 after:bg-gradient-to-r after:from-blue-600 after:to-purple-600 after:rounded-full"
+            class="group relative inline-flex items-center px-8 py-3 text-sm font-bold text-white bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-2xl hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 transform hover:scale-105 hover:shadow-xl transition-all duration-500 overflow-hidden">
+            <span class="relative z-10 flex items-center space-x-2">
+              <span>Get in touch</span>
+              <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none"
+                stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3">
+                </path>
+              </svg>
+            </span>
+            <!-- Animated background shine -->
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000">
+            </div>
+            <!-- Floating glow -->
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-blue-600/50 via-purple-600/50 to-pink-600/50 rounded-2xl blur-xl opacity-0 group-hover:opacity-70 transition-opacity duration-500 scale-150">
+            </div>
+          </a>
+          }
+          }
+        </div>
+      </div>
+
+      <!-- Mobile menu button and theme toggle -->
+      <div class="lg:hidden flex items-center space-x-2">
+        <!-- Mobile Dark Mode Toggle -->
+        <button (click)="toggleTheme()"
+          class="group relative p-3 rounded-2xl text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-white/60 dark:hover:bg-gray-800/60 transition-all duration-300"
+          [attr.aria-label]="isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'" title="Toggle theme">
+          <div class="relative w-5 h-5 transform transition-transform duration-500 group-hover:scale-110">
+            <!-- Sun icon -->
+            @if (!isDarkMode()) {
+            <svg class="absolute inset-0 w-5 h-5 transform transition-all duration-500 rotate-0 scale-100"
+              fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z">
+              </path>
+            </svg>
+            }
+            <!-- Moon icon -->
+            @if (isDarkMode()) {
+            <svg class="absolute inset-0 w-5 h-5 transform transition-all duration-500 rotate-0 scale-100"
+              fill="currentColor" viewBox="0 0 24 24">
+              <path fill-rule="evenodd"
+                d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z"
+                clip-rule="evenodd"></path>
+            </svg>
+            }
+          </div>
+          <!-- Button glow effect -->
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm">
+          </div>
+        </button>
+
+        <!-- Mobile hamburger menu -->
+        <button
+          class="relative p-3 rounded-2xl text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-white/60 dark:hover:bg-gray-800/60 transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:rounded-xl"
+          (click)="toggleMobileMenu()" [attr.aria-expanded]="isMenuOpen()" aria-label="Toggle navigation menu">
+          <div class="hamburger-lines w-6 h-6 relative" [class.open]="isMenuOpen()">
+            <span
+              class="line line-1 absolute left-0 w-full h-0.5 bg-gray-600 dark:bg-gray-300 rounded-sm top-0.5"></span>
+            <span
+              class="line line-2 absolute left-0 w-full h-0.5 bg-gray-600 dark:bg-gray-300 rounded-sm top-1/2 -translate-y-1/2"></span>
+            <span
+              class="line line-3 absolute left-0 w-full h-0.5 bg-gray-600 dark:bg-gray-300 rounded-sm bottom-0.5"></span>
+          </div>
+          <!-- Button glow effect -->
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm">
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-overlay fixed inset-0 z-40 lg:hidden" [class.opacity-0]="!isMenuOpen()"
+    [class.opacity-100]="isMenuOpen()" [class.pointer-events-none]="!isMenuOpen()"
+    [class.pointer-events-auto]="isMenuOpen()">
+
+    <!-- Backdrop with blur -->
+    <div class="absolute inset-0 bg-gray-900/30 backdrop-blur-md transition-all duration-500"
+      (click)="closeMobileMenu()">
+    </div>
+
+    <!-- Mobile Menu Panel -->
+    <div
+      class="absolute top-24 right-6 left-6 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/30 dark:border-gray-700/30 overflow-hidden transform transition-all duration-500 origin-top"
+      [class.scale-95]="!isMenuOpen()" [class.scale-100]="isMenuOpen()" [class.opacity-0]="!isMenuOpen()"
+      [class.opacity-100]="isMenuOpen()" [class.translate-y-4]="!isMenuOpen()" [class.translate-y-0]="isMenuOpen()">
+
+      <!-- Floating Shapes Background (matching pages) -->
+      <div class="absolute inset-0 overflow-hidden opacity-20">
+        <div class="absolute w-full h-full">
+          <div
+            class="shape shape-1 absolute w-[60px] h-[60px] top-[10%] left-[20%] rounded-full bg-gradient-to-br from-blue-500/15 via-purple-500/10 to-pink-500/15">
+          </div>
+          <div
+            class="shape shape-2 absolute w-[40px] h-[40px] top-[60%] right-[20%] rounded-full bg-gradient-to-br from-blue-500/15 via-purple-500/10 to-pink-500/15">
+          </div>
+        </div>
+      </div>
+
+      <!-- Gradient Background -->
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-purple-50/60 to-pink-50/80 dark:from-gray-800/80 dark:via-gray-900/60 dark:to-gray-800/80">
+      </div>
+
+      <!-- Mobile Navigation Links -->
+      <div class="relative p-8 space-y-3">
+        @for (item of (navigation$ | async)?.menuItems; track item.path) {
+        @if (item.path !== '/') {
+        <a [routerLink]="item.path" (click)="closeMobileMenu()"
+          routerLinkActive="!bg-gradient-to-br !from-blue-600 !to-purple-600 !text-white !shadow-xl !scale-105"
+          class="group flex items-center justify-center px-6 py-4 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-white/70 dark:hover:bg-gray-800/70 hover:shadow-lg hover:-translate-y-0.5 rounded-2xl transition-all duration-400 relative overflow-hidden backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50">
+          <span class="font-semibold text-lg">{{ item.label }}</span>
+          <!-- Shine effect -->
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 dark:via-gray-400/30 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-700">
+          </div>
+        </a>
+        }
+        }
+
+        <!-- Contact CTA -->
+        <div class="pt-6 mt-6 border-t border-gray-200/60 dark:border-gray-700/60">
+          @for (item of (navigation$ | async)?.menuItems; track item.path) {
+          @if (item.path === '/contact') {
+          <a [routerLink]="item.path" (click)="closeMobileMenu()"
+            routerLinkActive="!bg-gradient-to-br !from-blue-600 !to-purple-600 !text-white !shadow-xl !scale-105 [&_.w-3]:!bg-gradient-to-r [&_.w-3]:!from-white [&_.w-3]:!to-gray-100 [&_.w-3]:!opacity-100 [&_svg]:!text-white [&_svg]:!opacity-100"
+            class="group relative flex items-center justify-center px-6 py-4 text-white bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-2xl hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 transition-all duration-500 font-bold text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 overflow-hidden">
+            <span class="relative z-10 flex items-center space-x-3">
+              <span>Get in touch</span>
+              <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none"
+                stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3">
+                </path>
+              </svg>
+            </span>
+            <!-- Animated background shine -->
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000">
+            </div>
+            <!-- Floating glow -->
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-blue-600/50 via-purple-600/50 to-pink-600/50 rounded-2xl blur-xl opacity-0 group-hover:opacity-70 transition-opacity duration-500 scale-150">
+            </div>
+          </a>
+          }
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

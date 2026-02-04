@@ -1,13 +1,4 @@
 {
-  "targets": {
-    "manthanank": {
-      "hosting": {
-        "manthanank": [
-          "manthanank"
-        ]
-      }
-    }
-  },
   "projects": {
     "default": "manthanank"
   }

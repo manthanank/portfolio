@@ -1,0 +1,163 @@
+<!-- Hero Section with Gradient Background -->
+<section
+  class="min-h-screen relative overflow-hidden bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+  <!-- Gradient Overlay -->
+  <div
+    class="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-purple-50/60 to-pink-50/80 dark:from-gray-900/80 dark:via-gray-800/60 dark:to-gray-900/80 z-10">
+  </div>
+
+  <!-- Main Content -->
+  <div class="relative z-20 container mx-auto px-6 py-20 max-w-7xl">
+    <!-- Header Section -->
+    <div class="text-center mb-16">
+      <h1
+        class="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
+        My Setup & Tools
+      </h1>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+        A comprehensive overview of the hardware, software, and tools that form the backbone of my development workflow.
+        From powerful development machines to productivity apps, these carefully chosen tools help me deliver
+        high-quality
+        software solutions efficiently and effectively.
+      </p>
+
+      <!-- Category Filter -->
+      <div class="flex flex-wrap justify-center gap-3 mt-10">
+        @for (category of categories(); track category.id) {
+        <button (click)="selectCategory(category.id)"
+          [class]="selectedCategory() === category.id ?
+              'bg-blue-600 text-white shadow-lg scale-105' :
+              'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400'"
+          class="px-6 py-3 rounded-full font-medium transition-all duration-300 border border-gray-200 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-400 hover:shadow-md flex items-center gap-2">
+          <i [class]="category.icon"></i>
+          {{ category.name }}
+        </button>
+        }
+      </div>
+    </div>
+
+    <!-- Uses Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      @for (use of filteredUses; track $index) {
+      <div
+        class="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 dark:border-gray-700 hover:-translate-y-2"
+        [style.animation-delay]="$index * 100 + 'ms'">
+
+        <!-- Image Section -->
+        <div
+          class="relative h-48 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-gray-700 dark:to-gray-600 overflow-hidden">
+          @if (use.image) {
+          <div class="absolute inset-0 flex items-center justify-center p-8">
+            <img [src]="use.image" [alt]="use.name"
+              class="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-500">
+          </div>
+          }
+          @if (!use.image) {
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div
+              class="w-20 h-20 bg-gradient-to-br from-blue-400 to-purple-500 rounded-2xl flex items-center justify-center">
+              <i class="fa-solid fa-cube text-2xl text-white"></i>
+            </div>
+          </div>
+          }
+
+          <!-- Category Badge -->
+          <div class="absolute top-4 right-4">
+            <span
+              class="px-3 py-1 text-xs font-semibold rounded-full bg-white/90 dark:bg-gray-800/90 text-gray-700 dark:text-gray-300 backdrop-blur-sm">
+              {{ use.category | titlecase }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Content Section -->
+        <div class="p-6">
+          <h3
+            class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+            {{ use.name }}
+          </h3>
+
+          <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed line-clamp-3">
+            {{ use.description }}
+          </p>
+
+          <!-- Tags -->
+          <div class="flex flex-wrap gap-2 mb-4">
+            @for (tag of use.tags.slice(0, 3); track tag) {
+            <span
+              class="px-2 py-1 text-xs bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 rounded-full font-medium">
+              {{ tag }}
+            </span>
+            }
+          </div>
+
+          <!-- Action Button -->
+          <div class="flex justify-between items-center">
+            @if (use.link) {
+            <button (click)="openLink(use.link)"
+              class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg font-medium hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105">
+              <span>Learn More</span>
+              <i class="fa-solid fa-external-link-alt text-sm"></i>
+            </button>
+            }
+
+            <div class="flex items-center gap-2 text-gray-400 dark:text-gray-500">
+              <i class="fa-solid fa-star text-yellow-400"></i>
+              <span class="text-sm font-medium">Essential</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+
+    <!-- Stats Section -->
+    <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div
+        class="text-center p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
+        <div class="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">{{ uses().length }}</div>
+        <div class="text-gray-600 dark:text-gray-300 font-medium">Total Tools</div>
+      </div>
+
+      <div
+        class="text-center p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
+        <div class="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">{{ getCountByCategory('hardware') }}
+        </div>
+        <div class="text-gray-600 dark:text-gray-300 font-medium">Hardware</div>
+      </div>
+
+      <div
+        class="text-center p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
+        <div class="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-2">{{ getCountByCategory('software') }}
+        </div>
+        <div class="text-gray-600 dark:text-gray-300 font-medium">Software</div>
+      </div>
+
+      <div
+        class="text-center p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
+        <div class="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">{{ getCountByCategory('tools') +
+          getCountByCategory('productivity') }}</div>
+        <div class="text-gray-600 dark:text-gray-300 font-medium">Tools</div>
+      </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div
+      class="text-center mt-16 p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
+      <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">Want to know more about my setup?</h3>
+      <p class="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
+        Feel free to reach out if you have questions about any of these tools or want recommendations for your own
+        workflow.
+      </p>
+      <a routerLink="contact"
+        class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 px-8 rounded-xl font-semibold hover:from-purple-700 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
+          </path>
+        </svg>
+        Get In Touch
+      </a>
+    </div>
+  </div>
+</section>
