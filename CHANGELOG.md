@@ -1,3 +1,12 @@
+# [0.1.0](https://github.com/manthanank/portfolio/compare/v2.1.0...v0.1.0) (2026-02-04)
+
+
+### Features
+
+* integrate firebase firestore, analytics, and setup auto-deploy workflows ([50656c4](https://github.com/manthanank/portfolio/commit/50656c499007efd494d66b105b6609a43861771b))
+
+
+
 # [2.1.0](https://github.com/manthanank/portfolio/compare/v1.14.0...v2.1.0) (2024-08-06)
 
 
@@ -51,15 +60,6 @@
 ### Features
 
 * updated build ([905279f](https://github.com/manthanank/portfolio/commit/905279f4015968800295c2f5246ff565c256e3fe))
-
-
-
-# [1.11.0](https://github.com/manthanank/portfolio/compare/v1.10.0...v1.11.0) (2023-04-14)
-
-
-### Features
-
-* added pinterest activity ([6f8747a](https://github.com/manthanank/portfolio/commit/6f8747a7519dc5a1695912b38fb9da68cf6467d6))
 
 
 
