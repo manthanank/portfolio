@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { TitleCasePipe } from '@angular/common';
 import { Data } from '../../services/data';
 import { UseItem, UseCategory } from '../../models';
+import { SeoService } from '../../services/seo';
 
 @Component({
   selector: 'app-uses',
@@ -17,6 +18,7 @@ export class Uses implements OnInit {
   uses = signal<UseItem[]>([]);
 
   private dataService = inject(Data);
+  private seoService = inject(SeoService);
 
   get filteredUses(): UseItem[] {
     const currentCategory = this.selectedCategory();
@@ -47,6 +49,13 @@ export class Uses implements OnInit {
   }
 
   ngOnInit(): void {
+    // Set SEO meta tags for uses page
+    this.seoService.updateMetaTags({
+      title: 'Uses | Manthan Ankolekar - Tools & Setup',
+      description: 'Discover the tools, software, and hardware I use for web development, including IDEs, design tools, and productivity apps.',
+      keywords: 'Developer Tools, Software Stack, Development Setup, VS Code, Angular CLI, Node.js Tools',
+    });
+
     this.dataService.getUses().subscribe((usesData: { categories: UseCategory[]; items: UseItem[] } | null) => {
       if (usesData) {
         this.categories.set(usesData.categories || []);

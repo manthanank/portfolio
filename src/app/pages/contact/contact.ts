@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angula
 import { Data } from '../../services/data';
 import { ContactMethod, SocialLink } from '../../models';
 import { Firestore, collection, addDoc, serverTimestamp } from '@angular/fire/firestore';
+import { SeoService } from '../../services/seo';
 
 @Component({
   selector: 'app-contact',
@@ -22,8 +23,16 @@ export class Contact implements OnInit {
   private fb = inject(FormBuilder);
   private dataService = inject(Data);
   private firestore = inject(Firestore);
+  private seoService = inject(SeoService);
 
   ngOnInit() {
+    // Set SEO meta tags for contact page
+    this.seoService.updateMetaTags({
+      title: 'Contact Me | Manthan Ankolekar - Full Stack Developer',
+      description: 'Get in touch with me for collaboration, job opportunities, or just to say hello. I\'m always open to discussing new projects and ideas.',
+      keywords: 'Contact Manthan Ankolekar, Hire Developer, Full Stack Developer Contact, Freelance Developer',
+    });
+
     this.contactForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],

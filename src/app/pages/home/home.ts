@@ -1,14 +1,15 @@
 import { Component, OnDestroy, OnInit, signal, inject, ChangeDetectionStrategy } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 import { Data } from '../../services/data';
 import { PortfolioData } from '../../services/data';
 import { SocialLink } from '../../models';
+import { SeoService } from '../../services/seo';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, AsyncPipe],
+  imports: [RouterLink, AsyncPipe, NgOptimizedImage],
   templateUrl: './home.html',
   styleUrls: ['./home.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -32,8 +33,16 @@ export class Home implements OnInit, OnDestroy {
   socialLinks$: Observable<SocialLink[]> = new Observable();
 
   private dataService = inject(Data);
+  private seoService = inject(SeoService);
 
   ngOnInit() {
+    // Set SEO meta tags for home page
+    this.seoService.updateMetaTags({
+      title: 'Manthan Ankolekar | Full Stack Developer',
+      description: 'Full Stack Developer specializing in Angular, Node.js, and modern web technologies. Explore my portfolio, projects, and professional experience.',
+      keywords: 'Full Stack Developer, Angular Developer, Node.js, TypeScript, JavaScript, Web Developer, Portfolio',
+    });
+
     this.dataService.getSettings().subscribe(settings => {
       if (settings?.typingAnimation) {
         this.typeSpeed = settings.typingAnimation.typeSpeed;

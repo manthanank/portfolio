@@ -2,6 +2,7 @@ import { Component, OnInit, signal, inject, ChangeDetectionStrategy } from '@ang
 import { RouterLink } from '@angular/router';
 import { Data } from '../../services/data';
 import { Project, ProjectCategory } from '../../models';
+import { SeoService } from '../../services/seo';
 
 @Component({
   selector: 'app-projects',
@@ -16,6 +17,7 @@ export class Projects implements OnInit {
   categories = signal<ProjectCategory[]>([]);
 
   private dataService = inject(Data);
+  private seoService = inject(SeoService);
 
   get filteredProjects(): Project[] {
     const currentCategory = this.selectedCategory();
@@ -40,6 +42,13 @@ export class Projects implements OnInit {
   }
 
   ngOnInit(): void {
+    // Set SEO meta tags for projects page
+    this.seoService.updateMetaTags({
+      title: 'Projects | Manthan Ankolekar - Full Stack Developer',
+      description: 'Explore my portfolio of web development projects including Angular applications, Node.js backends, and full-stack solutions.',
+      keywords: 'Projects, Portfolio, Angular Projects, Node.js Projects, Web Applications, Full Stack Projects, GitHub',
+    });
+
     this.dataService.getProjects().subscribe((projectsData: { items: Project[]; categories: ProjectCategory[] } | null) => {
       if (projectsData) {
         this.projects.set(projectsData.items || []);
