@@ -1,10 +1,11 @@
 import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { Skill, TimelineItem } from '../../models';
 import { Data } from '../../services/data';
 
 @Component({
   selector: 'app-about',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './about.html',
   styleUrl: './about.css',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -31,5 +32,9 @@ export class About implements OnInit {
     this.dataService.getTimeline().subscribe(timeline => {
       this.timeline = timeline || [];
     });
+  }
+
+  logClick(name: string, type: string) {
+    this.dataService.logEvent('about_interaction', { item_name: name, item_type: type });
   }
 }

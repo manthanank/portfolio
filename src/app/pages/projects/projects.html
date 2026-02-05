@@ -85,6 +85,7 @@
           <!-- Action Buttons -->
           <div class="flex gap-3">
             <a [href]="project.liveUrl" target="_blank" rel="noopener noreferrer"
+              (click)="logClick(project.title, 'live_demo')"
               class="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-4 rounded-xl font-semibold text-center hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
               <span class="flex items-center justify-center gap-2">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -96,6 +97,7 @@
             </a>
 
             <a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer"
+              (click)="logClick(project.title, 'github_code')"
               class="flex-1 bg-gray-900 dark:bg-gray-700 text-white py-3 px-4 rounded-xl font-semibold text-center hover:bg-gray-800 dark:hover:bg-gray-600 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
               <span class="flex items-center justify-center gap-2">
                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -128,7 +130,7 @@
         I'm always excited to take on new challenges and create innovative solutions.
         Let's discuss how we can bring your ideas to life!
       </p>
-      <a routerLink="contact"
+      <a routerLink="contact" (click)="logClick('projects_footer_cta', 'link')"
         class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 px-8 rounded-xl font-semibold hover:from-purple-700 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

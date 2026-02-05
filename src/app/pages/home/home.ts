@@ -34,6 +34,14 @@ export class Home implements OnInit, OnDestroy {
   private dataService = inject(Data);
 
   ngOnInit() {
+    this.dataService.getSettings().subscribe(settings => {
+      if (settings?.typingAnimation) {
+        this.typeSpeed = settings.typingAnimation.typeSpeed;
+        this.deleteSpeed = settings.typingAnimation.deleteSpeed;
+        this.pauseTime = settings.typingAnimation.pauseTime;
+      }
+    });
+
     this.dataService.getPersonalInfo().subscribe((personal: PortfolioData['personal'] | null) => {
       if (personal) {
         this.roles = personal.roles || [];
@@ -56,6 +64,10 @@ export class Home implements OnInit, OnDestroy {
         });
       }
     });
+  }
+
+  logClick(name: string, type: string) {
+    this.dataService.logEvent('click_interaction', { item_name: name, item_type: type });
   }
 
   ngOnDestroy() {

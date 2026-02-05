@@ -43,6 +43,7 @@ export class Contact implements OnInit {
     if (this.contactForm.valid) {
       this.isSubmitting.set(true);
       this.submitMessage.set('');
+      this.dataService.logEvent('contact_form_submit_start', { subject: this.contactForm.value.subject });
 
       try {
         const contactData = {
@@ -56,6 +57,7 @@ export class Contact implements OnInit {
         this.isSubmitting.set(false);
         this.submitSuccess.set(true);
         this.submitMessage.set('Thank you for your message! I\'ll get back to you soon.');
+        this.dataService.logEvent('contact_form_submit_success');
         this.contactForm.reset();
 
         // Clear success message after 5 seconds
@@ -68,6 +70,7 @@ export class Contact implements OnInit {
         this.isSubmitting.set(false);
         this.submitSuccess.set(false);
         this.submitMessage.set('Something went wrong. Please try again later.');
+        this.dataService.logEvent('contact_form_submit_error', { error: error instanceof Error ? error.message : 'Unknown error' });
       }
     } else {
       this.markFormGroupTouched();

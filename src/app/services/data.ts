@@ -1,7 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { shareReplay, Observable, BehaviorSubject, catchError, map, of } from 'rxjs';
+import { shareReplay, Observable, BehaviorSubject, catchError, map, of, from, switchMap } from 'rxjs';
 import { ProjectCategory, Project, Skill, TimelineItem, UseCategory, UseItem, ContactMethod, SocialLink } from '../models';
+import { Firestore, collection, collectionData, doc, docData } from '@angular/fire/firestore';
+import { RemoteConfig, getValue, fetchAndActivate } from '@angular/fire/remote-config';
+import { Analytics, logEvent } from '@angular/fire/analytics';
 
 export interface PortfolioData {
   personal: {
@@ -55,23 +58,34 @@ export class Data {
   private dataSubject = new BehaviorSubject<PortfolioData | null>(null);
   private data$ = this.dataSubject.asObservable().pipe(shareReplay(1));
 
+  private firestore = inject(Firestore);
+  private remoteConfig = inject(RemoteConfig);
+  private analytics = inject(Analytics);
+
   constructor(private http: HttpClient) {
     this.loadData();
+    this.initRemoteConfig();
+  }
+
+  private async initRemoteConfig() {
+    try {
+      await fetchAndActivate(this.remoteConfig);
+    } catch (error) {
+      console.error('Remote Config fetch failed', error);
+    }
   }
 
   private loadData(): void {
     this.http.get<PortfolioData>(this.dataUrl).pipe(
       catchError(error => {
-
+        console.error('Error loading local data', error);
         return of(null);
       })
     ).subscribe({
       next: (data) => {
-
         this.dataSubject.next(data);
       },
       error: (error) => {
-
         this.dataSubject.next(null);
       }
     });
@@ -82,82 +96,65 @@ export class Data {
   }
 
   getPersonalInfo(): Observable<PortfolioData['personal'] | null> {
-    return this.data$.pipe(
-      map(data => data?.personal || null),
-      catchError(error => {
-
-        return of(null);
-      })
+    const personalDoc = doc(this.firestore, 'metadata', 'personal');
+    return (docData(personalDoc) as Observable<PortfolioData['personal']>).pipe(
+      catchError(() => of(null)),
+      switchMap(fsData => fsData ? of(fsData) : this.data$.pipe(map(data => data?.personal || null)))
     );
   }
 
   getNavigation(): Observable<PortfolioData['navigation'] | null> {
-    return this.data$.pipe(
-      map(data => data?.navigation || null),
-      catchError(error => {
-
-        return of(null);
-      })
-    );
+    return this.data$.pipe(map(data => data?.navigation || null));
   }
 
   getProjects(): Observable<PortfolioData['projects'] | null> {
-    return this.data$.pipe(
-      map(data => data?.projects || null),
-      catchError(error => {
+    return this.data$.pipe(map(data => data?.projects || null));
+  }
 
-        return of(null);
-      })
-    );
+  getFirestoreProjects(): Observable<Project[]> {
+    const projectsCol = collection(this.firestore, 'projects');
+    return collectionData(projectsCol, { idField: 'id' }) as Observable<Project[]>;
   }
 
   getSkills(): Observable<PortfolioData['skills'] | null> {
-    return this.data$.pipe(
-      map(data => data?.skills || null),
-      catchError(error => {
-
-        return of(null);
-      })
-    );
+    return this.data$.pipe(map(data => data?.skills || null));
   }
 
   getTimeline(): Observable<PortfolioData['timeline'] | null> {
-    return this.data$.pipe(
-      map(data => data?.timeline || null),
-      catchError(error => {
-
-        return of(null);
-      })
-    );
+    return this.data$.pipe(map(data => data?.timeline || null));
   }
 
   getUses(): Observable<PortfolioData['uses'] | null> {
-    return this.data$.pipe(
-      map(data => data?.uses || null),
-      catchError(error => {
-
-        return of(null);
-      })
-    );
+    return this.data$.pipe(map(data => data?.uses || null));
   }
 
   getContact(): Observable<PortfolioData['contact'] | null> {
-    return this.data$.pipe(
-      map(data => data?.contact || null),
-      catchError(error => {
-
-        return of(null);
-      })
-    );
+    return this.data$.pipe(map(data => data?.contact || null));
   }
 
   getSettings(): Observable<PortfolioData['settings'] | null> {
-    return this.data$.pipe(
-      map(data => data?.settings || null),
-      catchError(error => {
+    try {
+      const typeSpeed = getValue(this.remoteConfig, 'typeSpeed').asNumber();
+      const deleteSpeed = getValue(this.remoteConfig, 'deleteSpeed').asNumber();
+      const pauseTime = getValue(this.remoteConfig, 'pauseTime').asNumber();
 
-        return of(null);
-      })
-    );
+      if (typeSpeed > 0 && deleteSpeed > 0 && pauseTime > 0) {
+        return of({
+          typingAnimation: {
+            typeSpeed,
+            deleteSpeed,
+            pauseTime
+          }
+        });
+      }
+    } catch (e) {
+      // Remote config might not be initialized or keys missing
+    }
+
+    return this.data$.pipe(map(data => data?.settings || null));
+  }
+
+  logEvent(eventName: string, params?: { [key: string]: any }) {
+    logEvent(this.analytics, eventName, params);
   }
 }

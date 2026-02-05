@@ -32,6 +32,11 @@ export class Projects implements OnInit {
 
   selectCategory(category: string): void {
     this.selectedCategory.set(category);
+    this.dataService.logEvent('project_category_select', { category });
+  }
+
+  logClick(name: string, type: string) {
+    this.dataService.logEvent('project_interaction', { item_name: name, item_type: type });
   }
 
   ngOnInit(): void {
