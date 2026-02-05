@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgOptimizedImage } from '@angular/common';
 import { Skill, TimelineItem } from '../../models';
@@ -10,7 +10,6 @@ import { SeoService } from '../../services/seo';
   imports: [RouterLink, NgOptimizedImage],
   templateUrl: './about.html',
   styleUrl: './about.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class About implements OnInit {
   frontendSkills: Skill[] = [];

@@ -1,4 +1,4 @@
-import { Component, OnInit, signal, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, signal, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TitleCasePipe } from '@angular/common';
 import { Data } from '../../services/data';
@@ -9,8 +9,7 @@ import { SeoService } from '../../services/seo';
   selector: 'app-uses',
   imports: [RouterLink, TitleCasePipe],
   templateUrl: './uses.html',
-  styleUrls: ['./uses.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './uses.css',
 })
 export class Uses implements OnInit {
   selectedCategory = signal('all');

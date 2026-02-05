@@ -1,4 +1,4 @@
-import { Component, OnInit, signal, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, signal, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Data } from '../../services/data';
 import { Project, ProjectCategory } from '../../models';
@@ -8,8 +8,7 @@ import { SeoService } from '../../services/seo';
   selector: 'app-projects',
   imports: [RouterLink],
   templateUrl: './projects.html',
-  styleUrls: ['./projects.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './projects.css',
 })
 export class Projects implements OnInit {
   selectedCategory = signal('all');

@@ -1,4 +1,4 @@
-import { Component, HostListener, inject, OnDestroy, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, HostListener, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { Router, NavigationEnd, RouterLink, RouterLinkActive } from '@angular/router';
 import { Subscription, filter, Observable } from 'rxjs';
@@ -10,8 +10,7 @@ import { PortfolioData } from '../../services/data';
   selector: 'app-header',
   imports: [AsyncPipe, RouterLink, RouterLinkActive],
   templateUrl: './header.html',
-  styleUrls: ['./header.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './header.css',
 })
 export class Header implements OnInit, OnDestroy {
   // Use signals for local component state

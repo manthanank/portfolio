@@ -1,4 +1,4 @@
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Header } from './shared/header/header';
 import { Footer } from './shared/footer/footer';
@@ -7,9 +7,8 @@ import { Footer } from './shared/footer/footer';
   selector: 'app-root',
   imports: [RouterOutlet, Header, Footer],
   templateUrl: './app.html',
-  styleUrl: './app.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './app.css'
 })
 export class App {
-  protected title = 'portfolio';
+  protected readonly title = signal('portfolio');
 }

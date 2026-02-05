@@ -1,4 +1,4 @@
-import { Component, OnInit, signal, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, signal, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
@@ -10,8 +10,7 @@ import { PortfolioData } from '../../services/data';
   selector: 'app-footer',
   imports: [RouterLink, AsyncPipe],
   templateUrl: './footer.html',
-  styleUrls: ['./footer.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './footer.css',
 })
 export class Footer implements OnInit {
   currentYear = new Date().getFullYear();

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, signal, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AsyncPipe, NgOptimizedImage } from '@angular/common';
@@ -11,8 +11,7 @@ import { SeoService } from '../../services/seo';
   selector: 'app-home',
   imports: [RouterLink, AsyncPipe, NgOptimizedImage],
   templateUrl: './home.html',
-  styleUrls: ['./home.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './home.css',
 })
 export class Home implements OnInit, OnDestroy {
   // Use signals for reactive state management
@@ -128,4 +127,3 @@ export class Home implements OnInit, OnDestroy {
     }
   }
 }
-

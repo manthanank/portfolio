@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SeoService } from '../../services/seo';
 
@@ -7,7 +7,6 @@ import { SeoService } from '../../services/seo';
   imports: [RouterLink],
   templateUrl: './not-found.html',
   styleUrl: './not-found.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NotFound implements OnInit {
   private seoService = inject(SeoService);

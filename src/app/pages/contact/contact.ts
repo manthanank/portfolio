@@ -1,4 +1,4 @@
-import { Component, OnInit, signal, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, signal, inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Data } from '../../services/data';
 import { ContactMethod, SocialLink } from '../../models';
@@ -9,8 +9,7 @@ import { SeoService } from '../../services/seo';
   selector: 'app-contact',
   imports: [ReactiveFormsModule],
   templateUrl: './contact.html',
-  styleUrls: ['./contact.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './contact.css',
 })
 export class Contact implements OnInit {
   contactForm!: FormGroup;
