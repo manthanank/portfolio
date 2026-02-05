@@ -1,3 +1,12 @@
+## [0.3.1](https://github.com/manthanank/portfolio/compare/v0.3.0...v0.3.1) (2026-02-05)
+
+
+### Bug Fixes
+
+* update @angular/fire to v20.0.1 and resolve build dependencies ([64c1949](https://github.com/manthanank/portfolio/commit/64c1949adb23853913e05912a185c2ea1d3cff65))
+
+
+
 # [0.3.0](https://github.com/manthanank/portfolio/compare/v0.2.0...v0.3.0) (2026-02-05)
 
 
@@ -51,15 +60,6 @@
 * updated favicon ([7c42e83](https://github.com/manthanank/portfolio/commit/7c42e83ae0cd312099946cc12caeaaeb6c58bce1))
 * updated header & footer ([1db2d4f](https://github.com/manthanank/portfolio/commit/1db2d4f84297323ace20f448ea3191a48c7cc133))
 * updated meta tags ([79d7180](https://github.com/manthanank/portfolio/commit/79d71804566a70749e769a7fa1d02a3693f881a3))
-
-
-
-# [1.14.0](https://github.com/manthanank/portfolio/compare/v1.13.0...v1.14.0) (2023-04-16)
-
-
-### Features
-
-* updated ([8b35578](https://github.com/manthanank/portfolio/commit/8b3557897d613be8256f83053388bb96f0913512))
 
 
 
