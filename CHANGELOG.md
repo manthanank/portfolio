@@ -1,3 +1,12 @@
+# [0.3.0](https://github.com/manthanank/portfolio/compare/v0.2.0...v0.3.0) (2026-02-05)
+
+
+### Features
+
+* implement SEO meta tags, premium 404 page, and NgOptimizedImage for better performance ([56a2b71](https://github.com/manthanank/portfolio/commit/56a2b713ca738d5dae644e9047e87a836d7e8b09))
+
+
+
 # [0.2.0](https://github.com/manthanank/portfolio/compare/v0.1.0...v0.2.0) (2026-02-05)
 
 
@@ -51,15 +60,6 @@
 ### Features
 
 * updated ([8b35578](https://github.com/manthanank/portfolio/commit/8b3557897d613be8256f83053388bb96f0913512))
-
-
-
-# [1.13.0](https://github.com/manthanank/portfolio/compare/v1.12.0...v1.13.0) (2023-04-16)
-
-
-### Features
-
-* updated ([42b617c](https://github.com/manthanank/portfolio/commit/42b617ceee583c8804ab6e4f923fc0b5abe0d798))
 
 
 
