@@ -115,7 +115,7 @@
                     <div class="flex justify-center space-x-3">
                         @for (social of socialLinks(); track social.name) {
                         <a [href]="social.url" target="_blank" rel="noopener noreferrer"
-                            (click)="logClick(social.name, 'social_link')"
+                            (click)="logClick(social.name, 'social_link')" [attr.aria-label]="social.name"
                             class="w-12 h-12 rounded-2xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all duration-200 hover:scale-110 shadow-lg">
                             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                                 <path [attr.d]="social.icon"></path>
@@ -180,7 +180,7 @@
                         <div class="flex space-x-2 lg:space-x-3">
                             @for (social of socialLinks(); track social.name) {
                             <a [href]="social.url" target="_blank" rel="noopener noreferrer"
-                                (click)="logClick(social.name, 'social_link')"
+                                (click)="logClick(social.name, 'social_link')" [attr.aria-label]="social.name"
                                 class="w-10 h-10 lg:w-12 lg:h-12 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all duration-200 hover:scale-110">
                                 <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                                     <path [attr.d]="social.icon"></path>

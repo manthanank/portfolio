@@ -176,7 +176,7 @@
           <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">Connect on Social</h2>
           <div class="grid grid-cols-3 gap-4">
             @for (social of socialLinks(); track social.name) {
-            <a [href]="social.url" target="_blank" rel="noopener noreferrer"
+            <a [href]="social.url" target="_blank" rel="noopener noreferrer" [attr.aria-label]="social.name"
               class="group flex flex-col items-center p-4 rounded-xl border-2 border-gray-100 dark:border-gray-600 hover:border-blue-200 dark:hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-200">
               <div class="w-8 h-8 mb-2">
                 <svg

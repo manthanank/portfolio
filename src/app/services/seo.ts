@@ -29,7 +29,7 @@ export class SeoService {
     image: '/assets/og-image.png',
     type: 'website',
     author: 'Manthan Ankolekar',
-    twitterHandle: '@mantaborobot'
+    twitterHandle: '@manthanank'
   };
 
   private readonly baseUrl = 'https://manthanank.web.app';
