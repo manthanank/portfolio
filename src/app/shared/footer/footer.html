@@ -1,80 +1,130 @@
-<footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-      <!-- Brand Section -->
-      <div class="col-span-1 md:col-span-2">
-        <div class="flex items-center space-x-2 mb-4">
-          <div
-            class="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-            <span class="text-white font-bold text-lg">M</span>
-          </div>
-          <span class="text-xl font-bold text-gray-900 dark:text-white">Manthan Ank</span>
+<footer class="relative mt-32 bg-slate-50 dark:bg-slate-900">
+  <!-- Top CTA Section -->
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -translate-y-1/2">
+    <div class="relative group">
+      <div
+        class="absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-[2.5rem] blur opacity-25 group-hover:opacity-100 transition duration-1000">
+      </div>
+      <div
+        class="relative bg-white/80 dark:bg-slate-800/80 rounded-[2.5rem] p-8 sm:p-12 border border-white/20 dark:border-white/10 shadow-2xl backdrop-blur-xl flex flex-col md:flex-row items-center justify-between gap-8">
+        <div class="text-center md:text-left">
+          <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 dark:text-slate-50 mb-2">
+            Ready to start a <span
+              class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">project?</span>
+          </h2>
+          <p class="text-lg text-gray-600 dark:text-gray-400">
+            Let's build something amazing together.
+          </p>
         </div>
-        <p class="text-gray-600 dark:text-gray-400 mb-6 max-w-md">
-          Full Stack Developer passionate about creating innovative web solutions and building scalable applications.
+        <a routerLink="/contact"
+          class="group relative inline-flex items-center px-6 py-4 sm:px-10 sm:py-5 text-base sm:text-lg font-black text-white rounded-2xl overflow-hidden shadow-2xl shadow-blue-500/20 hover:shadow-blue-500/40 transition-all duration-500 hover:scale-105">
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 group-hover:scale-110 transition-transform duration-500">
+          </div>
+          <span class="relative z-10 flex items-center gap-3">
+            Get in touch
+            <svg class="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </span>
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full opacity-0 group-hover:opacity-100 group-hover:translate-x-full transition-all duration-1000">
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <!-- Brand & Social -->
+      <div class="lg:col-span-5 space-y-8">
+        <div class="flex items-center space-x-3">
+          <div
+            class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 flex items-center justify-center shadow-lg">
+            <span class="text-white font-black text-lg tracking-tighter">MA</span>
+          </div>
+          <span class="text-2xl font-black tracking-tighter text-slate-900 dark:text-slate-50">
+            {{ personalInfo()?.name || 'Manthan' }}
+          </span>
+        </div>
+        <p class="text-lg text-gray-600 dark:text-gray-400 max-w-md leading-relaxed">
+          {{ personalInfo()?.bio || 'Full Stack Developer building premium digital experiences with Angular, TypeScript,
+          and modern web technologies.' }}
         </p>
-        <div class="flex space-x-4">
-          @for (social of socialLinks$ | async; track social.name) {
+        <div class="flex flex-wrap gap-4">
+          @for (social of socialLinks(); track social.name) {
           <a [href]="social.url" target="_blank" rel="noopener noreferrer"
-            class="text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+            class="group relative p-3 text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 bg-slate-100 dark:bg-slate-800 rounded-xl transition-all duration-300 hover:scale-110"
+            [attr.aria-label]="social.name">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
               <path [attr.d]="social.icon"></path>
             </svg>
+            <div
+              class="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1 bg-slate-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+              {{ social.name }}
+            </div>
           </a>
           }
         </div>
       </div>
 
-      <!-- Quick Links -->
-      <div>
-        <h3 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">
-          Quick Links
-        </h3>
-        <ul class="space-y-3">
-          @for (item of quickLinks$ | async; track item.path) {
-          <li>
-            <a [routerLink]="item.path"
-              class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-              {{ item.label }}
-            </a>
-          </li>
-          }
-        </ul>
-      </div>
+      <!-- Links Grid -->
+      <div class="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8">
+        <div class="space-y-6">
+          <h3 class="text-sm font-black uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500">Navigation</h3>
+          <ul class="space-y-4">
+            @for (item of quickLinks(); track item.path) {
+            <li>
+              <a [routerLink]="item.path"
+                class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 font-bold transition-all duration-300 flex items-center group/item">
+                <span
+                  class="w-0 group-hover/item:w-4 transition-all duration-300 overflow-hidden h-0.5 bg-blue-600 mr-0 group-hover/item:mr-2"></span>
+                {{ item.label }}
+              </a>
+            </li>
+            }
+          </ul>
+        </div>
 
-      <!-- Contact Info -->
-      <div>
-        <h3 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">
-          Contact
-        </h3>
-        <ul class="space-y-3">
-          @for (contact of contactInfo$ | async; track contact.title) {
-          <li class="flex items-center space-x-3">
-            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="contact.icon"></path>
-            </svg>
-            <span class="text-gray-600 dark:text-gray-400">{{ contact.value }}</span>
-          </li>
-          }
-        </ul>
+        <div class="space-y-6">
+          <h3 class="text-sm font-black uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500">Contact</h3>
+          <ul class="space-y-4">
+            @for (contact of contactInfo(); track contact.title) {
+            <li class="group/contact">
+              <div class="text-[10px] uppercase tracking-widest text-gray-400 mb-1">{{ contact.title }}</div>
+              <div
+                class="text-gray-600 dark:text-gray-400 font-bold break-all group-hover/contact:text-blue-600 transition-colors">
+                {{ contact.value }}
+              </div>
+            </li>
+            }
+          </ul>
+        </div>
+
+        <div class="space-y-6 col-span-2 sm:col-span-1">
+          <h3 class="text-sm font-black uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500">Location</h3>
+          <p class="text-gray-600 dark:text-gray-400 font-bold leading-relaxed">
+            {{ personalInfo()?.location || 'India' }}<br>
+            Available for remote work worldwide.
+          </p>
+        </div>
       </div>
     </div>
 
-    <!-- Bottom Section -->
-    <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
-      <div class="flex flex-col md:flex-row justify-between items-center">
-        <p class="text-gray-600 dark:text-gray-400 text-sm">
-          © 2024 Manthan Ank. All rights reserved.
+    <!-- Bottom Bar -->
+    <div class="mt-20 pt-10 border-t border-gray-200/50 dark:border-gray-800/50">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+        <p class="text-gray-500 dark:text-gray-500 text-sm font-medium">
+          © {{ currentYear }} {{ personalInfo()?.name || 'Manthan' }}. Crafted with
+          <span class="text-red-500 animate-pulse">❤️</span> using Angular.
         </p>
-        <div class="flex space-x-6 mt-4 md:mt-0">
+        <div class="flex gap-8">
           <a routerLink="/privacy"
-            class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 text-sm transition-colors">
-            Privacy Policy
-          </a>
+            class="text-sm font-bold text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">Privacy</a>
           <a routerLink="/terms"
-            class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 text-sm transition-colors">
-            Terms of Service
-          </a>
+            class="text-sm font-bold text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">Terms</a>
         </div>
       </div>
     </div>

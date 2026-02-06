@@ -1,7 +1,7 @@
-import { Component, OnInit, signal, inject } from '@angular/core';
+import { Component, signal, inject, computed } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { Data } from '../../services/data';
-import { ContactMethod, SocialLink } from '../../models';
 import { Firestore, collection, addDoc, serverTimestamp } from '@angular/fire/firestore';
 import { SeoService } from '../../services/seo';
 
@@ -11,39 +11,38 @@ import { SeoService } from '../../services/seo';
   templateUrl: './contact.html',
   styleUrl: './contact.css',
 })
-export class Contact implements OnInit {
-  contactForm!: FormGroup;
-  isSubmitting = signal(false);
-  submitMessage = signal('');
-  submitSuccess = signal(false);
-  contactMethods = signal<ContactMethod[]>([]);
-  socialLinks = signal<SocialLink[]>([]);
-
+export class Contact {
   private fb = inject(FormBuilder);
   private dataService = inject(Data);
   private firestore = inject(Firestore);
   private seoService = inject(SeoService);
 
-  ngOnInit() {
-    // Set SEO meta tags for contact page
+  // --- Form State ---
+  contactForm: FormGroup = this.fb.group({
+    name: ['', [Validators.required, Validators.minLength(2)]],
+    email: ['', [Validators.required, Validators.email]],
+    subject: ['', [Validators.required, Validators.minLength(5)]],
+    message: ['', [Validators.required, Validators.minLength(10)]]
+  });
+
+  // --- Reactive Data (Signals) ---
+  contactData = toSignal(this.dataService.getContact(), { initialValue: null });
+  
+  // --- Derived State ---
+  contactMethods = computed(() => this.contactData()?.methods || []);
+  socialLinks = computed(() => this.contactData()?.socialLinks || []);
+
+  // --- Application State ---
+  isSubmitting = signal(false);
+  submitMessage = signal('');
+  submitSuccess = signal(false);
+
+  constructor() {
+    // Set SEO meta tags
     this.seoService.updateMetaTags({
       title: 'Contact Me | Manthan Ankolekar - Full Stack Developer',
       description: 'Get in touch with me for collaboration, job opportunities, or just to say hello. I\'m always open to discussing new projects and ideas.',
       keywords: 'Contact Manthan Ankolekar, Hire Developer, Full Stack Developer Contact, Freelance Developer',
-    });
-
-    this.contactForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(2)]],
-      email: ['', [Validators.required, Validators.email]],
-      subject: ['', [Validators.required, Validators.minLength(5)]],
-      message: ['', [Validators.required, Validators.minLength(10)]]
-    });
-
-    this.dataService.getContact().subscribe((contactData: { methods: ContactMethod[]; socialLinks: SocialLink[] } | null) => {
-      if (contactData) {
-        this.contactMethods.set(contactData.methods || []);
-        this.socialLinks.set(contactData.socialLinks || []);
-      }
     });
   }
 
@@ -54,13 +53,13 @@ export class Contact implements OnInit {
       this.dataService.logEvent('contact_form_submit_start', { subject: this.contactForm.value.subject });
 
       try {
-        const contactData = {
-          ...this.contactForm.value,
-          createdAt: serverTimestamp()
-        };
-
+        const formData = this.contactForm.value;
         const contactsCollection = collection(this.firestore, 'contacts');
-        await addDoc(contactsCollection, contactData);
+        
+        await addDoc(contactsCollection, {
+          ...formData,
+          createdAt: serverTimestamp()
+        });
 
         this.isSubmitting.set(false);
         this.submitSuccess.set(true);
@@ -68,7 +67,6 @@ export class Contact implements OnInit {
         this.dataService.logEvent('contact_form_submit_success');
         this.contactForm.reset();
 
-        // Clear success message after 5 seconds
         setTimeout(() => {
           this.submitMessage.set('');
           this.submitSuccess.set(false);
@@ -95,16 +93,9 @@ export class Contact implements OnInit {
   getFieldError(fieldName: string): string {
     const field = this.contactForm.get(fieldName);
     if (field?.errors && field?.touched) {
-      if (field.errors['required']) {
-        return `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} is required`;
-      }
-      if (field.errors['email']) {
-        return 'Please enter a valid email address';
-      }
-      if (field.errors['minlength']) {
-        const requiredLength = field.errors['minlength'].requiredLength;
-        return `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} must be at least ${requiredLength} characters`;
-      }
+      if (field.errors['required']) return `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} is required`;
+      if (field.errors['email']) return 'Please enter a valid email address';
+      if (field.errors['minlength']) return `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} must be at least ${field.errors['minlength'].requiredLength} characters`;
     }
     return '';
   }

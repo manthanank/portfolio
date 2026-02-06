@@ -1,75 +1,50 @@
-import { Component, OnDestroy, OnInit, signal, inject } from '@angular/core';
+import { Component, OnDestroy, signal, inject, computed, effect } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Observable } from 'rxjs';
-import { AsyncPipe, NgOptimizedImage } from '@angular/common';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
+import { NgOptimizedImage } from '@angular/common';
 import { Data } from '../../services/data';
-import { PortfolioData } from '../../services/data';
-import { SocialLink } from '../../models';
 import { SeoService } from '../../services/seo';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, AsyncPipe, NgOptimizedImage],
+  imports: [RouterLink, NgOptimizedImage],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
-export class Home implements OnInit, OnDestroy {
-  // Use signals for reactive state management
-  currentRole = signal('');
-  personalData = signal<{ name: string; title: string; bio: string } | null>(null);
-  contactData = signal<PortfolioData['contact'] | null>(null);
-  private roleIndex = signal(0);
-  private charIndex = signal(0);
-  private isDeleting = signal(false);
-
-  private roles: string[] = [];
-  private typeSpeed = 100;
-  private deleteSpeed = 50;
-  private pauseTime = 1500;
-  private typingInterval: number | undefined;
-
-  // Observables for dynamic data
-  socialLinks$: Observable<SocialLink[]> = new Observable();
-
+export class Home implements OnDestroy {
   private dataService = inject(Data);
   private seoService = inject(SeoService);
 
-  ngOnInit() {
-    // Set SEO meta tags for home page
+  // --- Reactive Data (Signals) ---
+  personalData = toSignal(this.dataService.getPersonalInfo(), { initialValue: null });
+  contactData = toSignal(this.dataService.getContact(), { initialValue: null });
+  settings = toSignal(this.dataService.getSettings(), { initialValue: null });
+
+  // --- Derived State ---
+  socialLinks = computed(() => this.contactData()?.socialLinks || []);
+  roles = computed(() => this.personalData()?.roles || []);
+
+  // --- Local Animation State ---
+  currentRole = signal('');
+  private roleIndex = signal(0);
+  private charIndex = signal(0);
+  private isDeleting = signal(false);
+  private typingInterval: any;
+
+  constructor() {
+    // Set SEO meta tags
     this.seoService.updateMetaTags({
       title: 'Manthan Ankolekar | Full Stack Developer',
       description: 'Full Stack Developer specializing in Angular, Node.js, and modern web technologies. Explore my portfolio, projects, and professional experience.',
       keywords: 'Full Stack Developer, Angular Developer, Node.js, TypeScript, JavaScript, Web Developer, Portfolio',
     });
 
-    this.dataService.getSettings().subscribe(settings => {
-      if (settings?.typingAnimation) {
-        this.typeSpeed = settings.typingAnimation.typeSpeed;
-        this.deleteSpeed = settings.typingAnimation.deleteSpeed;
-        this.pauseTime = settings.typingAnimation.pauseTime;
-      }
-    });
-
-    this.dataService.getPersonalInfo().subscribe((personal: PortfolioData['personal'] | null) => {
-      if (personal) {
-        this.roles = personal.roles || [];
-        this.personalData.set({
-          name: personal.name,
-          title: personal.title,
-          bio: personal.bio
-        });
+    // Start animation once roles are loaded
+    effect(() => {
+      const availableRoles = this.roles();
+      if (availableRoles.length > 0 && !this.typingInterval) {
         this.startTypingAnimation();
-      }
-    });
-
-    this.dataService.getContact().subscribe((contact: PortfolioData['contact'] | null) => {
-      if (contact) {
-        this.contactData.set(contact);
-        // Set up social links observable
-        this.socialLinks$ = new Observable(observer => {
-          observer.next(contact.socialLinks);
-          observer.complete();
-        });
       }
     });
   }
@@ -85,7 +60,13 @@ export class Home implements OnInit, OnDestroy {
   }
 
   private startTypingAnimation() {
-    const currentText = this.roles[this.roleIndex()];
+    const rolesList = this.roles();
+    if (rolesList.length === 0) return;
+
+    const currentText = rolesList[this.roleIndex()];
+    const typeSpeed = this.settings()?.typingAnimation?.typeSpeed || 100;
+    const deleteSpeed = this.settings()?.typingAnimation?.deleteSpeed || 50;
+    const pauseTime = this.settings()?.typingAnimation?.pauseTime || 1500;
 
     if (!this.isDeleting()) {
       // Typing
@@ -97,13 +78,13 @@ export class Home implements OnInit, OnDestroy {
         this.typingInterval = setTimeout(() => {
           this.isDeleting.set(true);
           this.startTypingAnimation();
-        }, this.pauseTime);
+        }, pauseTime);
         return;
       }
 
       this.typingInterval = setTimeout(() => {
         this.startTypingAnimation();
-      }, this.typeSpeed);
+      }, typeSpeed);
     } else {
       // Deleting
       this.currentRole.set(currentText.substring(0, this.charIndex()));
@@ -112,18 +93,18 @@ export class Home implements OnInit, OnDestroy {
       if (this.charIndex() < 0) {
         // Finished deleting, move to next role
         this.isDeleting.set(false);
-        this.roleIndex.update(index => (index + 1) % this.roles.length);
+        this.roleIndex.update(index => (index + 1) % rolesList.length);
         this.charIndex.set(0);
 
         this.typingInterval = setTimeout(() => {
           this.startTypingAnimation();
-        }, this.typeSpeed);
+        }, typeSpeed);
         return;
       }
 
       this.typingInterval = setTimeout(() => {
         this.startTypingAnimation();
-      }, this.deleteSpeed);
+      }, deleteSpeed);
     }
   }
 }

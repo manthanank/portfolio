@@ -1,8 +1,8 @@
-import { Component, OnInit, signal, inject } from '@angular/core';
+import { Component, signal, inject, computed } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TitleCasePipe } from '@angular/common';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { Data } from '../../services/data';
-import { UseItem, UseCategory } from '../../models';
 import { SeoService } from '../../services/seo';
 
 @Component({
@@ -11,55 +11,45 @@ import { SeoService } from '../../services/seo';
   templateUrl: './uses.html',
   styleUrl: './uses.css',
 })
-export class Uses implements OnInit {
-  selectedCategory = signal('all');
-  categories = signal<UseCategory[]>([]);
-  uses = signal<UseItem[]>([]);
-
+export class Uses {
   private dataService = inject(Data);
   private seoService = inject(SeoService);
 
-  get filteredUses(): UseItem[] {
-    const currentCategory = this.selectedCategory();
-    const currentUses = this.uses();
+  // --- Reactive Data (Signals) ---
+  usesData = toSignal(this.dataService.getUses(), { initialValue: null });
+  selectedCategory = signal('all');
 
-    if (currentCategory === 'all') {
-      return currentUses;
-    }
-    return currentUses.filter(use => use.category === currentCategory);
+  // --- Derived State ---
+  categories = computed(() => this.usesData()?.categories || []);
+  allItems = computed(() => this.usesData()?.items || []);
+
+  filteredUses = computed(() => {
+    const category = this.selectedCategory();
+    const items = this.allItems();
+    if (category === 'all') return items;
+    return items.filter(item => item.category === category);
+  });
+
+  constructor() {
+    // Set SEO meta tags
+    this.seoService.updateMetaTags({
+      title: 'Uses | Manthan Ankolekar - Tools & Setup',
+      description: 'Discover the tools, software, and hardware I use for web development, including IDEs, design tools, and productivity apps.',
+      keywords: 'Developer Tools, Software Stack, Development Setup, VS Code, Angular CLI, Node.js Tools',
+    });
   }
 
   selectCategory(categoryId: string): void {
     this.selectedCategory.set(categoryId);
   }
 
-  trackByUse(index: number, use: UseItem): string {
-    return use.id;
+  getCountByCategory(category: string): number {
+    return this.allItems().filter(use => use.category === category).length;
   }
 
   openLink(url: string): void {
     if (url && url !== '#') {
       window.open(url, '_blank', 'noopener,noreferrer');
     }
-  }
-
-  getCountByCategory(category: string): number {
-    return this.uses().filter(use => use.category === category).length;
-  }
-
-  ngOnInit(): void {
-    // Set SEO meta tags for uses page
-    this.seoService.updateMetaTags({
-      title: 'Uses | Manthan Ankolekar - Tools & Setup',
-      description: 'Discover the tools, software, and hardware I use for web development, including IDEs, design tools, and productivity apps.',
-      keywords: 'Developer Tools, Software Stack, Development Setup, VS Code, Angular CLI, Node.js Tools',
-    });
-
-    this.dataService.getUses().subscribe((usesData: { categories: UseCategory[]; items: UseItem[] } | null) => {
-      if (usesData) {
-        this.categories.set(usesData.categories || []);
-        this.uses.set(usesData.items || []);
-      }
-    });
   }
 }

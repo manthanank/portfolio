@@ -1,5 +1,4 @@
-import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, Injector, runInInjectionContext } from '@angular/core';
 import { shareReplay, Observable, BehaviorSubject, catchError, map, of, from, switchMap } from 'rxjs';
 import { ProjectCategory, Project, Skill, TimelineItem, UseCategory, UseItem, ContactMethod, SocialLink } from '../models';
 import { Firestore, collection, collectionData, doc, docData } from '@angular/fire/firestore';
@@ -50,55 +49,62 @@ export interface PortfolioData {
   };
 }
 
+import { PORTFOLIO_DATA } from '../data/portfolio';
+
 @Injectable({
   providedIn: 'root'
 })
 export class Data {
-  private dataUrl = '/data/portfolio-data.json';
-  private dataSubject = new BehaviorSubject<PortfolioData | null>(null);
+  private injector = inject(Injector);
+  private dataSubject = new BehaviorSubject<PortfolioData | null>(PORTFOLIO_DATA);
   private data$ = this.dataSubject.asObservable().pipe(shareReplay(1));
 
   private firestore = inject(Firestore);
   private remoteConfig = inject(RemoteConfig);
   private analytics = inject(Analytics);
 
-  constructor(private http: HttpClient) {
-    this.loadData();
-    this.initRemoteConfig();
-  }
+  // --- Reactive Data Streams (Initialized in Injection Context) ---
 
-  private async initRemoteConfig() {
-    try {
-      await fetchAndActivate(this.remoteConfig);
-    } catch (error) {
-      console.error('Remote Config fetch failed', error);
-    }
-  }
+  // Personal Info from Firestore
+  private personalInfoDoc$ = (docData(doc(this.firestore, 'metadata', 'personal')) as Observable<PortfolioData['personal']>).pipe(
+    catchError(() => of(null)),
+    shareReplay(1)
+  );
 
-  private loadData(): void {
-    this.http.get<PortfolioData>(this.dataUrl).pipe(
-      catchError(error => {
-        console.error('Error loading local data', error);
-        return of(null);
-      })
-    ).subscribe({
-      next: (data) => {
-        this.dataSubject.next(data);
-      },
-      error: (error) => {
-        this.dataSubject.next(null);
-      }
-    });
-  }
+  // Firestore Projects Collection
+  private firestoreProjects$ = (collectionData(collection(this.firestore, 'projects'), { idField: 'id' }) as Observable<Project[]>).pipe(
+    catchError(() => of([])),
+    shareReplay(1)
+  );
+
+  // Remote Config Settings
+  private remoteSettings$ = from(fetchAndActivate(this.remoteConfig)).pipe(
+    map(() => runInInjectionContext(this.injector, () => {
+      try {
+        const typeSpeed = getValue(this.remoteConfig, 'typeSpeed').asNumber();
+        const deleteSpeed = getValue(this.remoteConfig, 'deleteSpeed').asNumber();
+        const pauseTime = getValue(this.remoteConfig, 'pauseTime').asNumber();
+
+        if (typeSpeed > 0 && deleteSpeed > 0 && pauseTime > 0) {
+          return {
+            typingAnimation: { typeSpeed, deleteSpeed, pauseTime }
+          } as PortfolioData['settings'];
+        }
+      } catch (e) { }
+      return null;
+    })),
+    catchError(() => of(null)),
+    shareReplay(1)
+  );
+
+  constructor() { }
 
   getData(): Observable<PortfolioData | null> {
     return this.data$;
   }
 
   getPersonalInfo(): Observable<PortfolioData['personal'] | null> {
-    const personalDoc = doc(this.firestore, 'metadata', 'personal');
-    return (docData(personalDoc) as Observable<PortfolioData['personal']>).pipe(
-      catchError(() => of(null)),
+    return this.personalInfoDoc$.pipe(
       switchMap(fsData => fsData ? of(fsData) : this.data$.pipe(map(data => data?.personal || null)))
     );
   }
@@ -112,8 +118,7 @@ export class Data {
   }
 
   getFirestoreProjects(): Observable<Project[]> {
-    const projectsCol = collection(this.firestore, 'projects');
-    return collectionData(projectsCol, { idField: 'id' }) as Observable<Project[]>;
+    return this.firestoreProjects$;
   }
 
   getSkills(): Observable<PortfolioData['skills'] | null> {
@@ -133,28 +138,14 @@ export class Data {
   }
 
   getSettings(): Observable<PortfolioData['settings'] | null> {
-    try {
-      const typeSpeed = getValue(this.remoteConfig, 'typeSpeed').asNumber();
-      const deleteSpeed = getValue(this.remoteConfig, 'deleteSpeed').asNumber();
-      const pauseTime = getValue(this.remoteConfig, 'pauseTime').asNumber();
-
-      if (typeSpeed > 0 && deleteSpeed > 0 && pauseTime > 0) {
-        return of({
-          typingAnimation: {
-            typeSpeed,
-            deleteSpeed,
-            pauseTime
-          }
-        });
-      }
-    } catch (e) {
-      // Remote config might not be initialized or keys missing
-    }
-
-    return this.data$.pipe(map(data => data?.settings || null));
+    return this.remoteSettings$.pipe(
+      switchMap(settings => settings ? of(settings) : this.data$.pipe(map(data => data?.settings || null)))
+    );
   }
 
   logEvent(eventName: string, params?: { [key: string]: any }) {
-    logEvent(this.analytics, eventName, params);
+    runInInjectionContext(this.injector, () => {
+      logEvent(this.analytics, eventName, params);
+    });
   }
 }

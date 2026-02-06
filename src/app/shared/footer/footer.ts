@@ -1,51 +1,32 @@
-import { Component, OnInit, signal, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Observable } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
 import { Data } from '../../services/data';
-import { SocialLink, ContactMethod } from '../../models';
-import { PortfolioData } from '../../services/data';
 
 @Component({
   selector: 'app-footer',
-  imports: [RouterLink, AsyncPipe],
+  imports: [RouterLink],
   templateUrl: './footer.html',
   styleUrl: './footer.css',
 })
-export class Footer implements OnInit {
+export class Footer {
+  private dataService = inject(Data);
+  
   currentYear = new Date().getFullYear();
 
-  // Observables for dynamic data
-  socialLinks$: Observable<SocialLink[]> = new Observable();
-  quickLinks$: Observable<PortfolioData['navigation']['menuItems']> = new Observable();
-  contactInfo$: Observable<ContactMethod[]> = new Observable();
+  // Signals for dynamic data
+  socialLinks = toSignal(this.dataService.getContact().pipe(
+    map(contact => contact?.socialLinks || [])
+  ), { initialValue: [] });
 
-  private dataService = inject(Data);
+  quickLinks = toSignal(this.dataService.getNavigation().pipe(
+    map(nav => nav?.menuItems || [])
+  ), { initialValue: [] });
 
-  ngOnInit(): void {
-    // Load contact data for social links and contact info
-    this.dataService.getContact().subscribe(contact => {
-      if (contact) {
-        this.socialLinks$ = new Observable(observer => {
-          observer.next(contact.socialLinks || []);
-          observer.complete();
-        });
+  contactInfo = toSignal(this.dataService.getContact().pipe(
+    map(contact => contact?.methods || [])
+  ), { initialValue: [] });
 
-        this.contactInfo$ = new Observable(observer => {
-          observer.next(contact.methods || []);
-          observer.complete();
-        });
-      }
-    });
-
-    // Load navigation data for quick links
-    this.dataService.getNavigation().subscribe(navigation => {
-      if (navigation) {
-        this.quickLinks$ = new Observable(observer => {
-          observer.next(navigation.menuItems || []);
-          observer.complete();
-        });
-      }
-    });
-  }
+  personalInfo = toSignal(this.dataService.getPersonalInfo(), { initialValue: null });
 }

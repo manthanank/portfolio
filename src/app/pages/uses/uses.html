@@ -38,7 +38,7 @@
 
     <!-- Uses Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      @for (use of filteredUses; track $index) {
+      @for (use of filteredUses(); track $index) {
       <div
         class="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 dark:border-gray-700 hover:-translate-y-2"
         [style.animation-delay]="$index * 100 + 'ms'">
@@ -115,7 +115,7 @@
     <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
       <div
         class="text-center p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
-        <div class="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">{{ uses().length }}</div>
+        <div class="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">{{ allItems().length }}</div>
         <div class="text-gray-600 dark:text-gray-300 font-medium">Total Tools</div>
       </div>
 

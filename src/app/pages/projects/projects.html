@@ -37,7 +37,7 @@
 
     <!-- Projects Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      @for (project of filteredProjects; track project.id; let i = $index) {
+      @for (project of filteredProjects(); track project.id; let i = $index) {
       <div
         class="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 dark:border-gray-700 hover:-translate-y-2"
         [class.border-2]="project.featured" [class.border-blue-500]="project.featured"
@@ -114,7 +114,7 @@
     </div>
 
     <!-- Empty State -->
-    @if (filteredProjects.length === 0) {
+    @if (filteredProjects().length === 0) {
     <div class="text-center py-16">
       <div class="text-6xl mb-4">🔍</div>
       <h3 class="text-2xl font-bold text-gray-600 dark:text-gray-300 mb-2">No projects found</h3>

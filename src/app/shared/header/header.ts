@@ -1,61 +1,63 @@
-import { Component, HostListener, inject, OnDestroy, OnInit, signal } from '@angular/core';
-import { AsyncPipe } from '@angular/common';
+import { Component, inject, signal, computed } from '@angular/core';
 import { Router, NavigationEnd, RouterLink, RouterLinkActive } from '@angular/router';
-import { Subscription, filter, Observable } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { filter, map } from 'rxjs';
 import { Theme } from '../../services/theme';
 import { Data } from '../../services/data';
-import { PortfolioData } from '../../services/data';
 
 @Component({
   selector: 'app-header',
-  imports: [AsyncPipe, RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './header.html',
   styleUrl: './header.css',
+  host: {
+    '(window:scroll)': 'onWindowScroll()',
+    '(document:keydown.escape)': 'onEscapeKey($event)'
+  }
 })
-export class Header implements OnInit, OnDestroy {
-  // Use signals for local component state
-  isMenuOpen = signal(false);
-  navigation$ = new Observable<PortfolioData['navigation'] | null>();
-  personalData = signal<{ name: string; title: string } | null>(null);
-
-  private routerSubscription?: Subscription;
+export class Header {
   private themeService = inject(Theme);
   private router = inject(Router);
   private dataService = inject(Data);
 
-  // Expose theme signal for template
+  // Use signals for state management
+  isMenuOpen = signal(false);
+  scrollProgress = signal(0);
+  isScrolled = signal(false);
+
+  // Signals derived from services
   isDarkMode = this.themeService.isDark;
+  
+  navigation = toSignal(this.dataService.getNavigation().pipe(
+    map(nav => nav?.menuItems || [])
+  ), { initialValue: [] });
 
-  ngOnInit() {
-    // Load navigation data
-    this.navigation$ = this.dataService.getNavigation();
+  personalData = toSignal(this.dataService.getPersonalInfo().pipe(
+    map(personal => personal ? { name: personal.name, title: personal.title } : null)
+  ), { initialValue: null });
 
-    // Load personal data
-    this.dataService.getPersonalInfo().subscribe((personal: PortfolioData['personal'] | null) => {
-      if (personal) {
+  firstName = computed(() => {
+    const name = this.personalData()?.name;
+    return name ? name.split(' ')[0] : 'Manthan';
+  });
 
-        this.personalData.set({
-          name: personal.name,
-          title: personal.title
-        });
-      }
-    });
-
+  constructor() {
     // Close mobile menu on route change
-    this.routerSubscription = this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(() => {
-        this.closeMobileMenu();
-      });
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.closeMobileMenu();
+    });
   }
 
-  ngOnDestroy() {
-    this.routerSubscription?.unsubscribe();
-    // Restore body scroll on component destroy
-    document.body.style.overflow = 'auto';
+  onWindowScroll() {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+    this.scrollProgress.set(scrolled);
+    this.isScrolled.set(winScroll > 20);
   }
 
-  @HostListener('document:keydown.escape', ['$event'])
   onEscapeKey(event: Event) {
     if (this.isMenuOpen()) {
       this.closeMobileMenu();
@@ -77,11 +79,8 @@ export class Header implements OnInit, OnDestroy {
   }
 
   private updateBodyScroll() {
-    // Prevent body scroll when menu is open on mobile
-    if (this.isMenuOpen()) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
+    if (typeof document !== 'undefined') {
+      document.body.style.overflow = this.isMenuOpen() ? 'hidden' : 'auto';
     }
   }
 }
