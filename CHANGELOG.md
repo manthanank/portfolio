@@ -1,3 +1,12 @@
+# [0.5.0](https://github.com/manthanank/portfolio/compare/v0.4.0...v0.5.0) (2026-02-09)
+
+
+### Features
+
+* update portfolio with resume data, new sections, and mobile responsiveness improvements ([53ddbc5](https://github.com/manthanank/portfolio/commit/53ddbc57ee3ee6ee1a9f23c0bba5d9523635b56b))
+
+
+
 # [0.4.0](https://github.com/manthanank/portfolio/compare/v0.3.1...v0.4.0) (2026-02-09)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * Initialize Angular portfolio application with Firebase integration and core pages. ([f29414f](https://github.com/manthanank/portfolio/commit/f29414f70715250f4a7c6f3c2626717fc8f83500))
-
-
-
-# [0.1.0](https://github.com/manthanank/portfolio/compare/v2.1.0...v0.1.0) (2026-02-04)
-
-
-### Features
-
-* integrate firebase firestore, analytics, and setup auto-deploy workflows ([50656c4](https://github.com/manthanank/portfolio/commit/50656c499007efd494d66b105b6609a43861771b))
 
 
 
