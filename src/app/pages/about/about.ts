@@ -2,7 +2,7 @@ import { Component, inject, computed } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgOptimizedImage } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Data } from '../../services/data';
+import { Data, Education } from '../../services/data';
 import { SeoService } from '../../services/seo';
 
 @Component({
@@ -18,6 +18,7 @@ export class About {
   // --- Reactive Data (Signals) ---
   skills = toSignal(this.dataService.getSkills(), { initialValue: null });
   timeline = toSignal(this.dataService.getTimeline(), { initialValue: [] });
+  education = toSignal(this.dataService.getEducation(), { initialValue: [] as Education[] });
 
   // --- Derived State ---
   frontendSkills = computed(() => this.skills()?.frontend || []);
@@ -27,9 +28,9 @@ export class About {
   constructor() {
     // Set SEO meta tags
     this.seoService.updateMetaTags({
-      title: 'About Me | Manthan Ankolekar - Full Stack Developer',
-      description: 'Learn about my journey as a Full Stack Developer, my technical skills in Angular, Node.js, TypeScript, and my professional experience.',
-      keywords: 'About Manthan Ankolekar, Skills, Experience, Angular Developer, Node.js Developer, Full Stack Developer',
+      title: 'About Me | Manthan Ankolekar - Software Developer',
+      description: 'Learn about my journey as a Software Developer, my technical skills in Angular, Node.js, TypeScript, and my professional experience.',
+      keywords: 'About Manthan Ankolekar, Skills, Experience, Angular Developer, Node.js Developer, Software Developer',
     });
   }
 

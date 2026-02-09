@@ -13,32 +13,32 @@
   </div>
 
   <!-- Main Content -->
-  <div class="relative z-20 max-w-7xl mx-auto px-4 lg:px-8 py-20">
+  <div class="relative z-20 max-w-7xl mx-auto px-4 lg:px-8 py-16 sm:py-20">
     <!-- Header Section -->
-    <div class="text-center mb-16">
+    <div class="text-center mb-10 sm:mb-16">
       <div
-        class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full mb-6">
-        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        class="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full mb-4 sm:mb-6">
+        <svg class="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
             d="M3 8l7.89 4.26c.3.16.69.16 1.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
           </path>
         </svg>
       </div>
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-4 sm:mb-6">
         Let's <span class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Connect</span>
       </h1>
-      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+      <p class="text-base sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed px-2">
         I'm always excited to discuss new opportunities, collaborate on interesting projects, or just have a friendly
         chat about technology and development. Whether you have a project in mind or want to connect professionally,
         feel free to reach out!
       </p>
     </div>
 
-    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+    <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
       <!-- Contact Form -->
       <div class="order-2 lg:order-1">
         <div
-          class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 lg:p-10 border border-gray-100 dark:border-gray-700">
+          class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-5 sm:p-8 lg:p-10 border border-gray-100 dark:border-gray-700">
           <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">Send me a message</h2>
           <p class="text-gray-600 dark:text-gray-300 mb-8">Fill out the form below and I'll get back to you as soon as
             possible.</p>
@@ -142,24 +142,25 @@
       </div>
 
       <!-- Contact Information -->
-      <div class="order-1 lg:order-2 space-y-8">
+      <div class="order-1 lg:order-2 space-y-4 sm:space-y-8">
         <!-- Contact Methods -->
-        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 border border-gray-100 dark:border-gray-700">
-          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">Get in Touch</h2>
-          <div class="space-y-6">
+        <div
+          class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-5 sm:p-8 border border-gray-100 dark:border-gray-700">
+          <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 sm:mb-6">Get in Touch</h2>
+          <div class="space-y-4 sm:space-y-6">
             @for (method of contactMethods(); track method.title) {
-            <div class="flex items-start space-x-4 group">
+            <div class="flex items-start space-x-3 sm:space-x-4 group">
               <div
-                class="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-xl flex items-center justify-center group-hover:from-blue-200 group-hover:to-indigo-200 dark:group-hover:from-blue-800/40 dark:group-hover:to-indigo-800/40 transition-colors duration-200">
-                <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor"
+                class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-xl flex items-center justify-center group-hover:from-blue-200 group-hover:to-indigo-200 dark:group-hover:from-blue-800/40 dark:group-hover:to-indigo-800/40 transition-colors duration-200">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor"
                   viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="method.icon"></path>
                 </svg>
               </div>
-              <div class="flex-grow">
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">{{ method.title }}</h3>
+              <div class="flex-grow min-w-0">
+                <h3 class="text-base sm:text-lg font-semibold text-gray-900 dark:text-gray-100">{{ method.title }}</h3>
                 <a [href]="method.link"
-                  class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
+                  class="text-sm sm:text-base text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 break-all"
                   [class.cursor-default]="method.title === 'Location'"
                   [class.hover:text-gray-600]="method.title === 'Location'"
                   [class.dark:hover:text-gray-300]="method.title === 'Location'">
@@ -172,13 +173,14 @@
         </div>
 
         <!-- Social Links -->
-        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 border border-gray-100 dark:border-gray-700">
-          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">Connect on Social</h2>
-          <div class="grid grid-cols-3 gap-4">
+        <div
+          class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-5 sm:p-8 border border-gray-100 dark:border-gray-700">
+          <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 sm:mb-6">Connect on Social</h2>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
             @for (social of socialLinks(); track social.name) {
             <a [href]="social.url" target="_blank" rel="noopener noreferrer" [attr.aria-label]="social.name"
-              class="group flex flex-col items-center p-4 rounded-xl border-2 border-gray-100 dark:border-gray-600 hover:border-blue-200 dark:hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-200">
-              <div class="w-8 h-8 mb-2">
+              class="group flex flex-col items-center p-3 sm:p-4 rounded-xl border-2 border-gray-100 dark:border-gray-600 hover:border-blue-200 dark:hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-200">
+              <div class="w-6 h-6 sm:w-8 sm:h-8 mb-1 sm:mb-2">
                 <svg
                   class="w-full h-full fill-gray-600 dark:fill-gray-400 group-hover:fill-blue-600 dark:group-hover:fill-blue-400 transition-colors duration-200"
                   viewBox="0 0 24 24">
@@ -186,7 +188,7 @@
                 </svg>
               </div>
               <span
-                class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
+                class="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
                 {{ social.name }}
               </span>
             </a>
@@ -195,7 +197,7 @@
         </div>
 
         <!-- Quick Response Info -->
-        <div class="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-8 text-white">
+        <div class="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-5 sm:p-8 text-white">
           <div class="flex items-start space-x-4">
             <div class="flex-shrink-0">
               <svg class="w-8 h-8 text-blue-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">

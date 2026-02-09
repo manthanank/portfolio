@@ -2,18 +2,18 @@ import { PortfolioData } from '../services/data';
 
 export const PORTFOLIO_DATA: PortfolioData = {
   personal: {
-    name: "Manthan Ank",
-    title: "Full Stack Developer",
+    name: "Manthan Ankolekar",
+    title: "Software Developer",
     email: "manthan.ank46@gmail.com",
     phone: "+91 XXX XXX XXXX",
     location: "Karnataka, India",
-    bio: "Passionate full-stack developer with expertise in Angular, Node.js, and modern web technologies. I love building scalable applications and solving complex problems.",
+    bio: "Experienced software developer with expertise in Angular, Python Flask, Node.js, and modern web technologies. Skilled in building scalable applications, microservices architecture, and delivering efficient backend systems.",
     roles: [
-      "Frontend Developer 💻",
-      "UI/UX Enthusiast 🎨",
+      "Software Developer 💻",
       "Angular Developer 🅰️",
-      "Problem Solver 🧩",
-      "Creative Coder ✨"
+      "Backend Developer 🔧",
+      "Full Stack Developer 🌐",
+      "Problem Solver 🧩"
     ]
   },
   navigation: {
@@ -96,64 +96,179 @@ export const PORTFOLIO_DATA: PortfolioData = {
       }
     ]
   },
+  workProjects: [
+    {
+      id: 1,
+      title: "Patient Discharge and Call Monitoring Web App",
+      company: "BlackCoffer",
+      duration: "10+ months",
+      description: "Led the development and management of a healthcare project. Implemented new features and handled ongoing maintenance.",
+      highlights: [
+        "Led development for over ten months",
+        "Built frontend with Angular, backend with Node.js, database with MySQL",
+        "Integrated real-time communication using Socket.IO",
+        "Deployed to AWS for scalability and reliability"
+      ],
+      technologies: ["Angular", "Node.js", "MySQL", "Socket.IO", "AWS"],
+      icon: "fas fa-hospital"
+    },
+    {
+      id: 2,
+      title: "API Admin & Client Dashboard",
+      company: "BlackCoffer",
+      duration: "6+ months",
+      description: "Developed comprehensive admin and client dashboards from the ground up with robust authentication and authorization.",
+      highlights: [
+        "Built dashboards from scratch using Angular",
+        "Integrated 150+ APIs into the frontend",
+        "Implemented robust Authentication and Authorization",
+        "Used efficient template-based design"
+      ],
+      technologies: ["Angular", "TypeScript", "REST APIs", "JWT", "Authentication"],
+      icon: "fas fa-tachometer-alt"
+    },
+    {
+      id: 3,
+      title: "Brain Tumor Detection Using MRI Images",
+      company: "Final Year Project",
+      duration: "Academic Project",
+      description: "Developed front-end for image detection and classification system using Flask and machine learning techniques.",
+      highlights: [
+        "Worked on frontend of image detection/classification project",
+        "Used Flask for web framework",
+        "Implemented testing and training methods",
+        "Utilized databases for model training"
+      ],
+      technologies: ["Python", "Flask", "Machine Learning", "Image Processing"],
+      icon: "fas fa-brain"
+    },
+    {
+      id: 4,
+      title: "Complaint Management System",
+      company: "Web Development Project",
+      duration: "Academic Project",
+      description: "Created a web application for registering and storing complaints in a database.",
+      highlights: [
+        "Built web page for complaint registration",
+        "Implemented database storage with MySQL",
+        "Used PHP for backend development"
+      ],
+      technologies: ["PHP", "MySQL", "HTML", "CSS"],
+      icon: "fas fa-clipboard-list"
+    },
+    {
+      id: 5,
+      title: "Census Management System",
+      company: "DBMS Project",
+      duration: "Academic Project",
+      description: "Designed, developed, and implemented a project to store and manage census data in a database.",
+      highlights: [
+        "Designed database schema for census data",
+        "Developed data management interfaces",
+        "Conducted thorough testing for optimal performance"
+      ],
+      technologies: ["Database Design", "SQL", "Data Management"],
+      icon: "fas fa-database"
+    }
+  ],
+  education: [
+    {
+      id: 1,
+      degree: "Bachelor of Engineering (B.E)",
+      field: "Computer Science",
+      institution: "Sahyadri College of Engineering & Management",
+      location: "Mangalore, Karnataka",
+      year: "Aug 2016 - Aug 2020",
+      description: "Completed Bachelor's degree in Computer Science with focus on software development, algorithms, and computer science fundamentals.",
+      achievements: [
+        "Developed Brain Tumor Detection project as final year project",
+        "Completed various web development and database projects",
+        "Gained strong foundation in programming and software engineering"
+      ],
+      icon: "fas fa-graduation-cap"
+    }
+  ],
   skills: {
     frontend: [
       { name: "Angular", level: 5 },
-      { name: "TypeScript", level: 4 },
-      { name: "HTML/CSS", level: 5 },
-      { name: "JavaScript", level: 4 },
-      { name: "Tailwind CSS", level: 4 },
-      { name: "Bootstrap", level: 4 }
+      { name: "RxJS", level: 4 },
+      { name: "TypeScript", level: 5 },
+      { name: "JavaScript", level: 5 },
+      { name: "HTML/CSS", level: 5 }
     ],
     backend: [
       { name: "Node.js", level: 4 },
       { name: "Express.js", level: 4 },
+      { name: "Python", level: 3 },
+      { name: "Flask", level: 3 },
       { name: "MongoDB", level: 4 },
-      { name: "MySQL", level: 3 },
-      { name: "REST APIs", level: 4 },
-      { name: "Firebase", level: 3 }
+      { name: "MySQL", level: 4 },
+      { name: "PostgreSQL", level: 3 },
+      { name: "Firebase", level: 4 }
     ],
     tools: [
-      { name: "Git", level: 4 },
-      { name: "VS Code", level: 5 },
+      { name: "Git", level: 5 },
+      { name: "GitHub", level: 5 },
+      { name: "GitLab", level: 4 },
+      { name: "Bitbucket", level: 4 },
       { name: "Docker", level: 3 },
-      { name: "AWS", level: 3 },
-      { name: "Figma", level: 3 },
-      { name: "Postman", level: 4 }
+      { name: "AWS", level: 4 },
+      { name: "GCP", level: 3 },
+      { name: "CI/CD Pipelines", level: 4 },
+      { name: "WebSockets", level: 4 },
+      { name: "Jira", level: 4 },
+      { name: "Microsoft Azure", level: 3 },
+      { name: "Postman", level: 5 }
     ]
   },
   timeline: [
     {
-      title: "Software Engineer",
-      company: "Blackcoffer",
-      year: "2023 - Present",
-      description: "Working on full-stack development projects, building scalable web applications and contributing to various client projects using modern technologies.",
-      icon: "fas fa-laptop-code",
-      iconColor: "text-blue-600"
+      title: "Software Developer",
+      company: "Senwell Group Pvt Ltd",
+      year: "Oct 2024 - Jan 2025",
+      description: "Enhanced and maintained Angular-based applications for recruitment platforms and tolling & traffic management systems. Worked on microservice architectures and collaborated with cross-functional teams.",
+      icon: "fas fa-code",
+      iconColor: "text-indigo-600"
     },
     {
-      title: "Freelance Developer",
-      company: "Self-Employed",
-      year: "2022 - 2023",
-      description: "Started my professional journey as a freelance developer, working on various web development projects and building my portfolio.",
-      icon: "fas fa-user-tie",
+      title: "Software Engineer",
+      company: "BlackCoffer",
+      year: "Feb 2023 - Aug 2024",
+      description: "Designed API dashboard with Angular featuring user and admin roles. Built multi-role hospital management system with Angular, Node.js, and MySQL deployed on AWS. Integrated real-time notifications using WebSockets and optimized code reducing build size by 50%.",
+      icon: "fas fa-briefcase",
       iconColor: "text-green-600"
     },
     {
-      title: "Bachelor of Engineering",
-      company: "Sahyadri College of Engineering & Management",
-      year: "2019 - 2023",
-      description: "Completed my Bachelor's degree in Computer Science, where I discovered my passion for programming and software development.",
-      icon: "fas fa-graduation-cap",
-      iconColor: "text-purple-600"
+      title: "Full Stack Developer Intern",
+      company: "AppiVa Software Pvt Ltd",
+      year: "Jul 2022 - Dec 2022",
+      description: "Enhanced applications with new features using Angular, Node.js, Python, and Firebase. Deployed solutions on AWS and ensured application performance through monitoring and troubleshooting.",
+      icon: "fas fa-user-graduate",
+      iconColor: "text-yellow-600"
     },
     {
-      title: "Started Coding Journey",
-      company: "Self-Learning",
-      year: "2021",
-      description: "Began my coding journey with web development fundamentals, starting with HTML, CSS, and JavaScript.",
-      icon: "fas fa-rocket",
-      iconColor: "text-orange-600"
+      title: "Angular Developer Intern",
+      company: "Faclon Labs Pvt Ltd",
+      year: "Nov 2021 - Apr 2022",
+      description: "Collaborated on Angular-based projects including admin panel and user interfaces. Applied Angular best practices like modular architecture and reusable components. Integrated backend RESTful APIs.",
+      icon: "fas fa-angular",
+      iconColor: "text-red-600"
+    },
+    {
+      title: "Front End Trainee",
+      company: "SounderGrad",
+      year: "May 2021 - Aug 2021",
+      description: "Completed training in HTML, CSS, JavaScript, jQuery, and Angular. Developed a Corona Tracker application using Angular and REST APIs with real-time COVID-19 statistics.",
+      icon: "fas fa-chalkboard-teacher",
+      iconColor: "text-teal-600"
+    },
+    {
+      title: "Student Intern",
+      company: "Karanji InfoTech Pvt Ltd",
+      year: "Jun 2019 - Jul 2019",
+      description: "Gained foundational knowledge in machine learning concepts. Developed a text-to-speech conversion application in Python utilizing relevant libraries.",
+      icon: "fas fa-robot",
+      iconColor: "text-pink-600"
     }
   ],
   uses: {

@@ -1,7 +1,7 @@
 import { Component, signal, inject, computed } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Data } from '../../services/data';
+import { Data, WorkProject } from '../../services/data';
 import { SeoService } from '../../services/seo';
 
 @Component({
@@ -16,6 +16,7 @@ export class Projects {
 
   // --- Reactive Data (Signals) ---
   projectsData = toSignal(this.dataService.getProjects(), { initialValue: null });
+  workProjects = toSignal(this.dataService.getWorkProjects(), { initialValue: [] as WorkProject[] });
   selectedCategory = signal('all');
 
   // --- Derived State ---
@@ -34,7 +35,7 @@ export class Projects {
   constructor() {
     // Set SEO meta tags
     this.seoService.updateMetaTags({
-      title: 'Projects | Manthan Ankolekar - Full Stack Developer',
+      title: 'Projects | Manthan Ankolekar - Software Developer',
       description: 'Explore my portfolio of web development projects including Angular applications, Node.js backends, and full-stack solutions.',
       keywords: 'Projects, Portfolio, Angular Projects, Node.js Projects, Web Applications, Full Stack Projects, GitHub',
     });

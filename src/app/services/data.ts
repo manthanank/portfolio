@@ -5,6 +5,29 @@ import { Firestore, collection, collectionData, doc, docData } from '@angular/fi
 import { RemoteConfig, getValue, fetchAndActivate } from '@angular/fire/remote-config';
 import { Analytics, logEvent } from '@angular/fire/analytics';
 
+export interface WorkProject {
+  id: number;
+  title: string;
+  company: string;
+  duration: string;
+  description: string;
+  highlights: string[];
+  technologies: string[];
+  icon: string;
+}
+
+export interface Education {
+  id: number;
+  degree: string;
+  field: string;
+  institution: string;
+  location: string;
+  year: string;
+  description: string;
+  achievements: string[];
+  icon: string;
+}
+
 export interface PortfolioData {
   personal: {
     name: string;
@@ -26,6 +49,8 @@ export interface PortfolioData {
     categories: ProjectCategory[];
     items: Project[];
   };
+  workProjects: WorkProject[];
+  education: Education[];
   skills: {
     frontend: Skill[];
     backend: Skill[];
@@ -119,6 +144,14 @@ export class Data {
 
   getFirestoreProjects(): Observable<Project[]> {
     return this.firestoreProjects$;
+  }
+
+  getWorkProjects(): Observable<WorkProject[]> {
+    return this.data$.pipe(map(data => data?.workProjects || []));
+  }
+
+  getEducation(): Observable<Education[]> {
+    return this.data$.pipe(map(data => data?.education || []));
   }
 
   getSkills(): Observable<PortfolioData['skills'] | null> {

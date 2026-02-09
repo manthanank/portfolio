@@ -56,6 +56,7 @@
           @if (item.path !== '/' && item.path !== '/contact') {
           <a [routerLink]="item.path"
             routerLinkActive="!text-blue-600 dark:!text-blue-400 bg-blue-50/50 dark:bg-blue-900/20"
+            [routerLinkActiveOptions]="{exact: item.path === '/'}"
             class="px-5 py-2.5 text-sm font-bold text-gray-600 dark:text-gray-300 rounded-xl hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white/50 dark:hover:bg-gray-800/50 transition-all duration-300 relative group/link">
             {{ item.label }}
             <span
@@ -161,6 +162,7 @@
         @if (item.path !== '/contact') {
         <a [routerLink]="item.path" (click)="closeMobileMenu()"
           routerLinkActive="!bg-gradient-to-r !from-blue-600 !to-purple-600 !text-white !shadow-lg"
+          [routerLinkActiveOptions]="{exact: item.path === '/'}"
           class="flex items-center justify-between px-6 py-4 text-lg font-bold text-gray-700 dark:text-gray-200 rounded-2xl transition-all duration-300 hover:bg-gray-100/50 dark:hover:bg-gray-800/50">
           {{ item.label }}
           <svg class="w-5 h-5 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">

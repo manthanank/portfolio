@@ -20,14 +20,15 @@
           <!-- Profile Image -->
           <div class="order-1 flex justify-center mb-8 lg:mb-0 lg:order-1">
             <div class="relative">
-              <!-- Background Elements -->
+              <!-- Background Glow -->
               <div class="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-3xl blur-3xl">
               </div>
               <!-- Profile Container -->
               <div
-                class="relative bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-3xl p-4 lg:p-8 border border-white/20 dark:border-slate-700/20 shadow-2xl">
+                class="relative bg-slate-200 dark:bg-slate-800 backdrop-blur-sm rounded-3xl p-6 lg:p-8 border border-slate-300 dark:border-slate-700 shadow-2xl">
+                <!-- Circular Profile Image -->
                 <div
-                  class="w-48 h-48 lg:w-64 lg:h-64 mx-auto rounded-2xl overflow-hidden border-4 border-white dark:border-slate-700 shadow-lg">
+                  class="w-48 h-48 lg:w-64 lg:h-64 mx-auto rounded-full overflow-hidden border-4 border-slate-300 dark:border-slate-600 shadow-lg">
                   <img ngSrc="picture.webp" alt="Manthan - Software Developer" width="256" height="256"
                     class="w-full h-full object-cover" />
                 </div>
@@ -44,19 +45,20 @@
               <div class="prose text-slate-700 dark:text-slate-300 space-y-4">
                 <p>
                   Also known as <span class="font-semibold text-blue-600 dark:text-blue-400">manthanank</span>, I'm a
-                  passionate Software Engineer based in Karnataka, India. With over 3 years of experience, I've been
+                  passionate Software Developer based in Karnataka, India. With over 4 years of experience, I've been
                   building digital solutions that make a difference.
                 </p>
                 <p>
                   I hold a Bachelor's degree in Computer Science from Sahyadri College of Engineering & Management.
-                  Currently, I work as a Software Engineer at <span
-                    class="font-semibold text-indigo-600 dark:text-indigo-400">Blackcoffer</span>, where I continue to
-                  grow and challenge myself with complex projects.
+                  Currently, I work as a Software Developer, where I develop
+                  backend applications and work on microservices architecture.
                 </p>
                 <p>
-                  My expertise spans across the MEAN stack - from crafting intuitive user interfaces with Angular to
-                  building robust backend systems with Node.js and MongoDB. I'm passionate about creating scalable web
-                  applications and exploring cloud technologies.
+                  My expertise spans across the MEAN stack and beyond - from crafting intuitive user interfaces with
+                  Angular to
+                  building robust backend systems with Node.js, Python Flask, and various databases. I'm passionate
+                  about creating scalable web
+                  applications and exploring cloud technologies like AWS and GCP.
                 </p>
               </div>
             </div>
@@ -192,6 +194,91 @@
     </div>
   </section>
 
+  <!-- Education Section -->
+  @if (education().length > 0) {
+  <section class="py-12 lg:py-16 bg-white dark:bg-slate-900">
+    <div class="container mx-auto px-4">
+      <div class="max-w-7xl mx-auto">
+        <!-- Section Header -->
+        <div class="text-center mb-8">
+          <h2 class="text-3xl lg:text-4xl font-bold text-slate-800 dark:text-slate-100 mb-3">
+            <span class="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+              Education
+            </span>
+          </h2>
+          <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-base lg:text-lg">
+            Academic background and qualifications
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          @for (edu of education(); track edu.id) {
+          <div
+            class="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-2xl p-6 lg:p-8 border-2 border-indigo-200 dark:border-indigo-800 hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
+
+            <!-- Education Header -->
+            <div class="flex items-start gap-4 mb-6">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center text-white shadow-lg flex-shrink-0">
+                <i [class]="edu.icon" class="text-2xl"></i>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-xl lg:text-2xl font-bold text-slate-800 dark:text-slate-100 mb-1">
+                  {{ edu.degree }}
+                </h3>
+                <p class="text-indigo-600 dark:text-indigo-400 font-semibold">{{ edu.field }}</p>
+              </div>
+            </div>
+
+            <!-- Institution Details -->
+            <div class="mb-6 space-y-2">
+              <div class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                <i class="fas fa-university text-indigo-500"></i>
+                <span class="font-medium">{{ edu.institution }}</span>
+              </div>
+              <div class="flex items-center gap-2 text-slate-600 dark:text-slate-400 text-sm">
+                <i class="fas fa-map-marker-alt text-indigo-500"></i>
+                <span>{{ edu.location }}</span>
+              </div>
+              <div class="flex items-center gap-2 text-slate-600 dark:text-slate-400 text-sm">
+                <i class="fas fa-calendar-alt text-indigo-500"></i>
+                <span>{{ edu.year }}</span>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+              {{ edu.description }}
+            </p>
+
+            <!-- Achievements -->
+            @if (edu.achievements && edu.achievements.length > 0) {
+            <div>
+              <h4
+                class="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-3 uppercase tracking-wider flex items-center gap-2">
+                <i class="fas fa-trophy text-yellow-500"></i>
+                Key Achievements
+              </h4>
+              <ul class="space-y-2">
+                @for (achievement of edu.achievements; track achievement) {
+                <li class="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-400">
+                  <span class="text-indigo-500 mt-1">
+                    <i class="fas fa-check-circle"></i>
+                  </span>
+                  {{ achievement }}
+                </li>
+                }
+              </ul>
+            </div>
+            }
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+  }
+
   <!-- Journey Timeline -->
   <section class="py-12 lg:py-16 bg-white dark:bg-slate-900">
     <div class="container mx-auto px-4">
@@ -261,9 +348,9 @@
                       <div class="flex-1 h-1 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
                         <div
                           class="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all duration-1000"
-                          [style.width.%]="(i + 1) * 25"></div>
+                          [style.width.%]="((i + 1) / (timeline()?.length || 1)) * 100"></div>
                       </div>
-                      <span class="text-xs text-slate-500">{{ i + 1 }}/4</span>
+                      <span class="text-xs text-slate-500">{{ i + 1 }}/{{ timeline()?.length || 0 }}</span>
                     </div>
                   </div>
                 </div>

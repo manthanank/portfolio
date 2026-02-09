@@ -7,28 +7,122 @@
   </div>
 
   <!-- Main Content -->
-  <div class="relative z-20 container mx-auto px-6 py-20 max-w-7xl">
+  <div class="relative z-20 container mx-auto px-4 sm:px-6 py-16 sm:py-20 max-w-7xl">
     <!-- Header Section -->
-    <div class="text-center mb-16">
+    <div class="text-center mb-10 sm:mb-16">
       <h1
-        class="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
+        class="text-3xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4 sm:mb-6">
         My Projects
       </h1>
-      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+      <p class="text-base sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed px-2">
         Explore my portfolio of innovative web applications and enterprise solutions built with modern technologies.
         Each project represents a unique challenge solved through careful planning, clean architecture, and attention to
         detail.
         From full-stack applications to specialized tools, these projects showcase my journey as a developer.
       </p>
+    </div>
+
+    <!-- Work Projects Section (Resume Projects) -->
+    @if (workProjects().length > 0) {
+    <div class="mb-12 sm:mb-20">
+      <div class="text-center mb-6 sm:mb-10">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3 sm:mb-4">
+          <span class="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+            Professional Projects
+          </span>
+        </h2>
+        <p class="text-sm sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto px-2">
+          Projects I've worked on during my professional career at various companies
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+        @for (project of workProjects(); track project.id; let i = $index) {
+        <div
+          class="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border-2 border-emerald-200 dark:border-emerald-800 hover:-translate-y-2"
+          [style.animation-delay]="i * 100 + 'ms'">
+
+          <!-- Project Header -->
+          <div class="bg-gradient-to-r from-emerald-500 to-teal-500 p-4 sm:p-5">
+            <div class="flex items-start gap-3 sm:gap-4">
+              <div
+                class="w-12 h-12 sm:w-14 sm:h-14 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm flex-shrink-0">
+                <i [class]="project.icon" class="text-xl sm:text-2xl text-white"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <h3 class="text-lg sm:text-xl font-bold text-white mb-1 line-clamp-2">{{ project.title }}</h3>
+                <div
+                  class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 text-emerald-100 text-xs sm:text-sm">
+                  <span class="flex items-center gap-1">
+                    <i class="fas fa-building"></i>
+                    {{ project.company }}
+                  </span>
+                  <span class="flex items-center gap-1">
+                    <i class="fas fa-clock"></i>
+                    {{ project.duration }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Content -->
+          <div class="p-6">
+            <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+              {{ project.description }}
+            </p>
+
+            <!-- Highlights -->
+            <div class="mb-4">
+              <h4 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 uppercase tracking-wider">Key
+                Highlights</h4>
+              <ul class="space-y-2">
+                @for (highlight of project.highlights; track highlight) {
+                <li class="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
+                  <span class="text-emerald-500 mt-1">
+                    <i class="fas fa-check-circle"></i>
+                  </span>
+                  {{ highlight }}
+                </li>
+                }
+              </ul>
+            </div>
+
+            <!-- Technology Tags -->
+            <div class="flex flex-wrap gap-2">
+              @for (tech of project.technologies; track tech) {
+              <span
+                class="px-3 py-1 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded-full text-xs font-medium border border-emerald-100 dark:border-emerald-800">
+                {{ tech }}
+              </span>
+              }
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+    }
+
+    <!-- Personal Projects Header -->
+    <div class="text-center mb-8 sm:mb-10">
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3 sm:mb-4">
+        <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          Personal Projects
+        </span>
+      </h2>
+      <p class="text-sm sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto px-2">
+        Side projects and personal explorations showcasing my passion for development
+      </p>
 
       <!-- Category Filter -->
-      <div class="flex flex-wrap justify-center gap-3 mt-10">
+      <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mt-6 sm:mt-8">
         @for (category of categories(); track category.id) {
         <button (click)="selectCategory(category.id)"
           [class]="selectedCategory() === category.id ?
               'bg-blue-600 text-white shadow-lg scale-105' :
               'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400'"
-          class="px-6 py-3 rounded-full font-medium transition-all duration-300 border border-gray-200 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-400 hover:shadow-md">
+          class="px-4 py-2 sm:px-6 sm:py-3 rounded-full text-sm sm:text-base font-medium transition-all duration-300 border border-gray-200 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-400 hover:shadow-md">
           {{ category.name }}
         </button>
         }
@@ -36,7 +130,7 @@
     </div>
 
     <!-- Projects Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
       @for (project of filteredProjects(); track project.id; let i = $index) {
       <div
         class="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 dark:border-gray-700 hover:-translate-y-2"
