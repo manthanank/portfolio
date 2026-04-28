@@ -1,3 +1,12 @@
+# [0.6.0](https://github.com/manthanank/portfolio/compare/v0.5.0...v0.6.0) (2026-04-28)
+
+
+### Features
+
+* enhance portfolio with new project routes, accessibility features, and improved contact options ([120b4ca](https://github.com/manthanank/portfolio/commit/120b4ca6b765974bee6b322915829267bd3bece0))
+
+
+
 # [0.5.0](https://github.com/manthanank/portfolio/compare/v0.4.0...v0.5.0) (2026-02-09)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * implement SEO meta tags, premium 404 page, and NgOptimizedImage for better performance ([56a2b71](https://github.com/manthanank/portfolio/commit/56a2b713ca738d5dae644e9047e87a836d7e8b09))
-
-
-
-# [0.2.0](https://github.com/manthanank/portfolio/compare/v0.1.0...v0.2.0) (2026-02-05)
-
-
-### Features
-
-* Initialize Angular portfolio application with Firebase integration and core pages. ([f29414f](https://github.com/manthanank/portfolio/commit/f29414f70715250f4a7c6f3c2626717fc8f83500))
 
 
 
