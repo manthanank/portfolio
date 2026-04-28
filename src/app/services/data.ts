@@ -1,9 +1,6 @@
-import { inject, Injectable, Injector, runInInjectionContext } from '@angular/core';
-import { shareReplay, Observable, BehaviorSubject, catchError, map, of, from, switchMap } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import { shareReplay, Observable, BehaviorSubject, catchError, map, of, switchMap } from 'rxjs';
 import { ProjectCategory, Project, Skill, TimelineItem, UseCategory, UseItem, ContactMethod, SocialLink } from '../models';
-import { Firestore, collection, collectionData, doc, docData } from '@angular/fire/firestore';
-import { RemoteConfig, getValue, fetchAndActivate } from '@angular/fire/remote-config';
-import { Analytics, logEvent } from '@angular/fire/analytics';
 
 export interface WorkProject {
   id: number;
@@ -126,47 +123,8 @@ import { PORTFOLIO_DATA } from '../data/portfolio';
   providedIn: 'root'
 })
 export class Data {
-  private injector = inject(Injector);
   private dataSubject = new BehaviorSubject<PortfolioData | null>(PORTFOLIO_DATA);
   private data$ = this.dataSubject.asObservable().pipe(shareReplay(1));
-
-  private firestore = inject(Firestore);
-  private remoteConfig = inject(RemoteConfig);
-  private analytics = inject(Analytics);
-
-  // --- Reactive Data Streams (Initialized in Injection Context) ---
-
-  // Personal Info from Firestore
-  private personalInfoDoc$ = (docData(doc(this.firestore, 'metadata', 'personal')) as Observable<PortfolioData['personal']>).pipe(
-    catchError(() => of(null)),
-    shareReplay(1)
-  );
-
-  // Firestore Projects Collection
-  private firestoreProjects$ = (collectionData(collection(this.firestore, 'projects'), { idField: 'id' }) as Observable<Project[]>).pipe(
-    catchError(() => of([])),
-    shareReplay(1)
-  );
-
-  // Remote Config Settings
-  private remoteSettings$ = from(fetchAndActivate(this.remoteConfig)).pipe(
-    map(() => runInInjectionContext(this.injector, () => {
-      try {
-        const typeSpeed = getValue(this.remoteConfig, 'typeSpeed').asNumber();
-        const deleteSpeed = getValue(this.remoteConfig, 'deleteSpeed').asNumber();
-        const pauseTime = getValue(this.remoteConfig, 'pauseTime').asNumber();
-
-        if (typeSpeed > 0 && deleteSpeed > 0 && pauseTime > 0) {
-          return {
-            typingAnimation: { typeSpeed, deleteSpeed, pauseTime }
-          } as PortfolioData['settings'];
-        }
-      } catch (e) { }
-      return null;
-    })),
-    catchError(() => of(null)),
-    shareReplay(1)
-  );
 
   constructor() { }
 
@@ -175,9 +133,7 @@ export class Data {
   }
 
   getPersonalInfo(): Observable<PortfolioData['personal'] | null> {
-    return this.personalInfoDoc$.pipe(
-      switchMap(fsData => fsData ? of(fsData) : this.data$.pipe(map(data => data?.personal || null)))
-    );
+    return this.data$.pipe(map(data => data?.personal || null));
   }
 
   getNavigation(): Observable<PortfolioData['navigation'] | null> {
@@ -189,7 +145,7 @@ export class Data {
   }
 
   getFirestoreProjects(): Observable<Project[]> {
-    return this.firestoreProjects$;
+    return of([]);
   }
 
   getWorkProjects(): Observable<WorkProject[]> {
@@ -229,14 +185,11 @@ export class Data {
   }
 
   getSettings(): Observable<PortfolioData['settings'] | null> {
-    return this.remoteSettings$.pipe(
-      switchMap(settings => settings ? of(settings) : this.data$.pipe(map(data => data?.settings || null)))
-    );
+    return this.data$.pipe(map(data => data?.settings || null));
   }
 
   logEvent(eventName: string, params?: { [key: string]: any }) {
-    runInInjectionContext(this.injector, () => {
-      logEvent(this.analytics, eventName, params);
-    });
+    void eventName;
+    void params;
   }
 }
