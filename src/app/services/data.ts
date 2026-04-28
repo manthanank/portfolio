@@ -1,5 +1,5 @@
-import { inject, Injectable } from '@angular/core';
-import { shareReplay, Observable, BehaviorSubject, catchError, map, of, switchMap } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { shareReplay, Observable, BehaviorSubject, map, of } from 'rxjs';
 import { ProjectCategory, Project, Skill, TimelineItem, UseCategory, UseItem, ContactMethod, SocialLink } from '../models';
 
 export interface WorkProject {

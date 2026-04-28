@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
-import { Firestore } from '@angular/fire/firestore';
 
 import { Contact } from './contact';
 import { Data } from '../../services/data';
@@ -18,7 +17,6 @@ describe('Contact', () => {
         provideRouter([]),
         { provide: Data, useValue: createMockDataService() },
         { provide: SeoService, useValue: createMockSeoService() },
-        { provide: Firestore, useValue: {} },
       ],
     })
     .compileComponents();

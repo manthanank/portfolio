@@ -2,7 +2,6 @@ import { Component, signal, inject, computed } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Data } from '../../services/data';
-import { Firestore, collection, addDoc, serverTimestamp } from '@angular/fire/firestore';
 import { SeoService } from '../../services/seo';
 
 @Component({
@@ -14,7 +13,6 @@ import { SeoService } from '../../services/seo';
 export class Contact {
   private fb = inject(FormBuilder);
   private dataService = inject(Data);
-  private firestore = inject(Firestore);
   private seoService = inject(SeoService);
 
   // --- Form State ---
@@ -69,11 +67,16 @@ export class Contact {
 
       try {
         const formData = this.contactForm.value;
-        const contactsCollection = collection(this.firestore, 'contacts');
+        const [{ getApp }, firestoreModule] = await Promise.all([
+          import('firebase/app'),
+          import('firebase/firestore')
+        ]);
+        const firestore = firestoreModule.getFirestore(getApp());
+        const contactsCollection = firestoreModule.collection(firestore, 'contacts');
         
-        await addDoc(contactsCollection, {
+        await firestoreModule.addDoc(contactsCollection, {
           ...formData,
-          createdAt: serverTimestamp()
+          createdAt: firestoreModule.serverTimestamp()
         });
 
         this.isSubmitting.set(false);
