@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
+import { Firestore } from '@angular/fire/firestore';
 
 import { Contact } from './contact';
+import { Data } from '../../services/data';
+import { SeoService } from '../../services/seo';
+import { createMockDataService, createMockSeoService } from '../../testing/mocks';
 
 describe('Contact', () => {
   let component: Contact;
@@ -8,7 +13,13 @@ describe('Contact', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Contact]
+      imports: [Contact],
+      providers: [
+        provideRouter([]),
+        { provide: Data, useValue: createMockDataService() },
+        { provide: SeoService, useValue: createMockSeoService() },
+        { provide: Firestore, useValue: {} },
+      ],
     })
     .compileComponents();
 

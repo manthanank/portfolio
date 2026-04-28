@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://manthanank.web.app/sitemap.xml
+

@@ -1,0 +1,74 @@
+<section
+  class="min-h-screen relative overflow-hidden bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+  <div
+    class="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-purple-50/60 to-pink-50/80 dark:from-gray-900/80 dark:via-gray-800/60 dark:to-gray-900/80 z-10">
+  </div>
+
+  <div class="relative z-20 max-w-5xl mx-auto px-4 lg:px-8 py-16 sm:py-20">
+    <header class="text-center mb-10 sm:mb-14">
+      <h1 class="text-3xl sm:text-5xl font-bold text-gray-900 dark:text-gray-100">
+        Now
+      </h1>
+      <p class="mt-4 text-base sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+        {{ now()?.intro || 'A quick snapshot of what I’m focused on lately.' }}
+      </p>
+      @if (updatedAt()) {
+      <p class="mt-3 text-sm text-gray-500 dark:text-gray-400">Last updated: {{ updatedAt() }}</p>
+      }
+    </header>
+
+    <div class="grid gap-6">
+      <section class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100 dark:border-gray-700">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">Open to</h2>
+        <ul class="space-y-2">
+          @for (item of (now()?.openTo || []); track item) {
+          <li class="text-gray-600 dark:text-gray-300">- {{ item }}</li>
+          }
+        </ul>
+      </section>
+
+      <section class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100 dark:border-gray-700">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">Learning</h2>
+        <ul class="space-y-2">
+          @for (item of (now()?.learning || []); track item) {
+          <li class="text-gray-600 dark:text-gray-300">- {{ item }}</li>
+          }
+        </ul>
+      </section>
+
+      <section class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100 dark:border-gray-700">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">Building</h2>
+        <ul class="space-y-2">
+          @for (item of (now()?.building || []); track item) {
+          <li class="text-gray-600 dark:text-gray-300">- {{ item }}</li>
+          }
+        </ul>
+      </section>
+
+      <section class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100 dark:border-gray-700">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">Recently</h2>
+        <ul class="space-y-2">
+          @for (item of (now()?.recently || []); track item) {
+          <li class="text-gray-600 dark:text-gray-300">- {{ item }}</li>
+          }
+        </ul>
+      </section>
+
+      <section class="bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl p-6 sm:p-8 text-white shadow-xl">
+        <h2 class="text-2xl font-bold mb-2">Want the full story?</h2>
+        <p class="text-blue-100 mb-5">Check out projects or reach out—happy to share more context.</p>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <a routerLink="/projects"
+            class="inline-flex items-center justify-center px-6 py-3 bg-white text-slate-900 rounded-xl font-semibold hover:bg-slate-100 transition">
+            View projects
+          </a>
+          <a routerLink="/contact"
+            class="inline-flex items-center justify-center px-6 py-3 bg-white/15 hover:bg-white/20 rounded-xl font-semibold transition">
+            Contact
+          </a>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+

@@ -26,7 +26,7 @@ export class SeoService {
     title: 'Manthan Ankolekar | Full Stack Developer',
     description: 'Full Stack Developer specializing in Angular, Node.js, and modern web technologies. Explore my portfolio, projects, and professional experience.',
     keywords: 'Full Stack Developer, Angular Developer, Node.js, TypeScript, JavaScript, Web Developer, Frontend Developer, Backend Developer, Portfolio',
-    image: '/assets/og-image.png',
+    image: '/og-image.png',
     type: 'website',
     author: 'Manthan Ankolekar',
     twitterHandle: '@manthanank'

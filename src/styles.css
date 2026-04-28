@@ -16,3 +16,23 @@ body {
   @apply bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-50;
   transition: background-color 0.5s ease, color 0.5s ease;
 }
+
+/* Accessibility: consistent focus ring */
+:where(a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])):focus-visible {
+  outline: 3px solid color-mix(in oklab, #3b82f6 70%, white);
+  outline-offset: 3px;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

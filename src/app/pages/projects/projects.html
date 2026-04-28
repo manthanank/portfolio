@@ -178,6 +178,17 @@
 
           <!-- Action Buttons -->
           <div class="flex gap-3">
+            <a [routerLink]="'/projects/' + project.slug" (click)="logClick(project.title, 'case_study')"
+              class="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 px-4 rounded-xl font-semibold text-center hover:from-purple-700 hover:to-blue-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+              <span class="flex items-center justify-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 12h6m-6 4h6m-7 5h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z">
+                  </path>
+                </svg>
+                Case Study
+              </span>
+            </a>
             <a [href]="project.liveUrl" target="_blank" rel="noopener noreferrer"
               (click)="logClick(project.title, 'live_demo')"
               class="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-4 rounded-xl font-semibold text-center hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">

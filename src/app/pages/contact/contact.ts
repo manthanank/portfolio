@@ -27,10 +27,13 @@ export class Contact {
 
   // --- Reactive Data (Signals) ---
   contactData = toSignal(this.dataService.getContact(), { initialValue: null });
+  personalData = toSignal(this.dataService.getPersonalInfo(), { initialValue: null });
   
   // --- Derived State ---
   contactMethods = computed(() => this.contactData()?.methods || []);
   socialLinks = computed(() => this.contactData()?.socialLinks || []);
+  calendlyUrl = computed(() => this.personalData()?.calendlyUrl || '');
+  email = computed(() => this.personalData()?.email || '');
 
   // --- Application State ---
   isSubmitting = signal(false);
@@ -44,6 +47,18 @@ export class Contact {
       description: 'Get in touch with me for collaboration, job opportunities, or just to say hello. I\'m always open to discussing new projects and ideas.',
       keywords: 'Contact Manthan Ankolekar, Hire Developer, Full Stack Developer Contact, Freelance Developer',
     });
+  }
+
+  openCalendly() {
+    const url = this.calendlyUrl();
+    this.dataService.logEvent('contact_schedule_call');
+    if (url) window.open(url, '_blank', 'noopener,noreferrer');
+  }
+
+  openMailto() {
+    const email = this.email();
+    this.dataService.logEvent('contact_mailto_fallback');
+    if (email) window.location.href = `mailto:${email}`;
   }
 
   async onSubmit() {

@@ -1,0 +1,151 @@
+<section
+  class="min-h-screen relative overflow-hidden bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+  <div
+    class="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-purple-50/60 to-pink-50/80 dark:from-gray-900/80 dark:via-gray-800/60 dark:to-gray-900/80 z-10">
+  </div>
+
+  <div class="relative z-20 max-w-5xl mx-auto px-4 lg:px-8 py-16 sm:py-20">
+    @if (!project()) {
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 border border-gray-100 dark:border-gray-700">
+      <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100">Project not found</h1>
+      <p class="mt-3 text-gray-600 dark:text-gray-300">This case study doesn’t exist (or the link is outdated).</p>
+      <a routerLink="/projects"
+        class="mt-6 inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-purple-700 hover:to-blue-700 transition-all duration-300 shadow-lg">
+        Back to Projects
+      </a>
+    </div>
+    } @else {
+    <div class="mb-8">
+      <a routerLink="/projects" class="inline-flex items-center gap-2 text-gray-700 dark:text-gray-200 hover:underline">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        Projects
+      </a>
+    </div>
+
+    <header class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-700">
+      <div
+        class="h-56 sm:h-72 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-gray-700 dark:to-gray-600 overflow-hidden">
+        <img [src]="project()!.image" [alt]="project()!.title" class="w-full h-full object-cover" loading="lazy" />
+      </div>
+      <div class="p-6 sm:p-8">
+        <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100">
+          {{ project()!.title }}
+        </h1>
+        <p class="mt-3 text-gray-600 dark:text-gray-300 leading-relaxed">
+          {{ project()!.fullDescription || project()!.description }}
+        </p>
+
+        <div class="mt-5 flex flex-wrap gap-2">
+          @for (tech of project()!.technologies; track tech) {
+          <span
+            class="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium border border-blue-100 dark:border-blue-800">
+            {{ tech }}
+          </span>
+          }
+        </div>
+
+        <div class="mt-6 flex flex-col sm:flex-row gap-3">
+          <a [href]="project()!.liveUrl" target="_blank" rel="noopener noreferrer"
+            (click)="logClick(project()!.title, 'live_demo')"
+            class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg">
+            Live Demo
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+            </svg>
+          </a>
+          <a [href]="project()!.githubUrl" target="_blank" rel="noopener noreferrer"
+            (click)="logClick(project()!.title, 'github_code')"
+            class="inline-flex items-center justify-center gap-2 bg-gray-900 dark:bg-gray-700 text-white py-3 px-6 rounded-xl font-semibold hover:bg-gray-800 dark:hover:bg-gray-600 transition-all duration-300 shadow-lg">
+            GitHub
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Case study sections -->
+    <div class="mt-8 grid gap-6">
+      @if (project()!.caseStudy?.problem) {
+      <section class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">Problem</h2>
+        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">{{ project()!.caseStudy!.problem }}</p>
+      </section>
+      }
+
+      @if (project()!.caseStudy?.approach?.length) {
+      <section class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">Approach</h2>
+        <ul class="space-y-2">
+          @for (item of project()!.caseStudy!.approach!; track item) {
+          <li class="flex items-start gap-2 text-gray-600 dark:text-gray-300">
+            <span class="text-emerald-500 mt-1"><i class="fas fa-check-circle"></i></span>
+            <span>{{ item }}</span>
+          </li>
+          }
+        </ul>
+      </section>
+      }
+
+      @if (project()!.caseStudy?.results?.length) {
+      <section class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">Results</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          @for (r of project()!.caseStudy!.results!; track r.label) {
+          <div class="p-4 rounded-xl border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/20">
+            <div class="text-sm font-semibold text-gray-700 dark:text-gray-300">{{ r.label }}</div>
+            <div class="mt-1 text-lg font-bold text-gray-900 dark:text-gray-100">{{ r.value }}</div>
+          </div>
+          }
+        </div>
+      </section>
+      }
+
+      @if (project()!.caseStudy?.role?.length || project()!.caseStudy?.highlights?.length) {
+      <section class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100 dark:border-gray-700">
+        <div class="grid md:grid-cols-2 gap-6">
+          @if (project()!.caseStudy?.role?.length) {
+          <div>
+            <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">My role</h2>
+            <ul class="space-y-2">
+              @for (item of project()!.caseStudy!.role!; track item) {
+              <li class="text-gray-600 dark:text-gray-300">- {{ item }}</li>
+              }
+            </ul>
+          </div>
+          }
+          @if (project()!.caseStudy?.highlights?.length) {
+          <div>
+            <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">Key highlights</h2>
+            <ul class="space-y-2">
+              @for (item of project()!.caseStudy!.highlights!; track item) {
+              <li class="text-gray-600 dark:text-gray-300">- {{ item }}</li>
+              }
+            </ul>
+          </div>
+          }
+        </div>
+      </section>
+      }
+
+      <section
+        class="bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl p-6 sm:p-8 text-white shadow-xl">
+        <h2 class="text-2xl font-bold mb-2">Want to work together?</h2>
+        <p class="text-blue-100 mb-5">If this is the kind of work you need, let’s talk about your project or role.</p>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <a routerLink="/hire-me"
+            class="inline-flex items-center justify-center px-6 py-3 bg-white/15 hover:bg-white/20 rounded-xl font-semibold transition">
+            Hire me
+          </a>
+          <a routerLink="/contact"
+            class="inline-flex items-center justify-center px-6 py-3 bg-white text-slate-900 rounded-xl font-semibold hover:bg-slate-100 transition">
+            Contact
+          </a>
+        </div>
+      </section>
+    </div>
+    }
+  </div>
+</section>
+

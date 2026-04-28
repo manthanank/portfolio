@@ -102,14 +102,20 @@
 
                     <!-- Action Buttons - Stacked -->
                     <div class="flex flex-col space-y-2 max-w-xs mx-auto">
-                        <button (click)="logClick('cv_download', 'button')"
-                            class="w-full px-6 py-3 bg-slate-800 dark:bg-white text-white dark:text-slate-800 rounded-2xl font-semibold transition-all duration-200 hover:bg-slate-700 dark:hover:bg-slate-100 hover:scale-105 shadow-lg">
-                            Download CV
-                        </button>
-                        <a routerLink="/contact" (click)="logClick('get_in_touch', 'link')"
-                            class="w-full px-6 py-3 border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 rounded-2xl font-semibold transition-all duration-200 hover:bg-slate-50 dark:hover:bg-slate-800 hover:scale-105 text-center">
-                            Get In Touch
+                        <a routerLink="/projects" (click)="logClick('view_projects', 'link')"
+                            class="w-full px-6 py-3 bg-slate-800 dark:bg-white text-white dark:text-slate-800 rounded-2xl font-semibold transition-all duration-200 hover:bg-slate-700 dark:hover:bg-slate-100 hover:scale-105 shadow-lg text-center">
+                            View Projects
                         </a>
+                        <button type="button" (click)="openResume()" [disabled]="!resumeUrl()"
+                            class="w-full px-6 py-3 border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 rounded-2xl font-semibold transition-all duration-200 hover:bg-slate-50 dark:hover:bg-slate-800 hover:scale-105 text-center disabled:opacity-50 disabled:cursor-not-allowed">
+                            Download Resume
+                        </button>
+                        @if (calendlyUrl()) {
+                        <button type="button" (click)="openCalendly()"
+                            class="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-2xl font-semibold transition-all duration-200 hover:from-purple-700 hover:to-blue-700 hover:scale-105 shadow-lg">
+                            Schedule a Call
+                        </button>
+                        }
                     </div>
 
                     <div class="flex justify-center space-x-3">
@@ -166,14 +172,20 @@
 
                         <!-- Action Buttons -->
                         <div class="flex flex-col sm:flex-row gap-2 lg:gap-3">
-                            <button (click)="logClick('cv_download', 'button')"
-                                class="px-6 py-3 lg:px-8 lg:py-3 bg-slate-800 dark:bg-white text-white dark:text-slate-800 rounded-xl font-semibold transition-all duration-200 hover:bg-slate-700 dark:hover:bg-slate-100 hover:scale-105">
-                                Download CV
-                            </button>
-                            <a routerLink="/contact" (click)="logClick('get_in_touch', 'link')"
-                                class="px-6 py-3 lg:px-8 lg:py-3 border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 rounded-xl font-semibold transition-all duration-200 hover:bg-slate-50 dark:hover:bg-slate-800 hover:scale-105 text-center">
-                                Get In Touch
+                            <a routerLink="/projects" (click)="logClick('view_projects', 'link')"
+                                class="px-6 py-3 lg:px-8 lg:py-3 bg-slate-800 dark:bg-white text-white dark:text-slate-800 rounded-xl font-semibold transition-all duration-200 hover:bg-slate-700 dark:hover:bg-slate-100 hover:scale-105 text-center">
+                                View Projects
                             </a>
+                            <button type="button" (click)="openResume()" [disabled]="!resumeUrl()"
+                                class="px-6 py-3 lg:px-8 lg:py-3 border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 rounded-xl font-semibold transition-all duration-200 hover:bg-slate-50 dark:hover:bg-slate-800 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed">
+                                Download Resume
+                            </button>
+                            @if (calendlyUrl()) {
+                            <button type="button" (click)="openCalendly()"
+                                class="px-6 py-3 lg:px-8 lg:py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl font-semibold transition-all duration-200 hover:from-purple-700 hover:to-blue-700 hover:scale-105">
+                                Schedule a Call
+                            </button>
+                            }
                         </div>
 
                         <!-- Social Links -->
@@ -289,6 +301,73 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Projects -->
+<section class="bg-white dark:bg-slate-900">
+    <div class="container mx-auto px-4 py-16">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-end justify-between gap-6 mb-10">
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-slate-50">Featured Projects</h2>
+                    <p class="mt-2 text-slate-600 dark:text-slate-400 max-w-2xl">
+                        A few case-study style projects that show how I build, ship, and iterate.
+                    </p>
+                </div>
+                <a routerLink="/projects" (click)="logClick('featured_projects_view_all', 'link')"
+                    class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition">
+                    View all
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
+                @for (project of featuredProjects(); track project.slug) {
+                <article
+                    class="group rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50/70 dark:bg-slate-800/40 overflow-hidden hover:shadow-xl transition-shadow">
+                    <div
+                        class="h-40 bg-gradient-to-br from-indigo-200/60 to-purple-200/60 dark:from-slate-700 dark:to-slate-800">
+                        <img [src]="project.image" [alt]="project.title"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            loading="lazy">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-slate-50">
+                            {{ project.title }}
+                        </h3>
+                        <p class="mt-2 text-sm text-slate-600 dark:text-slate-400 line-clamp-3">
+                            {{ project.description }}
+                        </p>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            @for (tech of project.technologies.slice(0, 4); track tech) {
+                            <span
+                                class="px-2.5 py-1 rounded-full text-xs font-medium bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300">
+                                {{ tech }}
+                            </span>
+                            }
+                        </div>
+
+                        <div class="mt-5 flex gap-2">
+                            <a [routerLink]="'/projects/' + project.slug"
+                                (click)="logClick(project.title, 'case_study')"
+                                class="flex-1 inline-flex justify-center items-center px-4 py-2 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-semibold hover:opacity-90 transition">
+                                Case study
+                            </a>
+                            <a [href]="project.liveUrl" target="_blank" rel="noopener noreferrer"
+                                (click)="logClick(project.title, 'live_demo')"
+                                class="inline-flex items-center justify-center px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-white/70 dark:hover:bg-slate-800 transition">
+                                Live
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                }
             </div>
         </div>
     </div>

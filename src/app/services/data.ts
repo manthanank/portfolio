@@ -37,6 +37,8 @@ export interface PortfolioData {
     location: string;
     bio: string;
     roles: string[];
+    resumeUrl?: string;
+    calendlyUrl?: string;
   };
   navigation: {
     menuItems: Array<{
@@ -64,6 +66,22 @@ export interface PortfolioData {
   contact: {
     methods: ContactMethod[];
     socialLinks: SocialLink[];
+  };
+  hireMe?: {
+    headline: string;
+    targetRoles: string[];
+    availability: string;
+    locationPreference: string;
+    strengths: string[];
+    highlights: Array<{ label: string; value: string }>;
+  };
+  now?: {
+    intro: string;
+    openTo: string[];
+    learning: string[];
+    building: string[];
+    recently: string[];
+    updatedAt: string;
   };
   settings: {
     typingAnimation: {
@@ -168,6 +186,14 @@ export class Data {
 
   getContact(): Observable<PortfolioData['contact'] | null> {
     return this.data$.pipe(map(data => data?.contact || null));
+  }
+
+  getHireMe(): Observable<PortfolioData['hireMe'] | null> {
+    return this.data$.pipe(map(data => data?.hireMe || null));
+  }
+
+  getNow(): Observable<PortfolioData['now'] | null> {
+    return this.data$.pipe(map(data => data?.now || null));
   }
 
   getSettings(): Observable<PortfolioData['settings'] | null> {

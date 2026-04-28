@@ -8,6 +8,8 @@ export const PORTFOLIO_DATA: PortfolioData = {
     phone: "+91 XXX XXX XXXX",
     location: "Karnataka, India",
     bio: "Experienced software developer with expertise in Angular, Python Flask, Node.js, and modern web technologies. Skilled in building scalable applications, microservices architecture, and delivering efficient backend systems.",
+    resumeUrl: "https://drive.google.com/",
+    calendlyUrl: "https://calendly.com/manthanank",
     roles: [
       "Software Developer 💻",
       "Angular Developer 🅰️",
@@ -22,6 +24,8 @@ export const PORTFOLIO_DATA: PortfolioData = {
       { path: "/about", label: "About", icon: "fas fa-user" },
       { path: "/projects", label: "Projects", icon: "fas fa-code" },
       { path: "/uses", label: "Uses", icon: "fas fa-tools" },
+      { path: "/hire-me", label: "Hire Me", icon: "fas fa-briefcase" },
+      { path: "/now", label: "Now", icon: "fas fa-bolt" },
       { path: "/contact", label: "Contact", icon: "fas fa-envelope" }
     ]
   },
@@ -36,6 +40,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
     items: [
       {
         id: 1,
+        slug: "advanced-url-shortener",
         title: "Advanced URL Shortener",
         description: "Enterprise-grade URL shortening service with comprehensive analytics and custom branding.",
         fullDescription: "A comprehensive URL shortener application built with Angular and Node.js featuring custom short URLs, detailed click analytics, QR code generation, user authentication, bulk URL processing, and API integration for third-party services.",
@@ -44,10 +49,29 @@ export const PORTFOLIO_DATA: PortfolioData = {
         githubUrl: "https://github.com/manthanank/url-shortener-app",
         liveUrl: "https://url-shortener-demo.manthanank.com",
         featured: true,
-        category: "fullstack"
+        category: "fullstack",
+        caseStudy: {
+          problem: "Teams needed branded short links with analytics, without relying on third-party tooling.",
+          approach: [
+            "Designed URL lifecycle: create → validate → redirect → track",
+            "Implemented click analytics and dashboard-friendly aggregation",
+            "Added bulk creation and QR generation for fast sharing"
+          ],
+          results: [
+            { label: "Time to create short link", value: "< 5s" },
+            { label: "Analytics", value: "Clicks, referrers, devices" }
+          ],
+          role: ["Full-stack development", "API design", "UI + analytics"],
+          highlights: ["Custom slugs", "QR codes", "Bulk operations", "Auth-ready structure"],
+          links: [
+            { label: "Live demo", url: "https://url-shortener-demo.manthanank.com" },
+            { label: "GitHub", url: "https://github.com/manthanank/url-shortener-app" }
+          ]
+        }
       },
       {
         id: 2,
+        slug: "smart-expense-tracker",
         title: "Smart Expense Tracker",
         description: "AI-powered expense tracking with intelligent categorization and budget insights.",
         fullDescription: "An intelligent expense tracking application with machine learning-based categorization, budget forecasting, receipt scanning using OCR, financial goal setting, and detailed spending analytics with interactive charts and reports.",
@@ -56,10 +80,24 @@ export const PORTFOLIO_DATA: PortfolioData = {
         githubUrl: "https://github.com/manthanank/expense-tracker-app",
         liveUrl: "https://expense-tracker.manthanank.com",
         featured: true,
-        category: "fullstack"
+        category: "fullstack",
+        caseStudy: {
+          problem: "Manual expense tracking is tedious and inconsistent—people stop using it.",
+          approach: [
+            "Optimized the happy path: add expense in seconds",
+            "Used smart categorization and simple budget insights",
+            "Built dashboards with meaningful, quick-to-read charts"
+          ],
+          results: [
+            { label: "Core flow", value: "Add + categorize fast" },
+            { label: "UX goal", value: "Low-friction daily use" }
+          ],
+          role: ["Frontend + backend", "Data modeling", "Charts/insights UX"]
+        }
       },
       {
         id: 3,
+        slug: "collaborative-notes-platform",
         title: "Collaborative Notes Platform",
         description: "Real-time collaborative note-taking with advanced organization and sharing features.",
         fullDescription: "A modern note-taking platform with real-time collaboration, markdown support, hierarchical organization with folders and tags, version history, advanced search with filters, and team workspace management.",
@@ -72,6 +110,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       },
       {
         id: 4,
+        slug: "project-management-suite",
         title: "Project Management Suite",
         description: "Comprehensive project management with agile workflows and team collaboration tools.",
         fullDescription: "A complete project management solution featuring Kanban and Scrum boards, time tracking with detailed reports, team collaboration tools, file attachments, milestone tracking, and automated progress reporting with stakeholder notifications.",
@@ -84,6 +123,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       },
       {
         id: 5,
+        slug: "social-media-hub",
         title: "Social Media Hub",
         description: "Modern social platform with multimedia sharing and community features.",
         fullDescription: "A comprehensive social media application with image/video uploads, real-time messaging, story features, community groups, content moderation, advanced privacy controls, and social analytics dashboard.",
@@ -433,6 +473,31 @@ export const PORTFOLIO_DATA: PortfolioData = {
         icon: "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
       }
     ]
+  },
+  hireMe: {
+    headline: "I build fast, reliable Angular + Node.js products.",
+    targetRoles: ["Frontend Engineer (Angular)", "Full Stack Engineer", "Software Developer"],
+    availability: "Open to full-time roles (remote/hybrid).",
+    locationPreference: "India / Remote",
+    strengths: [
+      "Angular architecture and performance",
+      "API-driven UI and complex dashboards",
+      "Node.js services and integrations",
+      "Pragmatic testing and clean code"
+    ],
+    highlights: [
+      { label: "Experience", value: "3+ years" },
+      { label: "Focus", value: "Angular, Node.js, TypeScript" },
+      { label: "Availability", value: "Open to opportunities" }
+    ]
+  },
+  now: {
+    intro: "A quick snapshot of what I’m focused on lately.",
+    openTo: ["Full-time roles", "Interesting product work", "Angular-heavy teams"],
+    learning: ["System design", "Performance profiling", "Better testing practices"],
+    building: ["Portfolio improvements", "Small full-stack side projects"],
+    recently: ["Refactoring older projects", "Improving UI polish and accessibility"],
+    updatedAt: "2026-04-28"
   },
   settings: {
     typingAnimation: {

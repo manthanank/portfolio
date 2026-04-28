@@ -19,11 +19,15 @@ export class Home implements OnDestroy {
   // --- Reactive Data (Signals) ---
   personalData = toSignal(this.dataService.getPersonalInfo(), { initialValue: null });
   contactData = toSignal(this.dataService.getContact(), { initialValue: null });
+  projectsData = toSignal(this.dataService.getProjects(), { initialValue: null });
   settings = toSignal(this.dataService.getSettings(), { initialValue: null });
 
   // --- Derived State ---
   socialLinks = computed(() => this.contactData()?.socialLinks || []);
   roles = computed(() => this.personalData()?.roles || []);
+  featuredProjects = computed(() => (this.projectsData()?.items || []).filter((p) => p.featured).slice(0, 3));
+  resumeUrl = computed(() => this.personalData()?.resumeUrl || '');
+  calendlyUrl = computed(() => this.personalData()?.calendlyUrl || '');
 
   // --- Local Animation State ---
   currentRole = signal('');
@@ -51,6 +55,18 @@ export class Home implements OnDestroy {
 
   logClick(name: string, type: string) {
     this.dataService.logEvent('click_interaction', { item_name: name, item_type: type });
+  }
+
+  openResume() {
+    const url = this.resumeUrl();
+    this.logClick('resume_open', 'button');
+    if (url) window.open(url, '_blank', 'noopener,noreferrer');
+  }
+
+  openCalendly() {
+    const url = this.calendlyUrl();
+    this.logClick('schedule_call', 'button');
+    if (url) window.open(url, '_blank', 'noopener,noreferrer');
   }
 
   ngOnDestroy() {

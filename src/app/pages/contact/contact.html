@@ -211,6 +211,18 @@
                 I typically respond to messages within 24 hours. For urgent inquiries, feel free to reach out via phone
                 or LinkedIn for faster communication.
               </p>
+              <div class="mt-5 flex flex-col sm:flex-row gap-3">
+                <button type="button" (click)="openMailto()"
+                  class="inline-flex items-center justify-center px-5 py-2.5 bg-white text-slate-900 rounded-xl font-semibold hover:bg-slate-100 transition">
+                  Email me
+                </button>
+                @if (calendlyUrl()) {
+                <button type="button" (click)="openCalendly()"
+                  class="inline-flex items-center justify-center px-5 py-2.5 bg-white/15 hover:bg-white/20 rounded-xl font-semibold transition">
+                  Schedule a call
+                </button>
+                }
+              </div>
             </div>
           </div>
         </div>

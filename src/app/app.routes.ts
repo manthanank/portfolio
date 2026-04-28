@@ -19,11 +19,27 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'projects/:slug',
+    loadComponent: () =>
+      import('./pages/project/project').then((m) => m.Project),
+  },
+  {
     path: 'projects',
+    pathMatch: 'full',
     loadComponent: () =>
       import('./pages/projects/projects').then(
         (m) => m.Projects
       ),
+  },
+  {
+    path: 'hire-me',
+    loadComponent: () =>
+      import('./pages/hire-me/hire-me').then((m) => m.HireMe),
+  },
+  {
+    path: 'now',
+    loadComponent: () =>
+      import('./pages/now/now').then((m) => m.Now),
   },
   {
     path: 'uses',
