@@ -18,6 +18,7 @@ export class Projects {
   projectsData = toSignal(this.dataService.getProjects(), { initialValue: null });
   workProjects = toSignal(this.dataService.getWorkProjects(), { initialValue: [] as WorkProject[] });
   selectedCategory = signal('all');
+  searchTerm = signal('');
 
   // --- Derived State ---
   categories = computed(() => this.projectsData()?.categories || []);
@@ -25,11 +26,20 @@ export class Projects {
 
   filteredProjects = computed(() => {
     const category = this.selectedCategory();
-    const projects = this.allProjects();
+    const term = this.searchTerm().trim().toLowerCase();
+    let projects = this.allProjects();
 
-    if (category === 'all') return projects;
-    if (category === 'featured') return projects.filter(p => p.featured);
-    return projects.filter(p => p.category === category);
+    if (category === 'featured') {
+      projects = projects.filter(p => p.featured);
+    } else if (category !== 'all') {
+      projects = projects.filter(p => p.category === category);
+    }
+
+    if (!term) return projects;
+
+    return projects.filter((p) =>
+      [p.title, p.description, p.category, ...p.technologies].join(' ').toLowerCase().includes(term)
+    );
   });
 
   constructor() {
@@ -44,6 +54,10 @@ export class Projects {
   selectCategory(category: string): void {
     this.selectedCategory.set(category);
     this.dataService.logEvent('project_category_select', { category });
+  }
+
+  setSearch(term: string): void {
+    this.searchTerm.set(term);
   }
 
   logClick(name: string, type: string) {

@@ -32,6 +32,17 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'notes/:slug',
+    loadComponent: () =>
+      import('./pages/note/note').then((m) => m.Note),
+  },
+  {
+    path: 'notes',
+    pathMatch: 'full',
+    loadComponent: () =>
+      import('./pages/notes/notes').then((m) => m.Notes),
+  },
+  {
     path: 'hire-me',
     loadComponent: () =>
       import('./pages/hire-me/hire-me').then((m) => m.HireMe),

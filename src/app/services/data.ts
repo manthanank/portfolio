@@ -28,6 +28,23 @@ export interface Education {
   icon: string;
 }
 
+export interface Testimonial {
+  name: string;
+  role: string;
+  quote: string;
+}
+
+export interface BlogPost {
+  slug: string;
+  title: string;
+  summary: string;
+  category: string;
+  publishedAt: string;
+  readTime: string;
+  tags: string[];
+  content: string[];
+}
+
 export interface PortfolioData {
   personal: {
     name: string;
@@ -74,6 +91,14 @@ export interface PortfolioData {
     locationPreference: string;
     strengths: string[];
     highlights: Array<{ label: string; value: string }>;
+    recruiterSummary?: {
+      experience: string;
+      stack: string;
+      location: string;
+      noticePeriod: string;
+      preferredRoles: string[];
+    };
+    testimonials?: Testimonial[];
   };
   now?: {
     intro: string;
@@ -82,6 +107,9 @@ export interface PortfolioData {
     building: string[];
     recently: string[];
     updatedAt: string;
+  };
+  blog?: {
+    posts: BlogPost[];
   };
   settings: {
     typingAnimation: {
@@ -194,6 +222,10 @@ export class Data {
 
   getNow(): Observable<PortfolioData['now'] | null> {
     return this.data$.pipe(map(data => data?.now || null));
+  }
+
+  getBlog(): Observable<PortfolioData['blog'] | null> {
+    return this.data$.pipe(map(data => data?.blog || null));
   }
 
   getSettings(): Observable<PortfolioData['settings'] | null> {

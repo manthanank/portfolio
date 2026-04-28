@@ -23,6 +23,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       { path: "/", label: "Home", icon: "fas fa-home" },
       { path: "/about", label: "About", icon: "fas fa-user" },
       { path: "/projects", label: "Projects", icon: "fas fa-code" },
+      { path: "/notes", label: "Notes", icon: "fas fa-pen" },
       { path: "/uses", label: "Uses", icon: "fas fa-tools" },
       { path: "/hire-me", label: "Hire Me", icon: "fas fa-briefcase" },
       { path: "/now", label: "Now", icon: "fas fa-bolt" },
@@ -52,6 +53,11 @@ export const PORTFOLIO_DATA: PortfolioData = {
         category: "fullstack",
         caseStudy: {
           problem: "Teams needed branded short links with analytics, without relying on third-party tooling.",
+          whatIOwned: [
+            "Designed the frontend dashboard and link creation flow",
+            "Implemented backend URL lifecycle and analytics-friendly tracking",
+            "Defined reusable API contracts between UI and Node.js services"
+          ],
           approach: [
             "Designed URL lifecycle: create → validate → redirect → track",
             "Implemented click analytics and dashboard-friendly aggregation",
@@ -60,6 +66,19 @@ export const PORTFOLIO_DATA: PortfolioData = {
           results: [
             { label: "Time to create short link", value: "< 5s" },
             { label: "Analytics", value: "Clicks, referrers, devices" }
+          ],
+          metrics: [
+            { label: "Creation flow", value: "< 5 seconds", detail: "Kept the core action minimal with validation and instant feedback." },
+            { label: "Share options", value: "2 built-in outputs", detail: "Direct short link plus QR generation for fast distribution." }
+          ],
+          architecture: [
+            "Angular dashboard for link management and analytics",
+            "Node.js + Express API for creation, redirect, and tracking",
+            "MongoDB for links, counters, and reporting-friendly aggregation"
+          ],
+          decisions: [
+            { title: "Tracking without slowing redirects", description: "Kept redirects lightweight and analytics aggregation separate so the happy path stays fast." },
+            { title: "Reusable link creation patterns", description: "Designed the API to support single-link creation, custom slugs, and future bulk workflows." }
           ],
           role: ["Full-stack development", "API design", "UI + analytics"],
           highlights: ["Custom slugs", "QR codes", "Bulk operations", "Auth-ready structure"],
@@ -83,6 +102,11 @@ export const PORTFOLIO_DATA: PortfolioData = {
         category: "fullstack",
         caseStudy: {
           problem: "Manual expense tracking is tedious and inconsistent—people stop using it.",
+          whatIOwned: [
+            "Owned the dashboard UX and transaction entry flows",
+            "Modeled categories, budgets, and summaries for reporting",
+            "Integrated charting and insight surfaces for quick scanning"
+          ],
           approach: [
             "Optimized the happy path: add expense in seconds",
             "Used smart categorization and simple budget insights",
@@ -91,6 +115,19 @@ export const PORTFOLIO_DATA: PortfolioData = {
           results: [
             { label: "Core flow", value: "Add + categorize fast" },
             { label: "UX goal", value: "Low-friction daily use" }
+          ],
+          metrics: [
+            { label: "Primary workflow", value: "Single-screen entry", detail: "Reduced friction by keeping capture and category suggestions close together." },
+            { label: "Insights surface", value: "Actionable summaries", detail: "Focused on budget deltas and trend views instead of noisy reporting." }
+          ],
+          architecture: [
+            "Angular app for capture, charts, and budgeting",
+            "Node.js API for transaction and budget management",
+            "MongoDB-backed category and report storage"
+          ],
+          decisions: [
+            { title: "Optimize for consistency, not just features", description: "Prioritized quick entry and useful defaults because retention depends on daily usability." },
+            { title: "Readable insights over dashboard overload", description: "Kept charts focused on trend and category summaries that help users act quickly." }
           ],
           role: ["Frontend + backend", "Data modeling", "Charts/insights UX"]
         }
@@ -106,7 +143,26 @@ export const PORTFOLIO_DATA: PortfolioData = {
         githubUrl: "https://github.com/manthanank/collaborative-notes-app",
         liveUrl: "https://notes.manthanank.com",
         featured: false,
-        category: "frontend"
+        category: "frontend",
+        caseStudy: {
+          problem: "Notes tools often break flow when collaboration, search, and structure are added later.",
+          whatIOwned: [
+            "Built the collaboration-ready note interface",
+            "Structured folders/tags/search for scale",
+            "Handled markdown-oriented reading and editing states"
+          ],
+          metrics: [
+            { label: "Core experience", value: "Write + organize + share", detail: "Balanced focus writing with collaborative capabilities." }
+          ],
+          architecture: [
+            "Angular client for editor, folders, and shared views",
+            "Node.js + Socket.io for note updates and collaboration",
+            "MongoDB for note content, tags, and workspace structure"
+          ],
+          decisions: [
+            { title: "Organization first", description: "Designed tags/folders/search together so the product stays usable as content grows." }
+          ]
+        }
       },
       {
         id: 4,
@@ -119,7 +175,26 @@ export const PORTFOLIO_DATA: PortfolioData = {
         githubUrl: "https://github.com/manthanank/project-management-suite",
         liveUrl: "https://pm.manthanank.com",
         featured: true,
-        category: "fullstack"
+        category: "fullstack",
+        caseStudy: {
+          problem: "Project tools become noisy when boards, tracking, and collaboration are not designed around real team workflows.",
+          whatIOwned: [
+            "Built task views and board interactions",
+            "Connected file, task, and milestone flows across screens",
+            "Shaped a dashboard that makes progress visible quickly"
+          ],
+          metrics: [
+            { label: "Team surface area", value: "Boards + files + milestones", detail: "Unified multiple collaboration flows inside one interface." }
+          ],
+          architecture: [
+            "Angular frontend with board and dashboard views",
+            "Node.js API for tasks, attachments, and reporting",
+            "MongoDB + Redis to support task data and responsive updates"
+          ],
+          decisions: [
+            { title: "Favor workflow clarity", description: "Reduced UI complexity by emphasizing the most common planning and execution flows first." }
+          ]
+        }
       },
       {
         id: 5,
@@ -132,7 +207,23 @@ export const PORTFOLIO_DATA: PortfolioData = {
         githubUrl: "https://github.com/manthanank/social-media-hub",
         liveUrl: "https://social.manthanank.com",
         featured: false,
-        category: "fullstack"
+        category: "fullstack",
+        caseStudy: {
+          problem: "Social products need rich media and engagement features without becoming hard to moderate or navigate.",
+          whatIOwned: [
+            "Implemented feed and post interactions",
+            "Handled media-heavy UI states and sharing flows",
+            "Worked across messaging/community-oriented experiences"
+          ],
+          metrics: [
+            { label: "Feature breadth", value: "Posts, media, messaging", detail: "Covered multiple engagement patterns inside one product." }
+          ],
+          architecture: [
+            "Angular app for feed, chat, and groups",
+            "Node.js + Socket.io backend for messaging and updates",
+            "MongoDB + Cloudinary for media and content persistence"
+          ]
+        }
       }
     ]
   },
@@ -489,6 +580,25 @@ export const PORTFOLIO_DATA: PortfolioData = {
       { label: "Experience", value: "3+ years" },
       { label: "Focus", value: "Angular, Node.js, TypeScript" },
       { label: "Availability", value: "Open to opportunities" }
+    ],
+    recruiterSummary: {
+      experience: "3+ years",
+      stack: "Angular, TypeScript, Node.js, REST APIs, Firebase",
+      location: "Karnataka, India / Remote",
+      noticePeriod: "Immediate / discussable",
+      preferredRoles: ["Frontend Engineer", "Angular Developer", "Full Stack Engineer"]
+    },
+    testimonials: [
+      {
+        name: "Former teammate",
+        role: "Frontend Engineer",
+        quote: "Manthan consistently turned complex API-heavy requirements into clear Angular experiences and was reliable in delivery."
+      },
+      {
+        name: "Project stakeholder",
+        role: "Product collaborator",
+        quote: "He communicates clearly, ships polished interfaces, and keeps the project moving even when requirements evolve."
+      }
     ]
   },
   now: {
@@ -498,6 +608,55 @@ export const PORTFOLIO_DATA: PortfolioData = {
     building: ["Portfolio improvements", "Small full-stack side projects"],
     recently: ["Refactoring older projects", "Improving UI polish and accessibility"],
     updatedAt: "2026-04-28"
+  },
+  blog: {
+    posts: [
+      {
+        slug: "building-angular-dashboards-that-scale",
+        title: "Building Angular Dashboards That Scale",
+        summary: "Patterns I use to keep API-heavy dashboard UIs readable, modular, and easier to extend.",
+        category: "Frontend Architecture",
+        publishedAt: "2026-04-20",
+        readTime: "4 min read",
+        tags: ["Angular", "Dashboards", "Architecture"],
+        content: [
+          "When a dashboard grows, the biggest risk is not visual complexity by itself, but hidden coupling between data loading, state, and UI sections.",
+          "I try to separate page-level orchestration from feature components. The page decides what data exists, and smaller views focus on rendering or interaction.",
+          "For API-heavy screens, consistent loading, empty, and error states matter as much as the happy path. Repeating those patterns intentionally makes the UI easier to trust.",
+          "The result is not just cleaner code. It also makes future features cheaper because new widgets and panels fit into a system instead of becoming custom one-offs."
+        ]
+      },
+      {
+        slug: "what-i-look-for-in-case-studies",
+        title: "What I Look For In Strong Project Case Studies",
+        summary: "A practical checklist for turning a project card into a convincing engineering case study.",
+        category: "Career",
+        publishedAt: "2026-04-16",
+        readTime: "3 min read",
+        tags: ["Portfolio", "Case Studies", "Career"],
+        content: [
+          "A useful case study should explain context, constraints, decisions, and outcomes. Screenshots alone are not enough.",
+          "I want each project to answer a few simple questions: what problem mattered, what I owned, what trade-offs I made, and what improved because of the work.",
+          "Even when exact business metrics are unavailable, showing workflow improvements, architectural decisions, or delivery complexity still creates credibility.",
+          "That is why I like adding sections such as metrics, technical decisions, and ownership instead of only listing technologies."
+        ]
+      },
+      {
+        slug: "small-accessibility-fixes-with-big-payoff",
+        title: "Small Accessibility Fixes With Big Payoff",
+        summary: "A few accessibility improvements that make polished portfolios feel much more reliable.",
+        category: "Accessibility",
+        publishedAt: "2026-04-10",
+        readTime: "3 min read",
+        tags: ["Accessibility", "UX", "Frontend"],
+        content: [
+          "Accessibility improvements are often small, but they create immediate quality signals.",
+          "Visible focus states, skip links, reduced motion support, and descriptive CTA text help both keyboard users and people quickly scanning your site.",
+          "They also improve the developer experience because consistent focus and motion rules reduce design drift across components.",
+          "For personal sites, these details show care. For product work, they show engineering maturity."
+        ]
+      }
+    ]
   },
   settings: {
     typingAnimation: {

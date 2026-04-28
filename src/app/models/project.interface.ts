@@ -16,10 +16,14 @@ export interface Project {
    */
   caseStudy?: {
     problem?: string;
+    whatIOwned?: string[];
     approach?: string[];
     results?: Array<{ label: string; value: string }>;
     role?: string[];
     highlights?: string[];
+    metrics?: Array<{ label: string; value: string; detail?: string }>;
+    architecture?: string[];
+    decisions?: Array<{ title: string; description: string }>;
     links?: Array<{ label: string; url: string }>;
     gallery?: Array<{ src: string; alt: string }>;
   };

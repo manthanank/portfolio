@@ -19,6 +19,8 @@ export class HireMe {
 
   resumeUrl = computed(() => this.personal()?.resumeUrl || '');
   calendlyUrl = computed(() => this.personal()?.calendlyUrl || '');
+  recruiterSummary = computed(() => this.hireMe()?.recruiterSummary || null);
+  testimonials = computed(() => this.hireMe()?.testimonials || []);
 
   constructor() {
     this.seoService.updateMetaTags({
@@ -26,6 +28,18 @@ export class HireMe {
       description: 'Role targets, availability, strengths, and quick ways to reach me.',
       keywords: 'Hire Angular Developer, Hire Full Stack Developer, Software Developer',
       type: 'profile',
+      url: 'https://manthanank.web.app/hire-me',
+      structuredData: {
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: 'Manthan Ankolekar',
+        jobTitle: 'Software Developer',
+        worksFor: {
+          '@type': 'Organization',
+          name: 'Open to opportunities',
+        },
+        url: 'https://manthanank.web.app/hire-me',
+      },
     });
   }
 

@@ -8,6 +8,7 @@ export function createMockSeoService() {
     resetToDefaults: () => undefined,
     setRobots: () => undefined,
     updateCanonicalUrl: () => undefined,
+    updateStructuredData: () => undefined,
   };
 }
 
@@ -33,6 +34,7 @@ export function createMockDataService() {
     getSettings: () => of(PORTFOLIO_DATA.settings),
     getHireMe: () => of(PORTFOLIO_DATA.hireMe ?? null),
     getNow: () => of(PORTFOLIO_DATA.now ?? null),
+    getBlog: () => of(PORTFOLIO_DATA.blog ?? null),
     logEvent: () => undefined,
   };
 }

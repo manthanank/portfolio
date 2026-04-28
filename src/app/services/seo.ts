@@ -12,6 +12,7 @@ export interface SeoConfig {
   type?: 'website' | 'article' | 'profile';
   author?: string;
   twitterHandle?: string;
+  structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
 
 @Injectable({
@@ -95,6 +96,8 @@ export class SeoService {
       this.updateTag('twitter:creator', mergedConfig.twitterHandle);
       this.updateTag('twitter:site', mergedConfig.twitterHandle);
     }
+
+    this.updateStructuredData(mergedConfig.structuredData ?? null);
   }
 
   /**
@@ -139,5 +142,24 @@ export class SeoService {
    */
   resetToDefaults(): void {
     this.updateMetaTags(this.defaultConfig);
+  }
+
+  updateStructuredData(data: Record<string, unknown> | Array<Record<string, unknown>> | null): void {
+    const scriptId = 'app-structured-data';
+    const existing = document.getElementById(scriptId);
+
+    if (!data) {
+      existing?.remove();
+      return;
+    }
+
+    const script = existing || document.createElement('script');
+    script.id = scriptId;
+    script.setAttribute('type', 'application/ld+json');
+    script.textContent = JSON.stringify(data);
+
+    if (!existing) {
+      document.head.appendChild(script);
+    }
   }
 }

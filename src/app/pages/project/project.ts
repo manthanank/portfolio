@@ -40,6 +40,18 @@ export class Project {
         keywords: `Case Study, ${p.technologies.join(', ')}`,
         url: `https://manthanank.web.app/projects/${p.slug}`,
         type: 'article',
+        structuredData: {
+          '@context': 'https://schema.org',
+          '@type': 'CreativeWork',
+          name: p.title,
+          description: p.fullDescription || p.description,
+          url: `https://manthanank.web.app/projects/${p.slug}`,
+          creator: {
+            '@type': 'Person',
+            name: 'Manthan Ankolekar',
+          },
+          keywords: p.technologies.join(', '),
+        },
       });
     });
   }

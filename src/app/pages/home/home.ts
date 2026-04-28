@@ -42,6 +42,25 @@ export class Home implements OnDestroy {
       title: 'Manthan Ankolekar | Full Stack Developer',
       description: 'Full Stack Developer specializing in Angular, Node.js, and modern web technologies. Explore my portfolio, projects, and professional experience.',
       keywords: 'Full Stack Developer, Angular Developer, Node.js, TypeScript, JavaScript, Web Developer, Portfolio',
+      structuredData: [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'Person',
+          name: 'Manthan Ankolekar',
+          jobTitle: 'Software Developer',
+          url: 'https://manthanank.web.app',
+          sameAs: [
+            'https://github.com/manthanank',
+            'https://linkedin.com/in/manthanank',
+          ],
+        },
+        {
+          '@context': 'https://schema.org',
+          '@type': 'WebSite',
+          name: 'Manthan Ankolekar Portfolio',
+          url: 'https://manthanank.web.app',
+        },
+      ],
     });
 
     // Start animation once roles are loaded

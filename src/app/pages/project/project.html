@@ -27,7 +27,8 @@
     <header class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-700">
       <div
         class="h-56 sm:h-72 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-gray-700 dark:to-gray-600 overflow-hidden">
-        <img [src]="project()!.image" [alt]="project()!.title" class="w-full h-full object-cover" loading="lazy" />
+        <img [src]="project()!.image" [alt]="project()!.title" (error)="$any($event.target).src = 'og-image.png'"
+          class="w-full h-full object-cover" loading="lazy" />
       </div>
       <div class="p-6 sm:p-8">
         <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100">
@@ -102,6 +103,50 @@
       </section>
       }
 
+      @if (project()!.caseStudy?.metrics?.length) {
+      <section class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">Metrics</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+          @for (metric of project()!.caseStudy!.metrics!; track metric.label) {
+          <div class="p-4 rounded-xl border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/20">
+            <div class="text-sm font-semibold text-gray-700 dark:text-gray-300">{{ metric.label }}</div>
+            <div class="mt-1 text-lg font-bold text-gray-900 dark:text-gray-100">{{ metric.value }}</div>
+            @if (metric.detail) {
+            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{{ metric.detail }}</p>
+            }
+          </div>
+          }
+        </div>
+      </section>
+      }
+
+      @if (project()!.caseStudy?.whatIOwned?.length || project()!.caseStudy?.architecture?.length) {
+      <section class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100 dark:border-gray-700">
+        <div class="grid md:grid-cols-2 gap-6">
+          @if (project()!.caseStudy?.whatIOwned?.length) {
+          <div>
+            <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">What I owned</h2>
+            <ul class="space-y-2">
+              @for (item of project()!.caseStudy!.whatIOwned!; track item) {
+              <li class="text-gray-600 dark:text-gray-300">- {{ item }}</li>
+              }
+            </ul>
+          </div>
+          }
+          @if (project()!.caseStudy?.architecture?.length) {
+          <div>
+            <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">Architecture</h2>
+            <ul class="space-y-2">
+              @for (item of project()!.caseStudy!.architecture!; track item) {
+              <li class="text-gray-600 dark:text-gray-300">- {{ item }}</li>
+              }
+            </ul>
+          </div>
+          }
+        </div>
+      </section>
+      }
+
       @if (project()!.caseStudy?.role?.length || project()!.caseStudy?.highlights?.length) {
       <section class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100 dark:border-gray-700">
         <div class="grid md:grid-cols-2 gap-6">
@@ -123,6 +168,20 @@
               <li class="text-gray-600 dark:text-gray-300">- {{ item }}</li>
               }
             </ul>
+          </div>
+          }
+        </div>
+      </section>
+      }
+
+      @if (project()!.caseStudy?.decisions?.length) {
+      <section class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100 dark:border-gray-700">
+        <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">Technical decisions</h2>
+        <div class="grid gap-4">
+          @for (decision of project()!.caseStudy!.decisions!; track decision.title) {
+          <div class="rounded-xl border border-gray-100 dark:border-gray-700 p-4 bg-gray-50 dark:bg-gray-900/20">
+            <h3 class="font-semibold text-gray-900 dark:text-gray-100">{{ decision.title }}</h3>
+            <p class="mt-2 text-gray-600 dark:text-gray-300">{{ decision.description }}</p>
           </div>
           }
         </div>
