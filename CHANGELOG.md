@@ -1,3 +1,12 @@
+# [0.7.0](https://github.com/manthanank/portfolio/compare/v0.6.0...v0.7.0) (2026-04-28)
+
+
+### Features
+
+* add new notes section, enhance project details with metrics and architecture, and improve SEO structured data ([92795f6](https://github.com/manthanank/portfolio/commit/92795f661b73c04e7f8c5474d28cc732d84ee9ca))
+
+
+
 # [0.6.0](https://github.com/manthanank/portfolio/compare/v0.5.0...v0.6.0) (2026-04-28)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * update @angular/fire to v20.0.1 and resolve build dependencies ([64c1949](https://github.com/manthanank/portfolio/commit/64c1949adb23853913e05912a185c2ea1d3cff65))
-
-
-
-# [0.3.0](https://github.com/manthanank/portfolio/compare/v0.2.0...v0.3.0) (2026-02-05)
-
-
-### Features
-
-* implement SEO meta tags, premium 404 page, and NgOptimizedImage for better performance ([56a2b71](https://github.com/manthanank/portfolio/commit/56a2b713ca738d5dae644e9047e87a836d7e8b09))
 
 
 
