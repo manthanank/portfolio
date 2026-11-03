@@ -3,18 +3,17 @@ import { PortfolioData } from '../services/data';
 export const PORTFOLIO_DATA: PortfolioData = {
   personal: {
     name: "Manthan Ankolekar",
-    title: "Software Developer",
+    title: "Full-Stack Software Engineer",
     email: "manthan.ank46@gmail.com",
-    phone: "+91 XXX XXX XXXX",
     location: "Karnataka, India",
-    bio: "Experienced software developer with expertise in Angular, Python Flask, Node.js, and modern web technologies. Skilled in building scalable applications, microservices architecture, and delivering efficient backend systems.",
+    bio: "Full-stack software engineer with 3.5+ years of experience building scalable web applications, microservices and AI-driven workflows. I work mostly in Next.js, Angular, Node.js and Python on cloud-native infrastructure. My recent work covers integrations with dealer management systems, LLM vision pipelines and high-throughput SaaS dashboards.",
     resumeUrl: "https://drive.google.com/",
     calendlyUrl: "https://calendly.com/manthanank",
     roles: [
-      "Software Developer 💻",
+      "Full-Stack Software Engineer 💻",
+      "Next.js Developer ▲",
       "Angular Developer 🅰️",
-      "Backend Developer 🔧",
-      "Full Stack Developer 🌐",
+      "Node.js & Python Developer 🔧",
       "Problem Solver 🧩"
     ]
   },
@@ -42,48 +41,34 @@ export const PORTFOLIO_DATA: PortfolioData = {
       {
         id: 1,
         slug: "advanced-url-shortener",
-        title: "Advanced URL Shortener",
-        description: "Enterprise-grade URL shortening service with comprehensive analytics and custom branding.",
-        fullDescription: "A comprehensive URL shortener application built with Angular and Node.js featuring custom short URLs, detailed click analytics, QR code generation, user authentication, bulk URL processing, and API integration for third-party services.",
+        title: "URL Shortener",
+        description: "URL shortening service with click analytics, custom expiration and an admin dashboard.",
+        fullDescription: "A full-stack URL shortener built with Angular and Node.js. It creates short links, redirects with click tracking, shows click statistics on an analytics dashboard, supports bulk URL management and custom expiration dates, and protects the API with rate limiting, input validation and security headers.",
         image: "images/projects/url-shortener-app.png",
-        technologies: ["Angular", "Node.js", "Express", "MongoDB", "TypeScript", "Tailwind CSS", "Chart.js"],
+        technologies: ["Angular", "Node.js", "Express", "MongoDB", "TypeScript", "Tailwind CSS"],
         githubUrl: "https://github.com/manthanank/url-shortener-app",
-        liveUrl: "https://url-shortener-demo.manthanank.com",
+        liveUrl: "https://shortener-url-app.vercel.app",
         featured: true,
         category: "fullstack",
         caseStudy: {
-          problem: "Teams needed branded short links with analytics, without relying on third-party tooling.",
-          whatIOwned: [
-            "Designed the frontend dashboard and link creation flow",
-            "Implemented backend URL lifecycle and analytics-friendly tracking",
-            "Defined reusable API contracts between UI and Node.js services"
-          ],
+          problem: "Long links are hard to share and give no feedback on how often they are used.",
           approach: [
-            "Designed URL lifecycle: create → validate → redirect → track",
-            "Implemented click analytics and dashboard-friendly aggregation",
-            "Added bulk creation and QR generation for fast sharing"
-          ],
-          results: [
-            { label: "Time to create short link", value: "< 5s" },
-            { label: "Analytics", value: "Clicks, referrers, devices" }
-          ],
-          metrics: [
-            { label: "Creation flow", value: "< 5 seconds", detail: "Kept the core action minimal with validation and instant feedback." },
-            { label: "Share options", value: "2 built-in outputs", detail: "Direct short link plus QR generation for fast distribution." }
+            "Designed the URL lifecycle: create, validate, redirect, track",
+            "Recorded clicks on redirect and surfaced them in an analytics dashboard",
+            "Added bulk URL management, custom expiration and export"
           ],
           architecture: [
-            "Angular dashboard for link management and analytics",
-            "Node.js + Express API for creation, redirect, and tracking",
-            "MongoDB for links, counters, and reporting-friendly aggregation"
+            "Angular frontend with Tailwind CSS 4, lazy-loaded routes and dark/light themes",
+            "Node.js + Express API for creation, redirects and tracking",
+            "MongoDB for links and click statistics"
           ],
           decisions: [
-            { title: "Tracking without slowing redirects", description: "Kept redirects lightweight and analytics aggregation separate so the happy path stays fast." },
-            { title: "Reusable link creation patterns", description: "Designed the API to support single-link creation, custom slugs, and future bulk workflows." }
+            { title: "Protect the public API", description: "Added rate limiting, input validation, Helmet security headers and CORS rules because the shortening endpoint is open to anyone." }
           ],
           role: ["Full-stack development", "API design", "UI + analytics"],
-          highlights: ["Custom slugs", "QR codes", "Bulk operations", "Auth-ready structure"],
+          highlights: ["Click analytics", "Bulk operations", "Custom expiration", "Rate limiting"],
           links: [
-            { label: "Live demo", url: "https://url-shortener-demo.manthanank.com" },
+            { label: "Live demo", url: "https://shortener-url-app.vercel.app" },
             { label: "GitHub", url: "https://github.com/manthanank/url-shortener-app" }
           ]
         }
@@ -91,154 +76,132 @@ export const PORTFOLIO_DATA: PortfolioData = {
       {
         id: 2,
         slug: "smart-expense-tracker",
-        title: "Smart Expense Tracker",
-        description: "AI-powered expense tracking with intelligent categorization and budget insights.",
-        fullDescription: "An intelligent expense tracking application with machine learning-based categorization, budget forecasting, receipt scanning using OCR, financial goal setting, and detailed spending analytics with interactive charts and reports.",
+        title: "Expense Tracker",
+        description: "Expense tracker with charts, filters and AI spending insights from the Gemini API.",
+        fullDescription: "A full-stack expense tracker built with Angular, Express and MongoDB. Users sign in with JWT, add, edit and filter expenses by date range and category, see totals and charts, and get spending analysis and budget recommendations generated with the Google Gemini API.",
         image: "images/projects/expense-tracker-app.png",
-        technologies: ["Angular", "Node.js", "Express", "MongoDB", "Chart.js", "PWA", "TensorFlow.js"],
+        technologies: ["Angular", "Node.js", "Express", "MongoDB", "Tailwind CSS", "NGX Charts", "Gemini API"],
         githubUrl: "https://github.com/manthanank/expense-tracker-app",
-        liveUrl: "https://expense-tracker.manthanank.com",
+        liveUrl: "https://expense-tracker-app-manthanank.vercel.app",
         featured: true,
         category: "fullstack",
         caseStudy: {
-          problem: "Manual expense tracking is tedious and inconsistent—people stop using it.",
-          whatIOwned: [
-            "Owned the dashboard UX and transaction entry flows",
-            "Modeled categories, budgets, and summaries for reporting",
-            "Integrated charting and insight surfaces for quick scanning"
-          ],
+          problem: "Manual expense tracking is tedious, and a plain list of transactions says little about spending habits.",
           approach: [
-            "Optimized the happy path: add expense in seconds",
-            "Used smart categorization and simple budget insights",
-            "Built dashboards with meaningful, quick-to-read charts"
-          ],
-          results: [
-            { label: "Core flow", value: "Add + categorize fast" },
-            { label: "UX goal", value: "Low-friction daily use" }
-          ],
-          metrics: [
-            { label: "Primary workflow", value: "Single-screen entry", detail: "Reduced friction by keeping capture and category suggestions close together." },
-            { label: "Insights surface", value: "Actionable summaries", detail: "Focused on budget deltas and trend views instead of noisy reporting." }
+            "Kept the add, edit and filter flows short",
+            "Calculated totals and charted spending by category and date",
+            "Generated spending analysis and budget recommendations with Gemini"
           ],
           architecture: [
-            "Angular app for capture, charts, and budgeting",
-            "Node.js API for transaction and budget management",
-            "MongoDB-backed category and report storage"
+            "Angular 19 app with Tailwind CSS and NGX Charts",
+            "Node.js + Express API with routes for auth, expenses, insights and admin",
+            "MongoDB + Mongoose models, Nodemailer for password reset, Swagger API docs"
           ],
-          decisions: [
-            { title: "Optimize for consistency, not just features", description: "Prioritized quick entry and useful defaults because retention depends on daily usability." },
-            { title: "Readable insights over dashboard overload", description: "Kept charts focused on trend and category summaries that help users act quickly." }
-          ],
-          role: ["Frontend + backend", "Data modeling", "Charts/insights UX"]
+          role: ["Frontend + backend", "Data modeling", "AI insights integration"],
+          links: [
+            { label: "Live demo", url: "https://expense-tracker-app-manthanank.vercel.app" },
+            { label: "GitHub", url: "https://github.com/manthanank/expense-tracker-app" }
+          ]
         }
       },
       {
         id: 3,
         slug: "collaborative-notes-platform",
-        title: "Collaborative Notes Platform",
-        description: "Real-time collaborative note-taking with advanced organization and sharing features.",
-        fullDescription: "A modern note-taking platform with real-time collaboration, markdown support, hierarchical organization with folders and tags, version history, advanced search with filters, and team workspace management.",
+        title: "Notes App",
+        description: "Full-stack notes app with authentication and search.",
+        fullDescription: "A full-stack notes application built with Angular, Node.js, Express and MongoDB. Users sign up and log in with JWT, create, edit and delete notes, search them by title or content, and reset their password by email.",
         image: "images/projects/notes-app.png",
-        technologies: ["Angular", "Node.js", "Express", "MongoDB", "Socket.io", "Markdown", "JWT"],
-        githubUrl: "https://github.com/manthanank/collaborative-notes-app",
-        liveUrl: "https://notes.manthanank.com",
+        technologies: ["Angular", "Node.js", "Express", "MongoDB", "JWT", "Tailwind CSS"],
+        githubUrl: "https://github.com/manthanank/notes-app",
+        liveUrl: "https://notes-app-manthanank.vercel.app",
         featured: false,
-        category: "frontend",
+        category: "fullstack",
         caseStudy: {
-          problem: "Notes tools often break flow when collaboration, search, and structure are added later.",
-          whatIOwned: [
-            "Built the collaboration-ready note interface",
-            "Structured folders/tags/search for scale",
-            "Handled markdown-oriented reading and editing states"
-          ],
-          metrics: [
-            { label: "Core experience", value: "Write + organize + share", detail: "Balanced focus writing with collaborative capabilities." }
-          ],
           architecture: [
-            "Angular client for editor, folders, and shared views",
-            "Node.js + Socket.io for note updates and collaboration",
-            "MongoDB for note content, tags, and workspace structure"
+            "Angular client styled with Tailwind CSS",
+            "Node.js + Express REST API with JWT authentication",
+            "MongoDB + Mongoose for users and notes, Nodemailer for password reset"
           ],
-          decisions: [
-            { title: "Organization first", description: "Designed tags/folders/search together so the product stays usable as content grows." }
+          highlights: ["JWT auth", "Search by title or content", "Password reset by email"],
+          links: [
+            { label: "Live demo", url: "https://notes-app-manthanank.vercel.app" },
+            { label: "GitHub", url: "https://github.com/manthanank/notes-app" }
           ]
         }
       },
       {
         id: 4,
         slug: "project-management-suite",
-        title: "Project Management Suite",
-        description: "Comprehensive project management with agile workflows and team collaboration tools.",
-        fullDescription: "A complete project management solution featuring Kanban and Scrum boards, time tracking with detailed reports, team collaboration tools, file attachments, milestone tracking, and automated progress reporting with stakeholder notifications.",
+        title: "Task Management App",
+        description: "Multi-tenant task manager with organizations, roles and Gemini-powered helpers.",
+        fullDescription: "A full-stack task manager built with Angular, Express and MongoDB. It supports organizations with member management, role-based access control (user, admin, super), task assignment, filtering by status and priority, subtasks, a per-task activity log and a statistics dashboard. Gemini helpers suggest subtasks and priorities, improve descriptions, summarize tasks and power an assistant chat.",
         image: "images/projects/task-management-app.png",
-        technologies: ["Angular", "Node.js", "Express", "MongoDB", "Socket.io", "JWT", "Multer", "Redis"],
-        githubUrl: "https://github.com/manthanank/project-management-suite",
-        liveUrl: "https://pm.manthanank.com",
+        technologies: ["Angular", "Node.js", "Express", "MongoDB", "JWT", "Tailwind CSS", "Gemini API"],
+        githubUrl: "https://github.com/manthanank/task-management-app",
+        liveUrl: "https://task-management-app-manthanank.vercel.app/",
         featured: true,
         category: "fullstack",
         caseStudy: {
-          problem: "Project tools become noisy when boards, tracking, and collaboration are not designed around real team workflows.",
-          whatIOwned: [
-            "Built task views and board interactions",
-            "Connected file, task, and milestone flows across screens",
-            "Shaped a dashboard that makes progress visible quickly"
-          ],
-          metrics: [
-            { label: "Team surface area", value: "Boards + files + milestones", detail: "Unified multiple collaboration flows inside one interface." }
+          problem: "Teams need to assign and track work across members without everyone seeing or editing everything.",
+          approach: [
+            "Organization-based multi-tenancy with member management",
+            "Role-based access control with user, admin and super roles",
+            "Gemini helpers for subtasks, priorities, descriptions and summaries"
           ],
           architecture: [
-            "Angular frontend with board and dashboard views",
-            "Node.js API for tasks, attachments, and reporting",
-            "MongoDB + Redis to support task data and responsive updates"
+            "Angular 19 frontend with Tailwind CSS and RxJS",
+            "Node.js + Express API with JWT, Helmet, rate limiting and Swagger docs",
+            "MongoDB + Mongoose for organizations, tasks and activity logs"
           ],
-          decisions: [
-            { title: "Favor workflow clarity", description: "Reduced UI complexity by emphasizing the most common planning and execution flows first." }
+          highlights: ["Multi-tenancy", "RBAC", "Activity log", "AI helpers"],
+          links: [
+            { label: "Live demo", url: "https://task-management-app-manthanank.vercel.app/" },
+            { label: "GitHub", url: "https://github.com/manthanank/task-management-app" }
           ]
         }
       },
       {
         id: 5,
         slug: "social-media-hub",
-        title: "Social Media Hub",
-        description: "Modern social platform with multimedia sharing and community features.",
-        fullDescription: "A comprehensive social media application with image/video uploads, real-time messaging, story features, community groups, content moderation, advanced privacy controls, and social analytics dashboard.",
+        title: "Social Media App",
+        description: "Social media app built with Angular and a Node.js backend.",
+        fullDescription: "A social media application with an Angular frontend styled with Tailwind CSS and a Node.js backend.",
         image: "images/projects/upload-post-app.png",
-        technologies: ["Angular", "Node.js", "Express", "MongoDB", "Multer", "Cloudinary", "Socket.io", "Redis"],
-        githubUrl: "https://github.com/manthanank/social-media-hub",
-        liveUrl: "https://social.manthanank.com",
+        technologies: ["Angular", "Node.js", "TypeScript", "Tailwind CSS"],
+        githubUrl: "https://github.com/manthanank/social-media-app",
+        liveUrl: "https://social-media-app-manthanank.vercel.app",
         featured: false,
-        category: "fullstack",
-        caseStudy: {
-          problem: "Social products need rich media and engagement features without becoming hard to moderate or navigate.",
-          whatIOwned: [
-            "Implemented feed and post interactions",
-            "Handled media-heavy UI states and sharing flows",
-            "Worked across messaging/community-oriented experiences"
-          ],
-          metrics: [
-            { label: "Feature breadth", value: "Posts, media, messaging", detail: "Covered multiple engagement patterns inside one product." }
-          ],
-          architecture: [
-            "Angular app for feed, chat, and groups",
-            "Node.js + Socket.io backend for messaging and updates",
-            "MongoDB + Cloudinary for media and content persistence"
-          ]
-        }
+        category: "fullstack"
       }
     ]
   },
   workProjects: [
     {
+      id: 6,
+      title: "Dealer Management & Vehicle Reconditioning Software",
+      company: "Tech Driven Agency",
+      duration: "Feb 2025 - Oct 2026",
+      description: "Full-stack dealer management and AI-driven vehicle reconditioning software for car dealerships, built as scalable microservices.",
+      highlights: [
+        "Built dealer management applications with Next.js and Python Flask",
+        "Automated vehicle photo condition scoring, damage detection and listing generation with LLM APIs",
+        "Two-way write-backs to major dealer management systems through HMAC-signed, retry-resilient REST APIs",
+        "Real-time Kanban tracking boards with bottleneck flags, time-to-line forecasting and SMS-triggered stage transitions",
+        "Containerized services with Docker and PostgreSQL for cloud and on-premise deployments"
+      ],
+      technologies: ["Next.js", "Python", "Flask", "PostgreSQL", "Docker", "LLM APIs", "REST APIs"],
+      icon: "fas fa-car"
+    },
+    {
       id: 1,
       title: "Patient Discharge and Call Monitoring Web App",
       company: "BlackCoffer",
-      duration: "10+ months",
-      description: "Led the development and management of a healthcare project. Implemented new features and handled ongoing maintenance.",
+      duration: "Work Project",
+      description: "Multi-role hospital management system for patient discharge and call monitoring. Implemented new features and handled ongoing maintenance.",
       highlights: [
-        "Led development for over ten months",
         "Built frontend with Angular, backend with Node.js, database with MySQL",
-        "Integrated real-time communication using Socket.IO",
-        "Deployed to AWS for scalability and reliability"
+        "Added real-time alerts with Socket.IO",
+        "Deployed to AWS"
       ],
       technologies: ["Angular", "Node.js", "MySQL", "Socket.IO", "AWS"],
       icon: "fas fa-hospital"
@@ -247,15 +210,14 @@ export const PORTFOLIO_DATA: PortfolioData = {
       id: 2,
       title: "API Admin & Client Dashboard",
       company: "BlackCoffer",
-      duration: "6+ months",
-      description: "Developed comprehensive admin and client dashboards from the ground up with robust authentication and authorization.",
+      duration: "Work Project",
+      description: "Admin and client dashboards built from the ground up in Angular, with role-based access control.",
       highlights: [
         "Built dashboards from scratch using Angular",
-        "Integrated 150+ APIs into the frontend",
-        "Implemented robust Authentication and Authorization",
-        "Used efficient template-based design"
+        "Integrated 150+ REST APIs into the frontend",
+        "Implemented role-based access control"
       ],
-      technologies: ["Angular", "TypeScript", "REST APIs", "JWT", "Authentication"],
+      technologies: ["Angular", "TypeScript", "REST APIs", "RBAC"],
       icon: "fas fa-tachometer-alt"
     },
     {
@@ -305,12 +267,12 @@ export const PORTFOLIO_DATA: PortfolioData = {
   education: [
     {
       id: 1,
-      degree: "Bachelor of Engineering (B.E)",
-      field: "Computer Science",
+      degree: "Bachelor of Engineering (B.E.)",
+      field: "Computer Science & Engineering",
       institution: "Sahyadri College of Engineering & Management",
-      location: "Mangalore, Karnataka",
+      location: "Mangalore, Karnataka, India",
       year: "Aug 2016 - Aug 2020",
-      description: "Completed Bachelor's degree in Computer Science with focus on software development, algorithms, and computer science fundamentals.",
+      description: "Completed a Bachelor's degree in Computer Science & Engineering with a focus on software development, algorithms, and computer science fundamentals.",
       achievements: [
         "Developed Brain Tumor Detection project as final year project",
         "Completed various web development and database projects",
@@ -320,86 +282,56 @@ export const PORTFOLIO_DATA: PortfolioData = {
     }
   ],
   skills: {
-    frontend: [
-      { name: "Angular", level: 5 },
-      { name: "RxJS", level: 4 },
-      { name: "TypeScript", level: 5 },
-      { name: "JavaScript", level: 5 },
-      { name: "HTML/CSS", level: 5 }
-    ],
-    backend: [
-      { name: "Node.js", level: 4 },
-      { name: "Express.js", level: 4 },
-      { name: "Python", level: 3 },
-      { name: "Flask", level: 3 },
-      { name: "MongoDB", level: 4 },
-      { name: "MySQL", level: 4 },
-      { name: "PostgreSQL", level: 3 },
-      { name: "Firebase", level: 4 }
-    ],
-    tools: [
-      { name: "Git", level: 5 },
-      { name: "GitHub", level: 5 },
-      { name: "GitLab", level: 4 },
-      { name: "Bitbucket", level: 4 },
-      { name: "Docker", level: 3 },
-      { name: "AWS", level: 4 },
-      { name: "GCP", level: 3 },
-      { name: "CI/CD Pipelines", level: 4 },
-      { name: "WebSockets", level: 4 },
-      { name: "Jira", level: 4 },
-      { name: "Microsoft Azure", level: 3 },
-      { name: "Postman", level: 5 }
+    groups: [
+      { name: "Languages", items: ["JavaScript", "TypeScript", "Python"] },
+      { name: "Frontend", items: ["Next.js", "React", "Angular", "RxJS", "Tailwind CSS"] },
+      { name: "Backend", items: ["Node.js", "Express.js", "Flask", "RabbitMQ", "WebSockets"] },
+      { name: "Databases", items: ["MongoDB", "MySQL", "PostgreSQL", "Firebase", "Supabase", "Redis"] },
+      { name: "AI", items: ["Anthropic Claude API", "OpenAI", "LLMs"] },
+      { name: "Tools", items: ["Git", "GitHub", "GitLab", "Bitbucket", "Jira", "Postman"] },
+      { name: "Cloud & DevOps", items: ["AWS", "GCP", "Docker", "CI/CD", "Microsoft Azure"] }
     ]
   },
   timeline: [
     {
       title: "Software Developer",
-      company: "Senwell Group Pvt Ltd",
+      company: "Tech Driven Agency · Remote",
+      year: "Feb 2025 - Oct 2026",
+      description: "Built full-stack dealer management applications for car dealerships with Next.js and Python Flask, structured as scalable microservices. Developed features for an AI-driven vehicle reconditioning platform: automated vehicle photo condition scoring, damage detection and listing generation with LLM APIs. Built secure two-way write-backs to major dealer management systems through HMAC-signed, retry-resilient REST APIs. Created real-time Kanban tracking boards with bottleneck flags, time-to-line forecasting and SMS-triggered stage transitions. Containerized services with Docker and PostgreSQL for cloud and on-premise deployments, working in Agile sprints.",
+      icon: "fas fa-car",
+      iconColor: "text-blue-600"
+    },
+    {
+      title: "Software Developer",
+      company: "Senwell Group Pvt Ltd · Pune, India",
       year: "Oct 2024 - Jan 2025",
-      description: "Enhanced and maintained Angular-based applications for recruitment platforms and tolling & traffic management systems. Worked on microservice architectures and collaborated with cross-functional teams.",
+      description: "Built high-concurrency Angular applications for enterprise recruitment and traffic management platforms. Designed modular, reusable UI components and integrated REST APIs. Took part in code reviews and performance tuning, and mentored junior developers.",
       icon: "fas fa-code",
       iconColor: "text-indigo-600"
     },
     {
       title: "Software Engineer",
-      company: "BlackCoffer",
+      company: "BlackCoffer · Remote",
       year: "Feb 2023 - Aug 2024",
-      description: "Designed API dashboard with Angular featuring user and admin roles. Built multi-role hospital management system with Angular, Node.js, and MySQL deployed on AWS. Integrated real-time notifications using WebSockets and optimized code reducing build size by 50%.",
+      description: "Built an API Admin & Client Dashboard in Angular covering 150+ REST APIs with role-based access control. Built a multi-role hospital management system (patient discharge and call monitoring) with Angular, Node.js and MySQL on AWS. Added real-time alerts with Socket.IO. Cut build size by 50% and set up CI/CD pipelines.",
       icon: "fas fa-briefcase",
       iconColor: "text-green-600"
     },
     {
       title: "Full Stack Developer Intern",
-      company: "AppiVa Software Pvt Ltd",
+      company: "AppiVa Software Pvt Ltd · Remote",
       year: "Jul 2022 - Dec 2022",
-      description: "Enhanced applications with new features using Angular, Node.js, Python, and Firebase. Deployed solutions on AWS and ensured application performance through monitoring and troubleshooting.",
+      description: "Built features across Angular, Node.js and Python applications backed by Firebase. Deployed applications to AWS. Fixed production bugs and optimised queries.",
       icon: "fas fa-user-graduate",
       iconColor: "text-yellow-600"
     },
     {
       title: "Angular Developer Intern",
-      company: "Faclon Labs Pvt Ltd",
+      company: "Faclon Labs Pvt Ltd · Mumbai (Remote)",
       year: "Nov 2021 - Apr 2022",
-      description: "Collaborated on Angular-based projects including admin panel and user interfaces. Applied Angular best practices like modular architecture and reusable components. Integrated backend RESTful APIs.",
-      icon: "fas fa-angular",
+      description: "Built admin panels for an IoT platform in Angular. Built telemetry dashboards with RxJS.",
+      icon: "fab fa-angular",
       iconColor: "text-red-600"
-    },
-    {
-      title: "Front End Trainee",
-      company: "SounderGrad",
-      year: "May 2021 - Aug 2021",
-      description: "Completed training in HTML, CSS, JavaScript, jQuery, and Angular. Developed a Corona Tracker application using Angular and REST APIs with real-time COVID-19 statistics.",
-      icon: "fas fa-chalkboard-teacher",
-      iconColor: "text-teal-600"
-    },
-    {
-      title: "Student Intern",
-      company: "Karanji InfoTech Pvt Ltd",
-      year: "Jun 2019 - Jul 2019",
-      description: "Gained foundational knowledge in machine learning concepts. Developed a text-to-speech conversion application in Python utilizing relevant libraries.",
-      icon: "fas fa-robot",
-      iconColor: "text-pink-600"
     }
   ],
   uses: {
@@ -535,12 +467,6 @@ export const PORTFOLIO_DATA: PortfolioData = {
         link: "mailto:manthan.ank46@gmail.com"
       },
       {
-        icon: "M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z",
-        title: "Phone",
-        value: "+91 XXX XXX XXXX",
-        link: "tel:+91XXXXXXXXXX"
-      },
-      {
         icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z",
         title: "Location",
         value: "Karnataka, India",
@@ -550,7 +476,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
     socialLinks: [
       {
         name: "LinkedIn",
-        url: "https://linkedin.com/in/manthanank",
+        url: "https://www.linkedin.com/in/manthan-ankolekar-597b07a8/",
         icon: "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
       },
       {
@@ -560,100 +486,113 @@ export const PORTFOLIO_DATA: PortfolioData = {
       },
       {
         name: "X (Twitter)",
-        url: "https://twitter.com/manthanank",
+        url: "https://x.com/manthan_ank",
         icon: "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
       }
     ]
   },
   hireMe: {
-    headline: "I build fast, reliable Angular + Node.js products.",
-    targetRoles: ["Frontend Engineer (Angular)", "Full Stack Engineer", "Software Developer"],
-    availability: "Open to full-time roles (remote/hybrid).",
-    locationPreference: "India / Remote",
+    headline: "I build scalable full-stack products with Next.js, Angular, Node.js and Python.",
+    targetRoles: ["Full-Stack Software Engineer", "Next.js / React Engineer", "Angular Engineer", "Node.js / Python Backend Engineer"],
+    availability: "Open to full-time roles and freelance projects, remote or on-site.",
+    locationPreference: "Karnataka, India / Remote or on-site",
     strengths: [
-      "Angular architecture and performance",
-      "API-driven UI and complex dashboards",
-      "Node.js services and integrations",
-      "Pragmatic testing and clean code"
+      "Full-stack web apps with Next.js, Angular and Node.js",
+      "Python Flask microservices and REST API integrations",
+      "AI-driven workflows with LLM APIs",
+      "Docker, PostgreSQL and cloud deployments"
     ],
     highlights: [
-      { label: "Experience", value: "3+ years" },
-      { label: "Focus", value: "Angular, Node.js, TypeScript" },
-      { label: "Availability", value: "Open to opportunities" }
+      { label: "Experience", value: "3.5+ years" },
+      { label: "Focus", value: "Next.js, Angular, Node.js, Python" },
+      { label: "Availability", value: "Full-time or freelance" }
     ],
     recruiterSummary: {
-      experience: "3+ years",
-      stack: "Angular, TypeScript, Node.js, REST APIs, Firebase",
-      location: "Karnataka, India / Remote",
-      noticePeriod: "Immediate / discussable",
-      preferredRoles: ["Frontend Engineer", "Angular Developer", "Full Stack Engineer"]
-    },
-    testimonials: [
-      {
-        name: "Former teammate",
-        role: "Frontend Engineer",
-        quote: "Manthan consistently turned complex API-heavy requirements into clear Angular experiences and was reliable in delivery."
-      },
-      {
-        name: "Project stakeholder",
-        role: "Product collaborator",
-        quote: "He communicates clearly, ships polished interfaces, and keeps the project moving even when requirements evolve."
-      }
-    ]
+      experience: "3.5+ years",
+      stack: "Next.js, React, Angular, TypeScript, Node.js, Python Flask, PostgreSQL, Docker, AWS",
+      location: "Karnataka, India / Remote or on-site",
+      noticePeriod: "Available now",
+      preferredRoles: ["Full-Stack Software Engineer", "Next.js Developer", "Angular Developer", "Backend Engineer (Node.js / Python)"]
+    }
   },
   now: {
     intro: "A quick snapshot of what I’m focused on lately.",
-    openTo: ["Full-time roles", "Interesting product work", "Angular-heavy teams"],
-    learning: ["System design", "Performance profiling", "Better testing practices"],
-    building: ["Portfolio improvements", "Small full-stack side projects"],
-    recently: ["Refactoring older projects", "Improving UI polish and accessibility"],
-    updatedAt: "2026-04-28"
+    openTo: ["Full-time roles", "Freelance projects", "Remote or on-site work"],
+    learning: ["System design", "LLM-powered product features", "Better testing practices"],
+    building: ["Open learning guides in TheLearningHubOrg", "Small full-stack side projects", "Technical articles on Dev.to"],
+    recently: ["Finished at Tech Driven Agency at the end of October 2026", "Building dealer management and vehicle reconditioning software with Next.js and Python"],
+    updatedAt: "2026-11-03"
   },
   blog: {
     posts: [
       {
-        slug: "building-angular-dashboards-that-scale",
-        title: "Building Angular Dashboards That Scale",
-        summary: "Patterns I use to keep API-heavy dashboard UIs readable, modular, and easier to extend.",
-        category: "Frontend Architecture",
-        publishedAt: "2026-04-20",
+        slug: "tailwind-css-4-in-angular-19",
+        title: "Setting Up Tailwind CSS 4.0 in Angular v19.1: A Step-by-Step Guide",
+        summary: "A step-by-step guide to setting up Tailwind CSS 4.0 in an Angular v19.1 project.",
+        category: "Angular",
+        publishedAt: "2025-01-24",
+        readTime: "2 min read",
+        tags: ["Angular", "Tailwind CSS", "Web Dev"],
+        url: "https://dev.to/manthanank/setting-up-tailwind-css-40-in-angular-v191-a-step-by-step-guide-258m",
+        content: [
+          "This guide walks through adding Tailwind CSS 4.0 to an Angular v19.1 project, from installation to configuration.",
+          "The full article, with every command and config file, is on Dev.to."
+        ]
+      },
+      {
+        slug: "crud-app-nodejs-express-mysql",
+        title: "Building a CRUD Application with Node.js, Express, and MySQL",
+        summary: "Creating a simple Create, Read, Update, Delete application with Node.js, Express and MySQL.",
+        category: "Backend",
+        publishedAt: "2024-06-06",
+        readTime: "3 min read",
+        tags: ["Node.js", "Express", "MySQL"],
+        url: "https://dev.to/manthanank/building-a-crud-application-with-nodejs-express-and-mysql-4d2m",
+        content: [
+          "A walkthrough of building a CRUD (Create, Read, Update, Delete) REST API with Node.js, Express and a MySQL database.",
+          "The full article, with the code for each step, is on Dev.to."
+        ]
+      },
+      {
+        slug: "otp-verification-html-css-javascript",
+        title: "Building an OTP Verification System using HTML, CSS, and JavaScript",
+        summary: "Building a one-time password verification flow for user authentication with plain HTML, CSS and JavaScript.",
+        category: "Frontend",
+        publishedAt: "2024-02-15",
         readTime: "4 min read",
-        tags: ["Angular", "Dashboards", "Architecture"],
+        tags: ["JavaScript", "HTML", "CSS"],
+        url: "https://dev.to/manthanank/building-an-otp-verification-system-using-html-css-and-javascript-2dlk",
         content: [
-          "When a dashboard grows, the biggest risk is not visual complexity by itself, but hidden coupling between data loading, state, and UI sections.",
-          "I try to separate page-level orchestration from feature components. The page decides what data exists, and smaller views focus on rendering or interaction.",
-          "For API-heavy screens, consistent loading, empty, and error states matter as much as the happy path. Repeating those patterns intentionally makes the UI easier to trust.",
-          "The result is not just cleaner code. It also makes future features cheaper because new widgets and panels fit into a system instead of becoming custom one-offs."
+          "A walkthrough of building an OTP (one-time password) verification screen with plain HTML, CSS and JavaScript.",
+          "The full article, with the code for each step, is on Dev.to."
         ]
       },
       {
-        slug: "what-i-look-for-in-case-studies",
-        title: "What I Look For In Strong Project Case Studies",
-        summary: "A practical checklist for turning a project card into a convincing engineering case study.",
-        category: "Career",
-        publishedAt: "2026-04-16",
-        readTime: "3 min read",
-        tags: ["Portfolio", "Case Studies", "Career"],
+        slug: "nginx-cheatsheet",
+        title: "NGINX Cheatsheet: A Quick Reference Guide",
+        summary: "A quick reference for NGINX, the web server used to serve static content and act as a reverse proxy.",
+        category: "DevOps",
+        publishedAt: "2024-01-29",
+        readTime: "2 min read",
+        tags: ["NGINX", "Web Dev", "Node.js"],
+        url: "https://dev.to/manthanank/nginx-cheatsheet-a-quick-reference-guide-o0m",
         content: [
-          "A useful case study should explain context, constraints, decisions, and outcomes. Screenshots alone are not enough.",
-          "I want each project to answer a few simple questions: what problem mattered, what I owned, what trade-offs I made, and what improved because of the work.",
-          "Even when exact business metrics are unavailable, showing workflow improvements, architectural decisions, or delivery complexity still creates credibility.",
-          "That is why I like adding sections such as metrics, technical decisions, and ownership instead of only listing technologies."
+          "A cheatsheet of common NGINX commands and configuration snippets for serving static content and reverse proxying.",
+          "The full cheatsheet is on Dev.to."
         ]
       },
       {
-        slug: "small-accessibility-fixes-with-big-payoff",
-        title: "Small Accessibility Fixes With Big Payoff",
-        summary: "A few accessibility improvements that make polished portfolios feel much more reliable.",
-        category: "Accessibility",
-        publishedAt: "2026-04-10",
+        slug: "real-time-chat-nodejs-mongodb-express",
+        title: "Building a real-time chat application using Node.js, MongoDB, and Express",
+        summary: "Building a real-time chat application with Node.js, MongoDB and Express.",
+        category: "Backend",
+        publishedAt: "2023-07-24",
         readTime: "3 min read",
-        tags: ["Accessibility", "UX", "Frontend"],
+        tags: ["Node.js", "MongoDB", "Express"],
+        url: "https://dev.to/manthanank/building-a-real-time-chat-application-using-nodejs-mongodb-and-express-3bhp",
         content: [
-          "Accessibility improvements are often small, but they create immediate quality signals.",
-          "Visible focus states, skip links, reduced motion support, and descriptive CTA text help both keyboard users and people quickly scanning your site.",
-          "They also improve the developer experience because consistent focus and motion rules reduce design drift across components.",
-          "For personal sites, these details show care. For product work, they show engineering maturity."
+          "A walkthrough of building a real-time chat application backed by Node.js, Express and MongoDB.",
+          "The full article, with the code for each step, is on Dev.to."
         ]
       }
     ]

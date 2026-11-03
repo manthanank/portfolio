@@ -21,16 +21,14 @@ export class About {
   education = toSignal(this.dataService.getEducation(), { initialValue: [] as Education[] });
 
   // --- Derived State ---
-  frontendSkills = computed(() => this.skills()?.frontend || []);
-  backendSkills = computed(() => this.skills()?.backend || []);
-  toolsSkills = computed(() => this.skills()?.tools || []);
+  skillGroups = computed(() => this.skills()?.groups || []);
 
   constructor() {
     // Set SEO meta tags
     this.seoService.updateMetaTags({
-      title: 'About Me | Manthan Ankolekar - Software Developer',
-      description: 'Learn about my journey as a Software Developer, my technical skills in Angular, Node.js, TypeScript, and my professional experience.',
-      keywords: 'About Manthan Ankolekar, Skills, Experience, Angular Developer, Node.js Developer, Software Developer',
+      title: 'About Me | Manthan Ankolekar - Full-Stack Software Engineer',
+      description: 'Full-stack software engineer with 3.5+ years of experience in Next.js, Angular, Node.js and Python. Skills, work history and education. Open to full-time roles and freelance projects, remote or on-site.',
+      keywords: 'About Manthan Ankolekar, Skills, Experience, Full-Stack Software Engineer, Next.js Developer, Angular Developer, Node.js Developer, Python Developer',
     });
   }
 

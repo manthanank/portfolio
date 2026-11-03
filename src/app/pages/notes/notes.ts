@@ -30,8 +30,8 @@ export class Notes {
   constructor() {
     this.seoService.updateMetaTags({
       title: 'Notes | Manthan Ankolekar',
-      description: 'Short notes on Angular, frontend architecture, accessibility, and portfolio thinking.',
-      keywords: 'Angular notes, frontend blog, developer notes, accessibility',
+      description: 'Selected articles by Manthan Ankolekar on Angular, Node.js and web development, from 140 posts on Dev.to.',
+      keywords: 'Angular, Node.js, Tailwind CSS, MySQL, MongoDB, NGINX, developer articles, Dev.to',
       type: 'article',
       url: 'https://manthanank.web.app/notes',
       structuredData: {

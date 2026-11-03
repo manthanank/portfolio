@@ -41,9 +41,9 @@ export class Contact {
   constructor() {
     // Set SEO meta tags
     this.seoService.updateMetaTags({
-      title: 'Contact Me | Manthan Ankolekar - Full Stack Developer',
-      description: 'Get in touch with me for collaboration, job opportunities, or just to say hello. I\'m always open to discussing new projects and ideas.',
-      keywords: 'Contact Manthan Ankolekar, Hire Developer, Full Stack Developer Contact, Freelance Developer',
+      title: 'Contact Me | Manthan Ankolekar - Full-Stack Software Engineer',
+      description: 'Get in touch about full-time roles, freelance projects or collaboration. Open to full-time roles and freelance projects, remote or on-site.',
+      keywords: 'Contact Manthan Ankolekar, Hire Developer, Full-Stack Software Engineer, Freelance Developer',
     });
   }
 

@@ -24,20 +24,17 @@ export class HireMe {
 
   constructor() {
     this.seoService.updateMetaTags({
-      title: 'Hire Me | Manthan Ankolekar - Software Developer',
-      description: 'Role targets, availability, strengths, and quick ways to reach me.',
-      keywords: 'Hire Angular Developer, Hire Full Stack Developer, Software Developer',
+      title: 'Hire Me | Manthan Ankolekar - Full-Stack Software Engineer',
+      description: 'Full-stack software engineer (Next.js, Angular, Node.js, Python). Open to full-time roles and freelance projects, remote or on-site. Role targets, strengths and ways to reach me.',
+      keywords: 'Hire Full-Stack Software Engineer, Hire Next.js Developer, Hire Angular Developer, Freelance Developer, Node.js, Python',
       type: 'profile',
       url: 'https://manthanank.web.app/hire-me',
       structuredData: {
         '@context': 'https://schema.org',
         '@type': 'Person',
         name: 'Manthan Ankolekar',
-        jobTitle: 'Software Developer',
-        worksFor: {
-          '@type': 'Organization',
-          name: 'Open to opportunities',
-        },
+        jobTitle: 'Full-Stack Software Engineer',
+        description: 'Open to full-time roles and freelance projects, remote or on-site.',
         url: 'https://manthanank.web.app/hire-me',
       },
     });

@@ -43,6 +43,7 @@ export class Note {
             name: 'Manthan Ankolekar',
           },
           url: `https://manthanank.web.app/notes/${post.slug}`,
+          ...(post.url ? { sameAs: post.url } : {}),
         },
       });
     });

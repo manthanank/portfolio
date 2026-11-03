@@ -45,8 +45,8 @@ export class Projects {
   constructor() {
     // Set SEO meta tags
     this.seoService.updateMetaTags({
-      title: 'Projects | Manthan Ankolekar - Software Developer',
-      description: 'Explore my portfolio of web development projects including Angular applications, Node.js backends, and full-stack solutions.',
+      title: 'Projects | Manthan Ankolekar - Full-Stack Software Engineer',
+      description: 'Full-stack projects by Manthan Ankolekar built with Angular, Node.js, Express and MongoDB, plus work projects in Next.js, Python and Angular.',
       keywords: 'Projects, Portfolio, Angular Projects, Node.js Projects, Web Applications, Full Stack Projects, GitHub',
     });
   }

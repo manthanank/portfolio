@@ -39,19 +39,25 @@ export class Home implements OnDestroy {
   constructor() {
     // Set SEO meta tags
     this.seoService.updateMetaTags({
-      title: 'Manthan Ankolekar | Full Stack Developer',
-      description: 'Full Stack Developer specializing in Angular, Node.js, and modern web technologies. Explore my portfolio, projects, and professional experience.',
-      keywords: 'Full Stack Developer, Angular Developer, Node.js, TypeScript, JavaScript, Web Developer, Portfolio',
+      title: 'Manthan Ankolekar | Full-Stack Software Engineer',
+      description: 'Full-stack software engineer with 3.5+ years of experience in Next.js, Angular, Node.js and Python. Open to full-time roles and freelance projects, remote or on-site.',
+      keywords: 'Full-Stack Software Engineer, Next.js Developer, React, Angular Developer, Node.js, Python, Flask, TypeScript, PostgreSQL, Docker, AWS, Portfolio',
       structuredData: [
         {
           '@context': 'https://schema.org',
           '@type': 'Person',
           name: 'Manthan Ankolekar',
-          jobTitle: 'Software Developer',
+          jobTitle: 'Full-Stack Software Engineer',
+          description: 'Full-stack software engineer with 3.5+ years of experience in Next.js, Angular, Node.js and Python. Open to full-time roles and freelance projects, remote or on-site.',
+          address: { '@type': 'PostalAddress', addressRegion: 'Karnataka', addressCountry: 'IN' },
+          knowsAbout: ['Next.js', 'React', 'Angular', 'Node.js', 'Python', 'Flask', 'TypeScript', 'PostgreSQL', 'Docker', 'AWS'],
           url: 'https://manthanank.web.app',
           sameAs: [
             'https://github.com/manthanank',
-            'https://linkedin.com/in/manthanank',
+            'https://www.linkedin.com/in/manthan-ankolekar-597b07a8/',
+            'https://x.com/manthan_ank',
+            'https://dev.to/manthanank',
+            'https://www.npmjs.com/~manthanankolekar',
           ],
         },
         {

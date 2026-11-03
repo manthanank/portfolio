@@ -29,7 +29,7 @@
                 <!-- Circular Profile Image -->
                 <div
                   class="w-48 h-48 lg:w-64 lg:h-64 mx-auto rounded-full overflow-hidden border-4 border-slate-300 dark:border-slate-600 shadow-lg">
-                  <img ngSrc="picture.webp" alt="Manthan - Software Developer" width="256" height="256"
+                  <img ngSrc="picture.webp" alt="Manthan - Full-Stack Software Engineer" width="256" height="256"
                     class="w-full h-full object-cover" />
                 </div>
               </div>
@@ -45,20 +45,18 @@
               <div class="prose text-slate-700 dark:text-slate-300 space-y-4">
                 <p>
                   Also known as <span class="font-semibold text-blue-600 dark:text-blue-400">manthanank</span>, I'm a
-                  passionate Software Developer based in Karnataka, India. With over 4 years of experience, I've been
-                  building digital solutions that make a difference.
+                  full-stack software engineer based in Karnataka, India, with 3.5+ years of experience building
+                  scalable web applications, microservices and AI-driven workflows.
                 </p>
                 <p>
-                  I hold a Bachelor's degree in Computer Science from Sahyadri College of Engineering & Management.
-                  Currently, I work as a Software Developer, where I develop
-                  backend applications and work on microservices architecture.
+                  I work mostly in Next.js, Angular, Node.js and Python on cloud-native infrastructure. My recent work
+                  covers integrations with dealer management systems, LLM vision pipelines and high-throughput SaaS
+                  dashboards. I hold a B.E. in Computer Science &amp; Engineering from Sahyadri College of Engineering
+                  &amp; Management.
                 </p>
                 <p>
-                  My expertise spans across the MEAN stack and beyond - from crafting intuitive user interfaces with
-                  Angular to
-                  building robust backend systems with Node.js, Python Flask, and various databases. I'm passionate
-                  about creating scalable web
-                  applications and exploring cloud technologies like AWS and GCP.
+                  Outside of work I write technical articles on Dev.to and maintain open learning guides in
+                  TheLearningHubOrg. I'm open to full-time roles and freelance projects, remote or on-site.
                 </p>
               </div>
             </div>
@@ -86,15 +84,15 @@
           <!-- Experience -->
           <div
             class="bg-slate-50 dark:bg-slate-800 p-4 lg:p-6 rounded-2xl border border-slate-200 dark:border-slate-700 text-center hover:shadow-xl transition-all duration-300 hover:scale-105">
-            <div class="text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">3+</div>
+            <div class="text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">3.5+</div>
             <div class="text-slate-600 dark:text-slate-400 font-medium text-sm">Years Experience</div>
           </div>
 
           <!-- Projects -->
           <div
             class="bg-slate-50 dark:bg-slate-800 p-4 lg:p-6 rounded-2xl border border-slate-200 dark:border-slate-700 text-center hover:shadow-xl transition-all duration-300 hover:scale-105">
-            <div class="text-2xl lg:text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">15+</div>
-            <div class="text-slate-600 dark:text-slate-400 font-medium text-sm">Projects Built</div>
+            <div class="text-2xl lg:text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">140</div>
+            <div class="text-slate-600 dark:text-slate-400 font-medium text-sm">Articles on Dev.to</div>
           </div>
 
           <!-- Location -->
@@ -107,8 +105,8 @@
           <!-- Role -->
           <div
             class="bg-slate-50 dark:bg-slate-800 p-4 lg:p-6 rounded-2xl border border-slate-200 dark:border-slate-700 text-center hover:shadow-xl transition-all duration-300 hover:scale-105">
-            <div class="text-lg lg:text-xl font-bold text-slate-800 dark:text-slate-100 mb-2">Full Stack</div>
-            <div class="text-slate-600 dark:text-slate-400 font-medium text-sm">Developer</div>
+            <div class="text-lg lg:text-xl font-bold text-slate-800 dark:text-slate-100 mb-2">Full-Stack</div>
+            <div class="text-slate-600 dark:text-slate-400 font-medium text-sm">Software Engineer</div>
           </div>
         </div>
       </div>
@@ -129,66 +127,21 @@
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
-          <!-- Frontend Skills -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+          @for (group of skillGroups(); track group.name) {
           <div
             class="bg-white dark:bg-slate-900 rounded-2xl p-4 lg:p-6 shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-xl transition-all duration-300 hover:scale-105">
-            <h3 class="text-lg font-semibold text-slate-800 dark:text-slate-100 mb-4 text-center">Frontend</h3>
-            <div class="space-y-3">
-              @for (skill of frontendSkills(); track skill.name) {
-              <div>
-                <div class="flex justify-between items-center mb-1">
-                  <span class="text-slate-700 dark:text-slate-300 font-medium text-sm">{{ skill.name }}</span>
-                  <span class="text-xs text-slate-500">{{ skill.level }}/5</span>
-                </div>
-                <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-1.5">
-                  <div class="bg-blue-500 h-1.5 rounded-full transition-all duration-300"
-                    [style.width.%]="skill.level * 20"></div>
-                </div>
-              </div>
+            <h3 class="text-lg font-semibold text-slate-800 dark:text-slate-100 mb-4 text-center">{{ group.name }}</h3>
+            <div class="flex flex-wrap justify-center gap-2">
+              @for (skill of group.items; track skill) {
+              <span
+                class="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-full text-sm font-medium border border-slate-200 dark:border-slate-700">
+                {{ skill }}
+              </span>
               }
             </div>
           </div>
-
-          <!-- Backend Skills -->
-          <div
-            class="bg-white dark:bg-slate-900 rounded-2xl p-4 lg:p-6 shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-xl transition-all duration-300 hover:scale-105">
-            <h3 class="text-lg font-semibold text-slate-800 dark:text-slate-100 mb-4 text-center">Backend</h3>
-            <div class="space-y-3">
-              @for (skill of backendSkills(); track skill.name) {
-              <div>
-                <div class="flex justify-between items-center mb-1">
-                  <span class="text-slate-700 dark:text-slate-300 font-medium text-sm">{{ skill.name }}</span>
-                  <span class="text-xs text-slate-500">{{ skill.level }}/5</span>
-                </div>
-                <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-1.5">
-                  <div class="bg-green-500 h-1.5 rounded-full transition-all duration-300"
-                    [style.width.%]="skill.level * 20"></div>
-                </div>
-              </div>
-              }
-            </div>
-          </div>
-
-          <!-- Tools & Others -->
-          <div
-            class="bg-white dark:bg-slate-900 rounded-2xl p-4 lg:p-6 shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-xl transition-all duration-300 hover:scale-105">
-            <h3 class="text-lg font-semibold text-slate-800 dark:text-slate-100 mb-4 text-center">Tools & Others</h3>
-            <div class="space-y-3">
-              @for (skill of toolsSkills(); track skill.name) {
-              <div>
-                <div class="flex justify-between items-center mb-1">
-                  <span class="text-slate-700 dark:text-slate-300 font-medium text-sm">{{ skill.name }}</span>
-                  <span class="text-xs text-slate-500">{{ skill.level }}/5</span>
-                </div>
-                <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-1.5">
-                  <div class="bg-purple-500 h-1.5 rounded-full transition-all duration-300"
-                    [style.width.%]="skill.level * 20"></div>
-                </div>
-              </div>
-              }
-            </div>
-          </div>
+          }
         </div>
       </div>
     </div>
@@ -299,7 +252,7 @@
           </div>
 
           <div class="space-y-8">
-            @for (item of timeline(); track item.title; let i = $index) {
+            @for (item of timeline(); track item.company + item.year; let i = $index) {
             <div class="relative flex items-start">
               <!-- Timeline dot with gradient -->
               <div class="flex-shrink-0 relative z-10">

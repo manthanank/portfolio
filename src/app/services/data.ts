@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { shareReplay, Observable, BehaviorSubject, map, of } from 'rxjs';
-import { ProjectCategory, Project, Skill, TimelineItem, UseCategory, UseItem, ContactMethod, SocialLink } from '../models';
+import { ProjectCategory, Project, SkillGroup, TimelineItem, UseCategory, UseItem, ContactMethod, SocialLink } from '../models';
 
 export interface WorkProject {
   id: number;
@@ -39,6 +39,8 @@ export interface BlogPost {
   publishedAt: string;
   readTime: string;
   tags: string[];
+  /** Optional link to the full article when it is published elsewhere (e.g. Dev.to). */
+  url?: string;
   content: string[];
 }
 
@@ -47,7 +49,6 @@ export interface PortfolioData {
     name: string;
     title: string;
     email: string;
-    phone: string;
     location: string;
     bio: string;
     roles: string[];
@@ -68,9 +69,7 @@ export interface PortfolioData {
   workProjects: WorkProject[];
   education: Education[];
   skills: {
-    frontend: Skill[];
-    backend: Skill[];
-    tools: Skill[];
+    groups: SkillGroup[];
   };
   timeline: TimelineItem[];
   uses: {

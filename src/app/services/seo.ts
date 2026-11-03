@@ -24,13 +24,13 @@ export class SeoService {
   private router = inject(Router);
 
   private readonly defaultConfig: SeoConfig = {
-    title: 'Manthan Ankolekar | Full Stack Developer',
-    description: 'Full Stack Developer specializing in Angular, Node.js, and modern web technologies. Explore my portfolio, projects, and professional experience.',
-    keywords: 'Full Stack Developer, Angular Developer, Node.js, TypeScript, JavaScript, Web Developer, Frontend Developer, Backend Developer, Portfolio',
+    title: 'Manthan Ankolekar | Full-Stack Software Engineer',
+    description: 'Full-stack software engineer with 3.5+ years of experience in Next.js, Angular, Node.js and Python. Open to full-time roles and freelance projects, remote or on-site.',
+    keywords: 'Full-Stack Software Engineer, Next.js Developer, React, Angular Developer, Node.js, Python, Flask, TypeScript, PostgreSQL, Docker, AWS, Portfolio',
     image: '/og-image.png',
     type: 'website',
     author: 'Manthan Ankolekar',
-    twitterHandle: '@manthanank'
+    twitterHandle: '@manthan_ank'
   };
 
   private readonly baseUrl = 'https://manthanank.web.app';

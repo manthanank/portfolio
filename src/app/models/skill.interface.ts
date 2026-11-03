@@ -3,6 +3,11 @@ export interface Skill {
   level: number; // 1-5 scale
 }
 
+export interface SkillGroup {
+  name: string;
+  items: string[];
+}
+
 export interface TimelineItem {
   title: string;
   company: string;
