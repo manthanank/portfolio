@@ -332,6 +332,22 @@ export const PORTFOLIO_DATA: PortfolioData = {
       description: "Built admin panels for an IoT platform in Angular. Built telemetry dashboards with RxJS.",
       icon: "fab fa-angular",
       iconColor: "text-red-600"
+    },
+    {
+      title: "Front End Trainee",
+      company: "SounderGrad",
+      year: "May 2021 - Aug 2021",
+      description: "Completed training in HTML, CSS, JavaScript, jQuery, and Angular. Developed a Corona Tracker application using Angular and REST APIs with real-time COVID-19 statistics.",
+      icon: "fas fa-chalkboard-teacher",
+      iconColor: "text-teal-600"
+    },
+    {
+      title: "Student Intern",
+      company: "Karanji InfoTech Pvt Ltd",
+      year: "Jun 2019 - Jul 2019",
+      description: "Gained foundational knowledge in machine learning concepts. Developed a text-to-speech conversion application in Python utilizing relevant libraries.",
+      icon: "fas fa-robot",
+      iconColor: "text-pink-600"
     }
   ],
   uses: {
